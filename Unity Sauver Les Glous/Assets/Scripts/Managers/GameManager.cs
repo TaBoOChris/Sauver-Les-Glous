@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private int _NbGlousStartLevel = 10;
 	private int _NbGlousAlive;
 
+	[SerializeField] GlousSpawner glousSpawner;
+	[SerializeField] Timer timer;
 	private void Awake()
 	{
 		if (Instance != null)
@@ -33,10 +35,10 @@ public class GameManager : MonoBehaviour
 	public void StartGame()
     {
 		_NbGlousAlive = _NbGlousStartLevel;
-		//SpawnGlous();
+		glousSpawner.SpawnGlous(_NbGlousStartLevel);	//SpawnGlous();
 		//SpawnPlaterform();
 		//Rotation();
-		//StartTimer();
+		timer.StartTimer(60);							//StartTimer();
     }
 
 	public void EndGame()
@@ -44,11 +46,11 @@ public class GameManager : MonoBehaviour
 		Debug.Log("Fin de la partie");
 		if(_NbGlousAlive <= 0)
         {
-			Debug.Log("Tu n'as pas réussi à sauver les Glous :'(");
+			Debug.Log("Tu n'as pas reussi a sauver les Glous :'(");
         }
         else
         {
-			Debug.Log("La machine est enfin arrêtée!\nTu as sauvé " + _NbGlousAlive + " Glous. Bien joué!");
+			Debug.Log("La machine est enfin arretee!\nTu as sauve " + _NbGlousAlive + " Glous. Bien joue!");
         }
 		//StopRotation()
 		//EndGameScreen();
