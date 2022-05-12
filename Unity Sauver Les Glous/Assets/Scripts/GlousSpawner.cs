@@ -12,12 +12,6 @@ public class GlousSpawner : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SpawnGlous(5);
-    }
-
     public void SpawnGlous(int glousNumber){
         StartCoroutine(SpawnGlousCoroutine(glousNumber));
     }
