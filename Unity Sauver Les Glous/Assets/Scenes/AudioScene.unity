@@ -487,10 +487,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_musicSource: {fileID: 1023090135}
   m_sfxSource: {fileID: 440777470}
-  m_menuMusic: {fileID: 0}
-  m_gameMusic: {fileID: 0}
+  m_menuMusic: {fileID: 8300000, guid: e41b0473e41fef54f8b142725403d8d9, type: 3}
+  m_gameMusic: {fileID: 8300000, guid: e41b0473e41fef54f8b142725403d8d9, type: 3}
   m_buttonSfx: {fileID: 8300000, guid: bc71c02b64fbfec4b84d3272406ba2b4, type: 3}
   m_GlouSfx: {fileID: 8300000, guid: 6d4845c5144135d45a521897d13d5828, type: 3}
+  m_GlouSpawnSfx: {fileID: 8300000, guid: 13d63e528d94a254bb3df916abf2d5cf, type: 3}
   m_GlouDieSfx: {fileID: 8300000, guid: 8667cc9aee2c764439a3eefe7dd98000, type: 3}
 --- !u!114 &1184541194
 MonoBehaviour:

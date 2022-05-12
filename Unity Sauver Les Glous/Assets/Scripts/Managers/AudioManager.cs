@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
 
 	[Header("Glou")]
 	[SerializeField] public AudioClip m_GlouSfx;
+	[SerializeField] public AudioClip m_GlouSpawnSfx;
 	[SerializeField] public AudioClip m_GlouDieSfx;
 
 	private void Awake()
@@ -64,6 +65,10 @@ public class AudioManager : MonoBehaviour
     public void PlayGlou()
 	{
 		m_sfxSource.PlayOneShot(m_GlouSfx);
+	}
+	public void PlayGlouSpawn()
+	{
+		m_sfxSource.PlayOneShot(m_GlouSpawnSfx);
 	}
 
 	public void PlayGlouDie()
