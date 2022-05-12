@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,16 @@ public class GameManager : MonoBehaviour
 	private int _NbGlousAlive;
 
 	[SerializeField] GlousSpawner glousSpawner;
+
+	[Header("Timer")]
 	[SerializeField] Timer timer;
+	[SerializeField] private int gameTime = 60;
+
+	[Header("End menu")]
+	[SerializeField] GameObject endMenu;
+	[SerializeField] TextMeshProUGUI endMenuText;
+
+
 	private void Awake()
 	{
 		if (Instance != null)
@@ -34,26 +44,26 @@ public class GameManager : MonoBehaviour
 
 	public void StartGame()
     {
+		endMenu.SetActive(false);
 		_NbGlousAlive = _NbGlousStartLevel;
 		glousSpawner.SpawnGlous(_NbGlousStartLevel);	//SpawnGlous();
 		//SpawnPlaterform();
 		//Rotation();
-		timer.StartTimer(60);							//StartTimer();
+		timer.StartTimer(gameTime);							//StartTimer();
     }
 
 	public void EndGame()
     {
-		Debug.Log("Fin de la partie");
 		if(_NbGlousAlive <= 0)
         {
-			Debug.Log("Tu n'as pas reussi a sauver les Glous :'(");
+			endMenuText.text = "Tu n'as pas réussi à sauver les Glous ...";
         }
         else
         {
-			Debug.Log("La machine est enfin arretee!\nTu as sauve " + _NbGlousAlive + " Glous. Bien joue!");
-        }
+			endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + _NbGlousAlive + "</color> Glous.  Bien joué !";
+        } 
 		//StopRotation()
-		//EndGameScreen();
+		endMenu.SetActive(true);
 	}
 
 	public void GlouDie()

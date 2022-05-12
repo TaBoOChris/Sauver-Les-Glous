@@ -56,7 +56,7 @@ public class Timer : MonoBehaviour
             seconds -= 1;
             yield return new WaitForSeconds(1f);
         }
-        //GameManager.Instance.EndGame();
+        GameManager.Instance.EndGame();
     }
 
 
