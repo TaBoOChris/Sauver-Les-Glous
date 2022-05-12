@@ -37,7 +37,10 @@ public class AudioManager : MonoBehaviour
 	}
 	void Update()
 	{
-
+		if (!m_musicSource.isPlaying)
+		{
+			m_musicSource.Play();
+		}
 	}
 
     #region Menu Music
