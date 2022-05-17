@@ -8,7 +8,7 @@ public class EndMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Debug.Log("Retour au menu");
-        //SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PlayAgain()
