@@ -11,8 +11,12 @@ public class DeadCircle : MonoBehaviour
         
         Debug.Log("Kill Glou");
 
-        if(GameManager.Instance)
+        if (GameManager.Instance)
+        {
             GameManager.Instance.GlouDie();
+            AudioManager.Instance.PlayGlouDie();
+        }
+
 
         Destroy(other.gameObject,0.2f);
     }
