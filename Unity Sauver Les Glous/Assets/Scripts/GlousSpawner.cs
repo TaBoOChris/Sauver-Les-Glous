@@ -21,7 +21,8 @@ public class GlousSpawner : MonoBehaviour
 {
     for (int i =0; i < glousNumber ; i++)
     {
-        GameObject newGlou = Instantiate(glou,spawnTransform.position,Quaternion.identity);     // Spanw Glou
+        GameObject newGlou = Instantiate(glou,spawnTransform.position,Quaternion.identity);     // Spawn Glou
+        AudioManager.Instance.PlayGlouSpawn();                                                  // Glou spawn sound
         float xRandomForce = Random.Range(-xMaxSpawnForce, xMaxSpawnForce);                     // Calculte force in X
         newGlou.GetComponent<Rigidbody2D>().AddForce(new Vector2(xRandomForce,-ySpawnForce));   // Add force on the new glou
 
