@@ -12,13 +12,14 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     private bool isDragged = false;
 
-    private Vector3 defaultRotationEuler;
+    private float rotationOffset;
 
     private PolarCoords2D coords;
     
     // Start is called before the first frame update
     void Start()
     {
+        isDragged = false;
         OnMoved();
     }
 
@@ -43,19 +44,22 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     private void OnMoved()
     {
-        defaultRotationEuler = transform.rotation.eulerAngles;
+        //Calculate offset
+        Vector3 relativePos = Vector3.zero - transform.position;
+        float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
+        rotationOffset = transform.rotation.eulerAngles.z - angle;
+
+        Debug.Log("rotation offset set to " + rotationOffset);
         coords = new PolarCoords2D(transform.position.x, transform.position.y);
     }
 
     private void FaceCenter()
     {
         Vector3 relativePos = Vector3.zero - transform.position; //TODO: Point to set instead of Vector3.Zero
-        transform.up = relativePos;
-        if(alwaysFaceCenter == false)
-        {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + defaultRotationEuler);
+        float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
 
-        }
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Euler(Vector3.forward * (angle + rotationOffset));
     }
 
     
