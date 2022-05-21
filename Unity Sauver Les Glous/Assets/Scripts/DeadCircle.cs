@@ -7,7 +7,7 @@ public class DeadCircle : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag != "Glou") return;
+        if(other.transform.parent.tag != "Glou") return;
         
         Debug.Log("Kill Glou");
 
@@ -18,6 +18,6 @@ public class DeadCircle : MonoBehaviour
         }
 
 
-        Destroy(other.gameObject,0.2f);
+        Destroy(other.transform.parent.gameObject,0.2f);
     }
 }
