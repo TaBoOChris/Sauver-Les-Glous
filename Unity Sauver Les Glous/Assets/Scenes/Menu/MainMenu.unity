@@ -651,6 +651,14 @@ PrefabInstance:
       propertyPath: m_Text
       value: Play
       objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_text
+      value: Jouer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_fontSize
+      value: 76.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
 --- !u!1001 &1446109658
@@ -759,6 +767,14 @@ PrefabInstance:
     - target: {fileID: 3689627726468534552, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
       propertyPath: m_Text
       value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_text
+      value: Quitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_fontSize
+      value: 61.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
@@ -984,7 +1000,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
