@@ -14,6 +14,6 @@ public class EndMenu : MonoBehaviour
     public void PlayAgain()
     {
         //GameManager.Instance.StartGame();
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("NewDesignMainLevel");
     }
 }
