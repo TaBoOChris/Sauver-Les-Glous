@@ -74,4 +74,9 @@ public class GameManager : MonoBehaviour
 			EndGame();
         }
     }
+
+	public int GetNbGlousAlive()
+    {
+		return _NbGlousAlive;
+    }
 }
