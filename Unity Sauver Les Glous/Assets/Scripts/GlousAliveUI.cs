@@ -5,12 +5,12 @@ using TMPro;
 
 public class GlousAliveUI : MonoBehaviour
 {
-    private TextMeshProUGUI glousAlive;
+    private TextMeshPro glousAlive;
 
     // Start is called before the first frame update
     void Start()
     {
-        glousAlive = GetComponent<TextMeshProUGUI>();
+        glousAlive = GetComponent<TextMeshPro>();
     }
 
     // Update is called once per frame
