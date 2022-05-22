@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     // Affichage
     private int minutesUI;
     private int secondsUI;
-    private TextMeshProUGUI timerUI;
+    private TextMeshPro timerUI;
 
     // Temps total en secondes
     private int seconds;
@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        timerUI = gameObject.GetComponent<TextMeshProUGUI>();
+        timerUI = gameObject.GetComponent<TextMeshPro>();
     }
 
     public void StartTimer(int timeInSeconds)

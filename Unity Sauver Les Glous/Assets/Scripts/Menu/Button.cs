@@ -11,6 +11,11 @@ public class Button : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void PressAnimation()
+    {
+
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quit Game");
