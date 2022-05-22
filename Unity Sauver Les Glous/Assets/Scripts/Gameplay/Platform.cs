@@ -49,7 +49,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
         rotationOffset = transform.rotation.eulerAngles.z - angle;
 
-        Debug.Log("rotation offset set to " + rotationOffset);
+        // Debug.Log("rotation offset set to " + rotationOffset);
         coords = new PolarCoords2D(transform.position.x, transform.position.y);
     }
 
@@ -82,7 +82,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (isDragged)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            Debug.Log(mousePos.x + " , " + mousePos.y);
+            //Debug.Log(mousePos.x + " , " + mousePos.y);
             mousePos.z = 0;
             Vector3 dragPos = mousePos - transform.position;
             //transform.Translate(dragPos);
@@ -94,7 +94,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         if (!isDraggable) return;
         isDragged = true;
-        Debug.Log("dragging " + name);
+        //Debug.Log("dragging " + name);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -103,7 +103,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         {
             isDragged = false;
             OnMoved();
-            Debug.Log("no more dragging " + name);
+            //Debug.Log("no more dragging " + name);
 
         }
 
