@@ -117,16 +117,24 @@ public class GameManager : MonoBehaviour
 	{
 		Time.timeScale = 0f;
 		m_isGamePaused = true;
-		//m_inputActions.CheatCodes.Disable();
-		//Debug.Log("Game Paused");
+		Debug.Log("Game Paused");
+
+		if (CheatCodes.Instance != null)
+        {
+			CheatCodes.Instance.Disable();
+		}
 	}
 
 	void ResumeGame()
 	{
 		Time.timeScale = 1;
 		m_isGamePaused = false;
-		//m_inputActions.CheatCodes.Enable();
-		//Debug.Log("Game Resumed");
+		Debug.Log("Game Resumed");
+
+		if (CheatCodes.Instance != null)
+		{
+			CheatCodes.Instance.Enable();
+		}
 	}
 
 	private void OnEnable()

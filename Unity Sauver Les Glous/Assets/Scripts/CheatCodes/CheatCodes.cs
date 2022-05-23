@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class CheatCodes : MonoBehaviour
 {
+    public static CheatCodes Instance { get; private set; }
+
     private InputActions m_inputActions;
 
     [SerializeField] private Timer m_timer;
@@ -13,6 +15,13 @@ public class CheatCodes : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (Instance != null)
+        {
+            Debug.LogWarning("There is more than one instance of CheatCodes in the scene");
+            return;
+        }
+        Instance = this;
+
         m_inputActions = new InputActions();
 
         m_inputActions.CheatCodes.AddTime.performed += context => AddTime();
@@ -38,13 +47,23 @@ public class CheatCodes : MonoBehaviour
         Debug.Log("<CHEAT> SpawnGlou");
     }
 
-    private void OnEnable()
+    public void Enable()
     {
         m_inputActions.CheatCodes.Enable();
     }
 
-    private void OnDisable()
+    public void Disable()
     {
         m_inputActions.CheatCodes.Disable();
+    }
+
+    private void OnEnable()
+    {
+        Enable();
+    }
+
+    private void OnDisable()
+    {
+        Disable();
     }
 }
