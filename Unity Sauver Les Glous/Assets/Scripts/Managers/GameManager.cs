@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] TextMeshProUGUI endMenuText;
 
 	[Header("Pause")]
-	private bool m_isGamePaused = false;
+	public static bool m_isGamePaused = false;
 	private InputActions m_inputActions;
 
 	private void Awake()
