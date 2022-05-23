@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
 	[Header("Pause")]
 	[SerializeField] private GameObject m_pauseMenu;
-	public static bool m_isGamePaused = false;
+	private static bool m_isGamePaused = false;
 	private InputActions m_inputActions;
 
 	private void Awake()
@@ -140,6 +140,11 @@ public class GameManager : MonoBehaviour
 			CheatCodes.Instance.Enable();
 		}
 	}
+
+	public bool IsGamePaused()
+    {
+		return m_isGamePaused;
+    }
 
 	private void OnEnable()
 	{

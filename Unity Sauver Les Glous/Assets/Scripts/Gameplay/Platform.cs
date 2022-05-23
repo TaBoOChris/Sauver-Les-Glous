@@ -9,6 +9,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public bool isDraggable = true;
     public bool alwaysFaceCenter = false;
     private const float divider = 100f; //To adapt on the scale of the level
+    private bool isHovered=false;
 
     private bool isDragged = false;
 
@@ -92,8 +93,10 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!isDraggable) return;
+        if (!isDraggable || GameManager.Instance.IsGamePaused())
+            return; //Abort if not draggable or if the game is paused
         isDragged = true;
+        isHovered = true;
         //Debug.Log("dragging " + name);
         if (CursorManager.Instance != null)
             CursorManager.Instance.SetGrab();
@@ -115,16 +118,20 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!isDraggable || GameManager.Instance.IsGamePaused())
+            return; //Abort if not draggable or if the game is paused
         CursorManager cursorManager = CursorManager.Instance;
         if (cursorManager != null && cursorManager.IsPointer())
         {
             cursorManager.SetHand();
         }
-            
+        isHovered = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (isHovered == false)
+            return; //Abort if the platform was not hovered in the first place.
         CursorManager cursorManager = CursorManager.Instance;
         if (cursorManager != null && cursorManager.IsHand())
         {
