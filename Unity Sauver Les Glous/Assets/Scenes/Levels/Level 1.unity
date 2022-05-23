@@ -1166,6 +1166,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Reprendre
       objectReference: {fileID: 0}
+    - target: {fileID: 4913440951662377301, guid: f966819b4d1119b4ebe3303cf1f65ac5, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8576045961267006490, guid: f966819b4d1119b4ebe3303cf1f65ac5, type: 3}
       propertyPath: m_Name
       value: Text
