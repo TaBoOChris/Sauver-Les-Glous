@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
 	void Start()
     {
 		StartGame();
-    }
+		if(CursorManager.Instance != null)
+			CursorManager.Instance.SetPointer();
+	}
 
     void Update()
     {
@@ -54,7 +56,9 @@ public class GameManager : MonoBehaviour
 
 	public void EndGame()
     {
-		if(_NbGlousAlive <= 0)
+		if (CursorManager.Instance != null)
+			CursorManager.Instance.SetPointer();
+		if (_NbGlousAlive <= 0)
         {
 			endMenuText.text = "Tu n'as pas réussi à sauver les Glous ...";
         }
