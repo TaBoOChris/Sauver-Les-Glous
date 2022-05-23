@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] TextMeshProUGUI endMenuText;
 
 	[Header("Pause")]
+	[SerializeField] private GameObject m_pauseMenu;
 	public static bool m_isGamePaused = false;
 	private InputActions m_inputActions;
 
@@ -77,7 +78,8 @@ public class GameManager : MonoBehaviour
         }
 
 		endMenu.SetActive(true);
-		PauseGame();
+		Time.timeScale = 0f;
+		m_isGamePaused = true;
 		// must not be able to pause/unpause when in endMenu
 		m_inputActions.Game.Disable();
 	}
@@ -113,10 +115,11 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	void PauseGame()
+	public void PauseGame()
 	{
 		Time.timeScale = 0f;
 		m_isGamePaused = true;
+		m_pauseMenu.SetActive(true);
 		Debug.Log("Game Paused");
 
 		if (CheatCodes.Instance != null)
@@ -125,10 +128,11 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	void ResumeGame()
+	public void ResumeGame()
 	{
 		Time.timeScale = 1;
 		m_isGamePaused = false;
+		m_pauseMenu.SetActive(false);
 		Debug.Log("Game Resumed");
 
 		if (CheatCodes.Instance != null)
