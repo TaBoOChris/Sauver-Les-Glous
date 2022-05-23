@@ -59,5 +59,14 @@ public class Timer : MonoBehaviour
         GameManager.Instance.EndGame();
     }
 
+    public void AddTimeSeconds(int value)
+    {
+        seconds += value;
+    }
+
+    public void EndTimer()
+    {
+        seconds = 0;
+    }
 
 } // class

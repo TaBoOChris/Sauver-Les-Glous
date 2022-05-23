@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 	public void StartGame()
     {
 		endMenu.SetActive(false);
-		_NbGlousAlive = _NbGlousStartLevel;
+		_NbGlousAlive = 0;
 		glousSpawner.SpawnGlous(_NbGlousStartLevel);	//SpawnGlous();
 		//SpawnPlaterform();
 		//Rotation();
@@ -65,6 +65,11 @@ public class GameManager : MonoBehaviour
 		//StopRotation()
 		endMenu.SetActive(true);
 	}
+
+	public void AddGlou()
+    {
+		_NbGlousAlive++;
+    }
 
 	public void GlouDie()
     {
