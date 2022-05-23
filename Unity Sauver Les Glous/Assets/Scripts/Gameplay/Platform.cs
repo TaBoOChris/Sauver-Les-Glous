@@ -14,8 +14,10 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     private bool isDragged = false;
 
     private float rotationOffset;
-
     private PolarCoords2D coords;
+
+    //Public Center point
+    public Vector2 pivotPoint = Vector2.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -37,21 +39,21 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
         coords.HandleAliasing();
 
-        transform.position = coords.ToCartesian();
+        transform.position = coords.ToCartesian() + pivotPoint;
 
         /* UPDATE ROTATION */
-        FaceCenter();
+        //FaceCenter();
     }
 
     private void OnMoved()
     {
         //Calculate offset
-        Vector3 relativePos = Vector3.zero - transform.position;
+        Vector3 relativePos = new Vector3(pivotPoint.x, pivotPoint.y, 0) - transform.position;
         float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
         rotationOffset = transform.rotation.eulerAngles.z - angle;
 
         // Debug.Log("rotation offset set to " + rotationOffset);
-        coords = new PolarCoords2D(transform.position.x, transform.position.y);
+        coords = new PolarCoords2D(-relativePos.x, -relativePos.y);
     }
 
     private void FaceCenter()
@@ -68,12 +70,16 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, 0.1f);
+
+
+        if(Application.isEditor && Application.isPlaying == false)
+            OnMoved();
+
         Gizmos.color = Color.yellow;
-        OnMoved();
-        Gizmos.DrawWireSphere(Vector3.zero, coords.r);
+        Gizmos.DrawWireSphere(pivotPoint, coords.r);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, Vector3.zero);
+        Gizmos.DrawLine(transform.position, pivotPoint);
     }
 
     /* Dragging */
@@ -85,8 +91,6 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             //Debug.Log(mousePos.x + " , " + mousePos.y);
             mousePos.z = 0;
-            Vector3 dragPos = mousePos - transform.position;
-            //transform.Translate(dragPos);
             transform.position = mousePos;
         }
     }
