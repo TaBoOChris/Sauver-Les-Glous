@@ -95,6 +95,9 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (!isDraggable) return;
         isDragged = true;
         //Debug.Log("dragging " + name);
+        if (CursorManager.Instance != null)
+            CursorManager.Instance.SetGrab();
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -104,18 +107,28 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             isDragged = false;
             OnMoved();
             //Debug.Log("no more dragging " + name);
-
+            if (CursorManager.Instance != null)
+                CursorManager.Instance.SetHand();
         }
 
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //Debug.Log("hovering " + name);
+        CursorManager cursorManager = CursorManager.Instance;
+        if (cursorManager != null && cursorManager.IsPointer())
+        {
+            cursorManager.SetHand();
+        }
+            
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //Debug.Log("no more hovering " + name);
+        CursorManager cursorManager = CursorManager.Instance;
+        if (cursorManager != null && cursorManager.IsHand())
+        {
+            cursorManager.SetPointer();
+        }
     }
 }
