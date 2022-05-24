@@ -1,0 +1,102 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "CheatCodes",
+            "id": "d1ece551-9f55-4704-beea-b986e0968a6a",
+            "actions": [
+                {
+                    "name": "AddTime",
+                    "type": "Button",
+                    "id": "908eb27d-133d-4f83-afc2-e8f2761c3380",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EndTimer",
+                    "type": "Button",
+                    "id": "52105add-3070-43f0-889e-54868dce530c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpawnGlou",
+                    "type": "Button",
+                    "id": "0146dff4-9995-4e73-9bf6-ae7ca044b6fc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "da673f88-f40b-4b5b-8df1-34f4a30f692b",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AddTime",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7424777-acc6-4d58-ba6f-cc53afd69855",
+                    "path": "<Keyboard>/t",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EndTimer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "175d26b4-b456-41fd-920e-20285d53a921",
+                    "path": "<Keyboard>/g",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpawnGlou",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Game",
+            "id": "f26f520b-9931-4aef-a14b-344c229d3092",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "717ae32c-12c2-4dfe-92b4-d33b8fad65d3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "925753a4-ba1e-4f2d-965c-dda73a3881bb",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
