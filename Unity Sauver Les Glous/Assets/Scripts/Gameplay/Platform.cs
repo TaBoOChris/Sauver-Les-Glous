@@ -42,7 +42,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         transform.position = coords.ToCartesian() + pivotPoint;
 
         /* UPDATE ROTATION */
-        //FaceCenter();
+        FaceCenter();
     }
 
     private void OnMoved()
@@ -141,5 +141,11 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         {
             cursorManager.SetPointer();
         }
+    }
+
+    public void ForceRefresh()
+    {
+        Vector3 relativePos = new Vector3(pivotPoint.x, pivotPoint.y, 0) - transform.position;
+        coords = new PolarCoords2D(-relativePos.x, -relativePos.y);
     }
 }
