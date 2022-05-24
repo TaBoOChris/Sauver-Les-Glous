@@ -1692,6 +1692,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1676173339}
     m_Modifications:
+    - target: {fileID: 343694255, guid: 046ab7349820c5b49ad198600bb4bf7a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5356759235739574772, guid: 046ab7349820c5b49ad198600bb4bf7a, type: 3}
       propertyPath: m_Name
       value: Miaoutozor
