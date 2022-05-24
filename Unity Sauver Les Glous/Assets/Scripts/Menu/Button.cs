@@ -36,5 +36,12 @@ public class Button : MonoBehaviour
         Debug.Log("Load Scene " + SceneManager.GetSceneByBuildIndex(sceneIndex).name);
     }
 
+    public void ResumeGame()
+    {
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.ResumeGame();
+        }
+    }
 
 }

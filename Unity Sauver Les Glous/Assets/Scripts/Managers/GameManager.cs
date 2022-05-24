@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] GameObject endMenu;
 	[SerializeField] TextMeshProUGUI endMenuText;
 
+	[Header("Pause")]
+	[SerializeField] private GameObject m_pauseMenu;
+	private static bool m_isGamePaused = false;
+	private InputActions m_inputActions;
 
 	private void Awake()
 	{
@@ -30,6 +34,9 @@ public class GameManager : MonoBehaviour
 		}
 
 		Instance = this;
+
+		m_inputActions = new InputActions();
+		m_inputActions.Game.Pause.performed += context => PauseKeyPressed();
 	}
 
 	void Start()
@@ -46,6 +53,9 @@ public class GameManager : MonoBehaviour
 
 	public void StartGame()
     {
+		Time.timeScale = 1;
+		m_isGamePaused = false;
+
 		endMenu.SetActive(false);
 		_NbGlousAlive = 0;
 		glousSpawner.SpawnGlous(_NbGlousStartLevel);	//SpawnGlous();
@@ -65,9 +75,13 @@ public class GameManager : MonoBehaviour
         else
         {
 			endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + _NbGlousAlive + "</color> Glous.  Bien joué !";
-        } 
-		//StopRotation()
+        }
+
 		endMenu.SetActive(true);
+		Time.timeScale = 0f;
+		m_isGamePaused = true;
+		// must not be able to pause/unpause when in endMenu
+		m_inputActions.Game.Disable();
 	}
 
 	public void AddGlou()
@@ -88,4 +102,58 @@ public class GameManager : MonoBehaviour
     {
 		return _NbGlousAlive;
     }
+
+	public void PauseKeyPressed()
+    {
+		if (m_isGamePaused)
+		{
+			ResumeGame();
+		}
+		else
+		{
+			PauseGame();
+		}
+	}
+
+	public void PauseGame()
+	{
+		Time.timeScale = 0f;
+		m_isGamePaused = true;
+		m_pauseMenu.SetActive(true);
+		Debug.Log("Game Paused");
+
+		if (CheatCodes.Instance != null)
+        {
+			CheatCodes.Instance.Disable();
+		}
+	}
+
+	public void ResumeGame()
+	{
+		Time.timeScale = 1;
+		m_isGamePaused = false;
+		m_pauseMenu.SetActive(false);
+		Debug.Log("Game Resumed");
+
+		if (CheatCodes.Instance != null)
+		{
+			CheatCodes.Instance.Enable();
+		}
+	}
+
+	public bool IsGamePaused()
+    {
+		return m_isGamePaused;
+    }
+
+	private void OnEnable()
+	{
+		m_inputActions.Game.Enable();
+	}
+
+	private void OnDisable()
+	{
+		m_inputActions.Game.Disable();
+	}
 }
+
