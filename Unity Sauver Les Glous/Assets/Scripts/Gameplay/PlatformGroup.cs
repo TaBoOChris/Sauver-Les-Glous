@@ -21,10 +21,10 @@ public class PlatformGroup : MonoBehaviour
     public void OnRadiusChange()
     {
         if(radius < 1.0f) radius = 1.0f;
-        RearangePlatforms();
+        RearangePlatforms(false);
     }
 
-    void RearangePlatforms()
+    void RearangePlatforms(bool refreshRotations = true)
     {
         Vector2 center = transform.position;
         foreach (var platform in transform.GetComponentsInChildren<Platform>())
@@ -36,7 +36,11 @@ public class PlatformGroup : MonoBehaviour
             diff.z = 0;
             diff = diff.normalized;
             platform.transform.position = transform.position + (diff * radius);
-            platform.ForceRefresh();
+            platform.ForceRefreshPosition();
+            if (refreshRotations)
+            {
+               platform.ForceRefreshOffset();
+            }
         }
     }
 

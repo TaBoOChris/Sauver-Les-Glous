@@ -47,13 +47,9 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     private void OnMoved()
     {
-        //Calculate offset
-        Vector3 relativePos = new Vector3(pivotPoint.x, pivotPoint.y, 0) - transform.position;
-        float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
-        rotationOffset = transform.rotation.eulerAngles.z - angle;
+        ForceRefreshOffset();
 
-        // Debug.Log("rotation offset set to " + rotationOffset);
-        coords = new PolarCoords2D(-relativePos.x, -relativePos.y);
+        ForceRefreshPosition();
     }
 
     private void FaceCenter()
@@ -143,9 +139,16 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         }
     }
 
-    public void ForceRefresh()
+    public void ForceRefreshPosition()
     {
         Vector3 relativePos = new Vector3(pivotPoint.x, pivotPoint.y, 0) - transform.position;
         coords = new PolarCoords2D(-relativePos.x, -relativePos.y);
+    }
+    public void ForceRefreshOffset()
+    {
+        //Calculate offset
+        Vector3 relativePos = new Vector3(pivotPoint.x, pivotPoint.y, 0) - transform.position;
+        float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
+        rotationOffset = transform.rotation.eulerAngles.z - angle;
     }
 }
