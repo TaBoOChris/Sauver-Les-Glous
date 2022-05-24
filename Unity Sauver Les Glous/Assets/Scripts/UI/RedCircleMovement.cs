@@ -7,13 +7,13 @@ public class RedCircleMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Movement_Coroutine());
+        //StartCoroutine(Movement_Coroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(Vector3.forward, Time.deltaTime * -300);
     }
 
     public IEnumerator Movement_Coroutine()
