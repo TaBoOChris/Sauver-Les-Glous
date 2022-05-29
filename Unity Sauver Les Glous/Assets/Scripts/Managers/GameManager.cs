@@ -7,18 +7,18 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	[SerializeField] private int _NbGlousStartLevel = 10;
-	private int _NbGlousAlive;
+	[SerializeField] private int m_nbGlousStartLevel = 10;
+	private int m_nbGlousAlive;
 
-	[SerializeField] GlousSpawner glousSpawner;
+	[SerializeField] private GlousSpawner m_glousSpawner;
 
 	[Header("Timer")]
-	[SerializeField] Timer timer;
-	[SerializeField] private int gameTime = 60;
+	[SerializeField] private Timer m_timer;
+	[SerializeField] private int m_gameTime = 60;
 
 	[Header("End menu")]
-	[SerializeField] GameObject endMenu;
-	[SerializeField] TextMeshProUGUI endMenuText;
+	[SerializeField] private GameObject m_endMenu;
+	[SerializeField] private TextMeshProUGUI m_endMenuText;
 
 	[Header("Pause")]
 	[SerializeField] private GameObject m_pauseMenu;
@@ -46,38 +46,33 @@ public class GameManager : MonoBehaviour
 			CursorManager.Instance.SetPointer();
 	}
 
-    void Update()
-    {
-        
-    }
-
 	public void StartGame()
     {
 		Time.timeScale = 1;
 		m_isGamePaused = false;
 
-		endMenu.SetActive(false);
-		_NbGlousAlive = 0;
-		glousSpawner.SpawnGlous(_NbGlousStartLevel);	//SpawnGlous();
+		m_endMenu.SetActive(false);
+		m_nbGlousAlive = 0;
+		m_glousSpawner.SpawnGlous(m_nbGlousStartLevel);	//SpawnGlous();
 		//SpawnPlaterform();
 		//Rotation();
-		timer.StartTimer(gameTime);							//StartTimer();
+		m_timer.StartTimer(m_gameTime);	//StartTimer();
     }
 
 	public void EndGame()
     {
 		if (CursorManager.Instance != null)
 			CursorManager.Instance.SetPointer();
-		if (_NbGlousAlive <= 0)
+		if (m_nbGlousAlive <= 0)
         {
-			endMenuText.text = "Tu n'as pas réussi à sauver les Glous ...";
+			m_endMenuText.text = "Tu n'as pas réussi à sauver les Glous ...";
         }
         else
         {
-			endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + _NbGlousAlive + "</color> Glous.  Bien joué !";
+			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousAlive + "</color> Glous.  Bien joué !";
         }
 
-		endMenu.SetActive(true);
+		m_endMenu.SetActive(true);
 		Time.timeScale = 0f;
 		m_isGamePaused = true;
 		// must not be able to pause/unpause when in endMenu
@@ -86,13 +81,13 @@ public class GameManager : MonoBehaviour
 
 	public void AddGlou()
     {
-		_NbGlousAlive++;
+		m_nbGlousAlive++;
     }
 
 	public void GlouDie()
     {
-		_NbGlousAlive--;
-		if(_NbGlousAlive <= 0)
+		m_nbGlousAlive--;
+		if(m_nbGlousAlive <= 0)
         {
 			EndGame();
         }
@@ -100,7 +95,7 @@ public class GameManager : MonoBehaviour
 
 	public int GetNbGlousAlive()
     {
-		return _NbGlousAlive;
+		return m_nbGlousAlive;
     }
 
 	public void PauseKeyPressed()

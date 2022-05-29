@@ -1403,6 +1403,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1191917568}
     - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
+      propertyPath: m_timer
+      value: 
+      objectReference: {fileID: 798132518}
+    - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
+      propertyPath: m_endMenu
+      value: 
+      objectReference: {fileID: 1191917568}
+    - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
       propertyPath: endMenuText
       value: 
       objectReference: {fileID: 1191917566}
@@ -1412,6 +1420,14 @@ PrefabInstance:
       objectReference: {fileID: 8445849802305939359}
     - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
       propertyPath: glousSpawner
+      value: 
+      objectReference: {fileID: 2905534659086324596}
+    - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
+      propertyPath: m_endMenuText
+      value: 
+      objectReference: {fileID: 1191917566}
+    - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
+      propertyPath: m_glousSpawner
       value: 
       objectReference: {fileID: 2905534659086324596}
     - target: {fileID: 2744392010316194055, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
@@ -1609,6 +1625,18 @@ PrefabInstance:
       propertyPath: m_spawnTransform
       value: 
       objectReference: {fileID: 4016083408999085254}
+    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
+      propertyPath: m_defaultGlousColor.b
+      value: 0.9959484
+      objectReference: {fileID: 0}
+    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
+      propertyPath: m_defaultGlousColor.g
+      value: 0.5235849
+      objectReference: {fileID: 0}
+    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
+      propertyPath: m_defaultGlousColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2299499882623788979, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
       propertyPath: m_Name
       value: GlousSpawner
