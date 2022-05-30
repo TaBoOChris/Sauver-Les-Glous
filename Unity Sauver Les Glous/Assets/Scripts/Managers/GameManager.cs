@@ -77,9 +77,18 @@ public class GameManager : MonoBehaviour
 			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousAlive + "</color> Glous.  Bien joué !";
         }
 
+		// create list of alive glous
+		List<Glou> aliveGlous = GetAliveGlous();
+		// Create baby glous
+		List<Glou> babyGlous = GetComponent<BabyGlousCreator>().CreateChildrenGlous(aliveGlous, m_nbGlousAlive);
+
 		EndMenu endMenu = m_endMenu.GetComponent<EndMenu>();
-		// display glous killed and saved
+		// display glous killed and saved and babies
 		endMenu.DisplayGlous(m_glousInGame);
+		endMenu.DisplayGlous(babyGlous);
+
+		// Create Glous list to give to the Village
+		// GlousData.m_glousInSelector = glousAlive + babyGlous
 
 		// pop up end menu
 		m_endMenu.SetActive(true);
@@ -87,6 +96,21 @@ public class GameManager : MonoBehaviour
 		m_isGamePaused = true;
 		// must not be able to pause/unpause when in endMenu
 		m_inputActions.Game.Disable();
+	}
+
+	private List<Glou> GetAliveGlous()
+    {
+		List<Glou> aliveGlous = new List<Glou>();
+
+		foreach (GlouInGame glou in m_glousInGame)
+		{
+			if (glou.IsAlive())
+			{
+				aliveGlous.Add(glou.GetGlou());
+			}
+		}
+
+		return aliveGlous;
 	}
 
 	public void AddGlou()
