@@ -27,7 +27,7 @@ public class DeadCircle : MonoBehaviour
     IEnumerator GlouDieAnimation_Coroutine(Collider2D other)
     {
         GameObject newGlou = Instantiate(m_glouGhost, other.transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity, m_glousGhostParent.transform);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
         Destroy(newGlou);
     }
 }
