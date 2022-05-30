@@ -15,23 +15,6 @@ public class GlousSpawner : MonoBehaviour
 
     [SerializeField] private Color m_defaultGlousColor = new Color(229, 118, 238); // pink
 
-    public void SpawnGlous(int glousNumber){
-        StartCoroutine(SpawnGlousCoroutine(glousNumber));
-    }
-
-    IEnumerator SpawnGlousCoroutine(int glousNumber)
-    {
-        for (int i=0; i < glousNumber; i++)
-        {
-            GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
-
-            newGlou.GetComponentInChildren<SpriteRenderer>().color = m_defaultGlousColor;
-            SetUpNewGlou(newGlou);
-
-            yield return new WaitForSeconds(m_spawnDelay);
-        }
-    }
-
     public void SpawnGlous(List<Glou> glousList)
     {
         StartCoroutine(SpawnGlousCoroutine(glousList));
@@ -39,46 +22,59 @@ public class GlousSpawner : MonoBehaviour
 
     IEnumerator SpawnGlousCoroutine(List<Glou> glousList)
     {
-        for (int i=0; i < glousList.Count; i++)
+        for (int i = 0; i < glousList.Count; i++)
         {
-            GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
-
-            newGlou.GetComponent<GlouInGame>().SetGlou(glousList[i]);
-            newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(glousList[i].hue, 1, 1);
-            SetUpNewGlou(newGlou);
+            SpawnGlou(glousList[i]);
 
             yield return new WaitForSeconds(m_spawnDelay);
         }
     }
 
-    public void SpawnGlousHue(float hue)
+    public void SpawnGlou(Glou glou)
     {
-        StartCoroutine(SpawnGlousHueCoroutine(hue));
-    }
+        Color color;
+        float scale;
 
-    IEnumerator SpawnGlousHueCoroutine(float hue)
-    {
-        GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
-        Glou glou = new Glou(hue, 1); // careful scale not coherent to spawned glou
-
+        GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform);
         newGlou.GetComponent<GlouInGame>().SetGlou(glou);
-        newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(hue, 1, 1);
-        SetUpNewGlou(newGlou);
 
-        yield return new WaitForSeconds(m_spawnDelay);
-    }
+        if (glou != null)
+        {
+            color = Color.HSVToRGB(glou.hue, 1, 1);
+            scale = glou.sizeMultiplier;
 
-    public void SetUpNewGlou(GameObject newGlou)
-    {
-        // Change Size
-        float scale = Random.Range(m_scaleMin, m_scaleMax);
+            GameManager.Instance.AddGlouInGame(newGlou.GetComponent<GlouInGame>());
+        }
+        else
+        {
+            color = m_defaultGlousColor;
+            scale = 1f;
+        }
+
+        // set glouGO color
+        newGlou.GetComponentInChildren<SpriteRenderer>().color = color;
+        // set glouGO size
         newGlou.transform.localScale = new Vector3(scale, scale, scale);
 
-        AudioManager.Instance.PlayGlouSpawn(); // Glou spawn sound
-        GameManager.Instance.AddGlou();
+        AudioManager.Instance.PlayGlouSpawn();
 
         float xRandomForce = Random.Range(-m_xMaxSpawnForce, m_xMaxSpawnForce); // Calculte force in X
         newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xRandomForce, -m_ySpawnForce)); // Add force on the new glou
+    }
+
+    public void SpawnGlou()
+    {
+        SpawnGlou(null);
+    }
+
+    public void SpawnNewGlou()
+    {
+        float hue = Random.Range(0f, 1f);
+        float scale = Random.Range(m_scaleMin, m_scaleMax);
+
+        Glou glou = new Glou(hue, scale);
+
+        SpawnGlou(glou);
     }
 
     public GameObject GetGlousParentGO()

@@ -27,9 +27,25 @@ public class EndMenu : MonoBehaviour
         m_endButtons.SetActive(false);
     }
 
-    public void AddGlouToGrid(Glou glou)
+    public void DisplayGlous(List<GlouInGame> glousInGame)
     {
-        GameObject newGlou = Instantiate(m_glouUI, m_gridSurvivorGlous.transform);
-        newGlou.GetComponentInChildren<Image>().color = Color.HSVToRGB(glou.hue, 1, 1);
+        foreach (GlouInGame glou in glousInGame)
+        {
+            AddGlouToGrid(glou.GetGlou().hue, glou.IsAlive());
+        }
+    }
+
+    private void AddGlouToGrid(float hue, bool isAlive)
+    {
+        GameObject newGlou;
+        if (isAlive)
+        {
+            newGlou = Instantiate(m_glouUI, m_gridSurvivorGlous.transform);
+        }
+        else
+        {
+            newGlou = Instantiate(m_glouDeadUI, m_gridSurvivorGlous.transform);
+        }
+        newGlou.GetComponentInChildren<Image>().color = Color.HSVToRGB(hue, 1, 1);
     }
 }
