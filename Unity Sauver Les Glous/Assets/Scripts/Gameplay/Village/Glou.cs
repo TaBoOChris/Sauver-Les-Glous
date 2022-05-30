@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Glou : MonoBehaviour
+public class Glou
 {
     private float m_hue;
 
