@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	private int m_nbGlousAlive;
-
+	[Header("Glous")]
 	[SerializeField] private GlousSpawner m_glousSpawner;
+	private int m_nbGlousAlive;
+	private List<GlouInGame> m_glousInGame = new List<GlouInGame>();
 
 	[Header("Timer")]
 	[SerializeField] private Timer m_timer;
@@ -50,10 +51,12 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1;
 		m_isGamePaused = false;
 
+		m_pauseMenu.SetActive(false);
 		m_endMenu.SetActive(false);
-		m_nbGlousAlive = 0;
 
 		List<Glou> glousStartingList = new List<Glou> { new Glou(0.2f, 0.8f), new Glou(0.5f, 1f), new Glou(0.8f, 1.2f) };
+
+		m_nbGlousAlive = glousStartingList.Count;
 		m_glousSpawner.SpawnGlous(glousStartingList);
 
 		//SpawnPlaterform();
@@ -78,15 +81,19 @@ public class GameManager : MonoBehaviour
 		List<Glou> survivorGlousList = new List<Glou>();
 		Transform glousParentGO = m_glousSpawner.GetGlousParentGO().transform;
 		EndMenu endMenu = m_endMenu.GetComponent<EndMenu>();
+
+		// display glous killed and saved
+
 		foreach (Transform child in glousParentGO)
         {
 			Glou survivorGlou = child.GetComponent<GlouInGame>().GetGlou();
 			if (survivorGlou != null)
             {
 				survivorGlousList.Add(survivorGlou);
-				Debug.Log("SurviverGlou Hue : " + survivorGlou.hue);
+				//Debug.Log("SurviverGlou Hue : " + survivorGlou.hue);
 
-				endMenu.AddGlouToGrid(survivorGlou);
+				//endMenu.AddGlouToGrid(survivorGlou);
+
             }
         }
 
@@ -101,6 +108,11 @@ public class GameManager : MonoBehaviour
 	public void AddGlou()
     {
 		m_nbGlousAlive++;
+    }
+
+	public void AddGlouInGame(GlouInGame glouInGame)
+    {
+		m_glousInGame.Add(glouInGame);
     }
 
 	public void GlouDie()

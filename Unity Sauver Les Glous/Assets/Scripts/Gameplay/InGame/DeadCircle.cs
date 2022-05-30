@@ -12,16 +12,16 @@ public class DeadCircle : MonoBehaviour
     {
         if(other.transform.parent.tag != "Glou") return;
         
+        // kill glou
         Debug.Log("Kill Glou");
+        other.transform.parent.GetComponent<GlouInGame>().KillGlou();
 
-        if (GameManager.Instance)
-        {
-            GameManager.Instance.GlouDie();
-            AudioManager.Instance.PlayGlouDie();
-            StartCoroutine(GlouDieAnimation_Coroutine(other));
-        }
+        // effects of death
+        GameManager.Instance.GlouDie();
+        AudioManager.Instance.PlayGlouDie();
+        StartCoroutine(GlouDieAnimation_Coroutine(other));
 
-        Destroy(other.transform.parent.gameObject,0.2f);
+        Destroy(other.transform.parent.gameObject);
     }
 
     IEnumerator GlouDieAnimation_Coroutine(Collider2D other)

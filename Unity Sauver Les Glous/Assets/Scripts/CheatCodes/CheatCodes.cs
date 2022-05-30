@@ -45,12 +45,14 @@ public class CheatCodes : MonoBehaviour
     public void SpawnGlou()
     {
         m_glouSpawner.SpawnGlou();
+        GameManager.Instance.AddGlou();
         Debug.Log("<CHEAT> SpawnGlou");
     }
 
     public void SpawnNewGlou()
     {
         m_glouSpawner.SpawnNewGlou();
+        GameManager.Instance.AddGlou();
         Debug.Log("<CHEAT> SpawnNewGlou");
     }
 

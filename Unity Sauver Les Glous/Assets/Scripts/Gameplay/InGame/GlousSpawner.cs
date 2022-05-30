@@ -42,6 +42,8 @@ public class GlousSpawner : MonoBehaviour
         {
             color = Color.HSVToRGB(glou.hue, 1, 1);
             scale = glou.sizeMultiplier;
+
+            GameManager.Instance.AddGlouInGame(newGlou.GetComponent<GlouInGame>());
         }
         else
         {
@@ -55,7 +57,6 @@ public class GlousSpawner : MonoBehaviour
         newGlou.transform.localScale = new Vector3(scale, scale, scale);
 
         AudioManager.Instance.PlayGlouSpawn();
-        GameManager.Instance.AddGlou();
 
         float xRandomForce = Random.Range(-m_xMaxSpawnForce, m_xMaxSpawnForce); // Calculte force in X
         newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xRandomForce, -m_ySpawnForce)); // Add force on the new glou
