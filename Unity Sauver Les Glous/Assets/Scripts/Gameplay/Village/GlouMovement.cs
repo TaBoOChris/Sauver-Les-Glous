@@ -20,19 +20,15 @@ public class GlouMovement : MonoBehaviour
 
     private void Awake()
     {
-        m_nextMoveTimer = Time.time + m_timeThreshold;
+        m_destination = transform.position;
     }
 
     private void Update()
     {
-        if(Time.time > m_nextMoveTimer)
+        if(m_destination == transform.position)
         {
             m_destination = PickRandomDestination();
             MoveTo(m_destination);
-
-
-
-            m_nextMoveTimer = Time.time + m_timeThreshold;
         }
     }
 
