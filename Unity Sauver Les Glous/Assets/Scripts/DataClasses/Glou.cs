@@ -8,7 +8,7 @@ public class Glou
     public float sizeMultiplier { get; } //Normal size = 1.0f
     public int? houseID { get; set; }
 
-    Glou(float hue, float sizeMultiplier)
+    public Glou(float hue, float sizeMultiplier)
     {
         this.hue = hue;
         this.sizeMultiplier = sizeMultiplier;

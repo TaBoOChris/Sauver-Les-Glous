@@ -59,7 +59,9 @@ public class GlousSpawner : MonoBehaviour
     IEnumerator SpawnGlousHueCoroutine(float hue)
     {
         GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
+        Glou glou = new Glou(hue, 1); // careful scale not coherent to spawned glou
 
+        newGlou.GetComponent<GlouInGame>().SetGlou(glou);
         newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(hue, 1, 1);
         SetUpNewGlou(newGlou);
 

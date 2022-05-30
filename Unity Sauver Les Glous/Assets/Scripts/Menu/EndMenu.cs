@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndMenu : MonoBehaviour
 {
     [SerializeField] private GameObject m_endButtons;
+    [SerializeField] private GameObject m_gridSurvivorGlous;
+
+    [SerializeField] private GameObject m_glouUI;
+    [SerializeField] private GameObject m_glouDeadUI;
 
     private void OnEnable()
     {
@@ -20,5 +25,11 @@ public class EndMenu : MonoBehaviour
     private void OnDisable()
     {
         m_endButtons.SetActive(false);
+    }
+
+    public void AddGlouToGrid(Glou glou)
+    {
+        GameObject newGlou = Instantiate(m_glouUI, m_gridSurvivorGlous.transform);
+        newGlou.GetComponentInChildren<Image>().color = Color.HSVToRGB(glou.hue, 1, 1);
     }
 }
