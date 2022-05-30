@@ -5,6 +5,7 @@ using UnityEngine;
 public class EndMenu : MonoBehaviour
 {
     [SerializeField] private GameObject m_endButtons;
+    [SerializeField] private GameObject m_gridSurvivorGlous;
 
     private void OnEnable()
     {
