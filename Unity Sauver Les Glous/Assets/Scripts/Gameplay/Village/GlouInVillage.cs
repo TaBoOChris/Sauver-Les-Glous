@@ -6,6 +6,13 @@ public class GlouInVillage : MonoBehaviour
 {
     private Glou m_glou = null;
 
+    private float m_hue;
+    private int? m_houseID;
+    private float m_size;
+
+    [SerializeField] private SpriteRenderer m_bodyRenderer;
+    [SerializeField] private SpriteRenderer m_expressionRenderer;
+
     public void SetGlou(Glou glou)
     {
         m_glou = glou;
@@ -16,24 +23,6 @@ public class GlouInVillage : MonoBehaviour
         return m_glou;
     }
 
-
-
-
-
-}
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GlouInVillage : MonoBehaviour
-{
-    private float m_hue;
-    private int m_houseID;
-    private float m_size;
-
-    [SerializeField] private SpriteRenderer m_bodyRenderer;
-    [SerializeField] private SpriteRenderer m_expressionRenderer;
 
     public SpriteRenderer GetBodyRenderer()
     {
@@ -55,12 +44,12 @@ public class GlouInVillage : MonoBehaviour
         m_hue = hue;
     }
 
-    public int GetHouseID()
+    public int? GetHouseID()
     {
         return m_houseID;
     }
 
-    public void SetHouseID(int id)
+    public void SetHouseID(int? id)
     {
         m_houseID = id;
     }

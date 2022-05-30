@@ -4,49 +4,32 @@ using UnityEngine;
 
 public class VillageManager : MonoBehaviour
 {
-    // Temporaire //////////////////////////////////////                   
-    struct GlouData
-    {
-        public float hue;
-        public int houseID;
-        public float size;
-
-        public GlouData(float hue, int id_m, float size)
-        {
-            this.hue = hue;
-            this.houseID = id_m;
-            this.size = size;
-        }
-    }
-    ///////////////////////////////////////////////////
-
-    // Liste récupérée dans le GlouManager
-    private List<GlouData> m_glousInVillageData = new List<GlouData>();
-
-    // Liste des Glous dans le village
+    // Liste des Glous dans le village 
     private List<GameObject> m_glousInVillage = new List<GameObject>();
 
     [SerializeField] private GameObject m_glouInVillagePrefab;
 
-    // Le placer soit dans SA maison (60%) soit aléatoirement (40%)
-    private void Awake()
-    {
-        // Temporaire
-        m_glousInVillageData.Add(new GlouData(1, 2, 0.18f));
-        m_glousInVillageData.Add(new GlouData(0.2f, 2, 0.10f));
-        m_glousInVillageData.Add(new GlouData(0.6f, 2, 0.35f));
-        m_glousInVillageData.Add(new GlouData(0.8f, 2, 0.24f));
-    }
-
+   
     private void Start()
     {
+        // temporaire
+        GlousData.Instance.AddGlouToVillage(new Glou(0.1f, 0.14f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.2f, 0.18f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.3f, 0.24f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.4f, 0.28f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.5f, 0.31f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.6f, 0.12f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.7f, 0.11f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.8f, 0.18f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(0.9f, 0.18f), 0);
+        GlousData.Instance.AddGlouToVillage(new Glou(1, 0.18f), 0);
+
         SpawnGlousInVillage();
     }
 
-
     private void SpawnGlousInVillage()
     {
-        foreach (GlouData glouData in m_glousInVillageData)
+        foreach (Glou glouData in GlousData.Instance.GetGlousInVillage())
         {
             // Spawn du glou
             GameObject glou = Instantiate(m_glouInVillagePrefab, new Vector3(Random.Range(-8,8), Random.Range(-4,4), 0), Quaternion.identity, transform);
@@ -55,7 +38,7 @@ public class VillageManager : MonoBehaviour
             GlouInVillage data = glou.GetComponent<GlouInVillage>();
             data.SetHue(glouData.hue);
             data.SetHouseID(glouData.houseID);
-            data.SetSize(glouData.size);
+            data.SetSize(glouData.sizeMultiplier);
 
             // Application des data au glou à faire spawn
             SpriteRenderer glouBody = data.GetBodyRenderer();
@@ -76,7 +59,7 @@ public class VillageManager : MonoBehaviour
 
             m_glousInVillage.Add(glou);
         }          
-
+        
     }
     
 
