@@ -15,4 +15,9 @@ public class GlouInVillage : MonoBehaviour
     {
         return m_glou;
     }
+
+
+
+
+
 }
