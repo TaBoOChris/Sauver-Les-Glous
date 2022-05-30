@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f898087535058d74a856780a29df3b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NbGlousStartLevel: 10
-  glousSpawner: {fileID: 0}
-  timer: {fileID: 0}
-  gameTime: 40
-  endMenu: {fileID: 0}
-  endMenuText: {fileID: 0}
+  m_nbGlousStartLevel: 10
+  m_glousSpawner: {fileID: 0}
+  m_timer: {fileID: 0}
+  m_gameTime: 60
+  m_endMenu: {fileID: 0}
+  m_endMenuText: {fileID: 0}
+  m_pauseMenu: {fileID: 0}
