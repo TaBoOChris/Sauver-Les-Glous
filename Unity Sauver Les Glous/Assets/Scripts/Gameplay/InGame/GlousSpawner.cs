@@ -44,7 +44,7 @@ public class GlousSpawner : MonoBehaviour
             GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
 
             newGlou.GetComponent<GlouInGame>().SetGlou(glousList[i]);
-            newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(glousList[i].GetHue(), 1, 1);
+            newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(glousList[i].hue, 1, 1);
             SetUpNewGlou(newGlou);
 
             yield return new WaitForSeconds(m_spawnDelay);

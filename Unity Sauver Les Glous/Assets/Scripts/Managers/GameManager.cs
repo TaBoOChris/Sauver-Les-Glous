@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 			if (survivorGlou != null)
             {
 				survivorGlousList.Add(survivorGlou);
-				Debug.Log("SurviverGlou Hue : " + survivorGlou.GetHue());
+				Debug.Log("SurviverGlou Hue : " + survivorGlou.hue);
             }
         }
 
