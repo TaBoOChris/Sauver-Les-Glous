@@ -27,6 +27,7 @@ public class CheatCodes : MonoBehaviour
         m_inputActions.CheatCodes.AddTime.performed += context => AddTime();
         m_inputActions.CheatCodes.EndTimer.performed += context => EndTimer();
         m_inputActions.CheatCodes.SpawnGlou.performed += context => SpawnGlou();
+        m_inputActions.CheatCodes.SpawnGlouHue.performed += context => SpawnGlouHue();
     }
 
     public void AddTime()
@@ -45,6 +46,12 @@ public class CheatCodes : MonoBehaviour
     {
         m_glouSpawner.SpawnGlous(1);
         Debug.Log("<CHEAT> SpawnGlou");
+    }
+    public void SpawnGlouHue()
+    {
+        float hue = Random.Range(0f, 1f);
+        m_glouSpawner.SpawnGlousHue(hue);
+        Debug.Log("<CHEAT> SpawnGlouHue " + hue);
     }
 
     public void Enable()

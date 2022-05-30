@@ -51,6 +51,21 @@ public class GlousSpawner : MonoBehaviour
         }
     }
 
+    public void SpawnGlousHue(float hue)
+    {
+        StartCoroutine(SpawnGlousHueCoroutine(hue));
+    }
+
+    IEnumerator SpawnGlousHueCoroutine(float hue)
+    {
+        GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO); // Spawn Glou
+
+        newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(hue, 1, 1);
+        SetUpNewGlou(newGlou);
+
+        yield return new WaitForSeconds(m_spawnDelay);
+    }
+
     public void SetUpNewGlou(GameObject newGlou)
     {
         // Change Size
