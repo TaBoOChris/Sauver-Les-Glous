@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
 		// update players glous
 		List<Glou> survivorGlousList = new List<Glou>();
-		Transform glousParentGO = m_glousSpawner.GetGlousParentGO();
+		Transform glousParentGO = m_glousSpawner.GetGlousParentGO().transform;
 		foreach (Transform child in glousParentGO)
         {
 			Glou survivorGlou = child.GetComponent<GlouInGame>().GetGlou();

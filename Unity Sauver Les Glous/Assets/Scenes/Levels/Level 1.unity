@@ -1617,45 +1617,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-      propertyPath: m_glou
-      value: 
-      objectReference: {fileID: 8130033672022096456, guid: c6084c51d1161644e84f7566fc9c24be, type: 3}
-    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-      propertyPath: m_spawnTransform
-      value: 
-      objectReference: {fileID: 4016083408999085254}
-    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-      propertyPath: m_defaultGlousColor.b
-      value: 0.9959484
-      objectReference: {fileID: 0}
-    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-      propertyPath: m_defaultGlousColor.g
-      value: 0.5235849
-      objectReference: {fileID: 0}
-    - target: {fileID: 2299499882623788977, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-      propertyPath: m_defaultGlousColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2299499882623788979, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
       propertyPath: m_Name
       value: GlousSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 4016083410257413720, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5536252878512731654, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
---- !u!4 &4016083408999085254 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5536252878512731654, guid: c891e8aec18bf2847be3c8c82a97e077, type: 3}
-  m_PrefabInstance: {fileID: 4016083408999085253}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4123757478481470016
 PrefabInstance:
   m_ObjectHideFlags: 0
