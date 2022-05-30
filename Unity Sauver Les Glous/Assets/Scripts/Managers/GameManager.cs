@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
 		// update players glous
 		List<Glou> survivorGlousList = new List<Glou>();
 		Transform glousParentGO = m_glousSpawner.GetGlousParentGO().transform;
+		EndMenu endMenu = m_endMenu.GetComponent<EndMenu>();
 		foreach (Transform child in glousParentGO)
         {
 			Glou survivorGlou = child.GetComponent<GlouInGame>().GetGlou();
@@ -82,6 +83,8 @@ public class GameManager : MonoBehaviour
             {
 				survivorGlousList.Add(survivorGlou);
 				Debug.Log("SurviverGlou Hue : " + survivorGlou.hue);
+
+				endMenu.AddGlouToGrid(survivorGlou);
             }
         }
 

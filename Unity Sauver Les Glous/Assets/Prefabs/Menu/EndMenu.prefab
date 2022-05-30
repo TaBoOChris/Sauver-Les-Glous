@@ -155,6 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_endButtons: {fileID: 7407492917093255555}
   m_gridSurvivorGlous: {fileID: 25685946344436402}
+  m_glouUI: {fileID: 8814648169640405553, guid: 4e2f6bba98340d24696f76f843d171e8, type: 3}
+  m_glouDeadUI: {fileID: 6067024461126979049, guid: d84199cb33cfd8b40abd2d46e185c705, type: 3}
 --- !u!1 &409887529615084052
 GameObject:
   m_ObjectHideFlags: 0
