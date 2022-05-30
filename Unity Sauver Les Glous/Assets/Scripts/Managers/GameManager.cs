@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	[SerializeField] private int m_nbGlousStartLevel = 10;
 	private int m_nbGlousAlive;
 
 	[SerializeField] private GlousSpawner m_glousSpawner;
@@ -53,7 +52,10 @@ public class GameManager : MonoBehaviour
 
 		m_endMenu.SetActive(false);
 		m_nbGlousAlive = 0;
-		m_glousSpawner.SpawnGlous(m_nbGlousStartLevel);	//SpawnGlous();
+
+		List<Glou> glousStartingList = new List<Glou> { new Glou(0.2f, 0.8f), new Glou(0.5f, 1f), new Glou(0.8f, 1.2f) };
+		m_glousSpawner.SpawnGlous(glousStartingList);
+
 		//SpawnPlaterform();
 		//Rotation();
 		m_timer.StartTimer(m_gameTime);	//StartTimer();
