@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlouMovement : MonoBehaviour
 {
     // Zone autour du Glou (un carré de "rayon" X parceque flemme de faire un cercle ça revient au même ^^)
-    private int m_rayon = 3;
+    private int m_rayon = 2;
 
     // Zone autorisé pour les déplacement
     private float m_ilandMaxX = 12.57f;
@@ -13,7 +13,7 @@ public class GlouMovement : MonoBehaviour
     private float m_ilandMaxY = 7.41f;
     private float m_ilandMinY = -12.38f;
 
-    private float m_timeThreshold = 0.1f;
+    private float m_timeThreshold = 2f;
     private float m_nextMoveTimer;
 
     private Vector3 m_destination;
@@ -53,8 +53,25 @@ public class GlouMovement : MonoBehaviour
         return new Vector3(Random.Range(minX, minY), Random.Range(minY, maxY), 0);
     }
 
+    // Déplace le glou de façon fluide vers sa destination
     private void MoveTo(Vector3 destination)
     {
+        StartCoroutine(MoveTo_Coroutine(destination));
+    }
+
+    private IEnumerator MoveTo_Coroutine(Vector3 destination)
+    {
+        float time = 0;
+        float duration = 1f;
+        Vector2 glouPos = transform.position;
+
+
+        while (time < duration)
+        {
+            transform.position = Vector2.Lerp(glouPos, destination, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
         transform.position = destination;
     }
 }
