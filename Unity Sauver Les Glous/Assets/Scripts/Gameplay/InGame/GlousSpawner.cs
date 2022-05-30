@@ -13,7 +13,7 @@ public class GlousSpawner : MonoBehaviour
     [SerializeField] private float m_scaleMax = 1.2f;
     [SerializeField] private float m_scaleMin = 0.6f;
 
-    [SerializeField] private Color m_defaultGlousColor = new Color(182, 122, 216);
+    [SerializeField] private Color m_defaultGlousColor = new Color(229, 118, 238); // pink
 
     public void SpawnGlous(int glousNumber){
         StartCoroutine(SpawnGlousCoroutine(glousNumber));
