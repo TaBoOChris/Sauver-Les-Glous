@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GlousData : AbstractSingleton<GlousData>
 {
-    private List<Glou> m_glousInVillage; 
-    private List<Glou> m_glousInSelector;
+    private List<Glou> m_glousInVillage = new List<Glou>(); 
+    private List<Glou> m_glousInSelector = new List<Glou>();
     
     public List<Glou> GetGlousInVillage()
     {
@@ -17,7 +17,7 @@ public class GlousData : AbstractSingleton<GlousData>
         return m_glousInSelector;
     }
 
-    public void AddGlouToVillage(ref Glou glou, int houseNum)
+    public void AddGlouToVillage(Glou glou, int houseNum)
     {
         glou.houseID = houseNum;
         m_glousInVillage.Add(glou);
