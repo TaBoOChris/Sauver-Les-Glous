@@ -6,14 +6,14 @@ public class GlousSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject m_glou;
     [SerializeField] private Transform m_spawnTransform;
-    [SerializeField] private Transform m_glousParentGO;
+    [SerializeField] private GameObject m_glousParentGO;
     [SerializeField] private float m_spawnDelay = 1f;
     [SerializeField] private float m_xMaxSpawnForce = 50;
     [SerializeField] private float m_ySpawnForce = 180;
     [SerializeField] private float m_scaleMax = 1.2f;
     [SerializeField] private float m_scaleMin = 0.6f;
 
-    [SerializeField] private Color m_defaultGlousColor = new Color(182, 122, 216);
+    [SerializeField] private Color m_defaultGlousColor = new Color(229, 118, 238); // pink
 
     public void SpawnGlous(int glousNumber){
         StartCoroutine(SpawnGlousCoroutine(glousNumber));
@@ -23,7 +23,7 @@ public class GlousSpawner : MonoBehaviour
     {
         for (int i=0; i < glousNumber; i++)
         {
-            GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO); // Spawn Glou
+            GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
 
             newGlou.GetComponentInChildren<SpriteRenderer>().color = m_defaultGlousColor;
             SetUpNewGlou(newGlou);
@@ -41,7 +41,7 @@ public class GlousSpawner : MonoBehaviour
     {
         for (int i=0; i < glousList.Count; i++)
         {
-            GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO); // Spawn Glou
+            GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
 
             newGlou.GetComponent<GlouInGame>().SetGlou(glousList[i]);
             newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(glousList[i].GetHue(), 1, 1);
@@ -58,7 +58,7 @@ public class GlousSpawner : MonoBehaviour
 
     IEnumerator SpawnGlousHueCoroutine(float hue)
     {
-        GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO); // Spawn Glou
+        GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform); // Spawn Glou
 
         newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(hue, 1, 1);
         SetUpNewGlou(newGlou);
@@ -79,7 +79,7 @@ public class GlousSpawner : MonoBehaviour
         newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xRandomForce, -m_ySpawnForce)); // Add force on the new glou
     }
 
-    public Transform GetGlousParentGO()
+    public GameObject GetGlousParentGO()
     {
         return m_glousParentGO;
     }
