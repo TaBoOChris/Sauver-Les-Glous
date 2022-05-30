@@ -28,6 +28,7 @@ public class CheatCodes : MonoBehaviour
         m_inputActions.CheatCodes.EndTimer.performed += context => EndTimer();
         m_inputActions.CheatCodes.SpawnGlou.performed += context => SpawnGlou();
         m_inputActions.CheatCodes.SpawnGlouHue.performed += context => SpawnGlouHue();
+        m_inputActions.CheatCodes.ReverseRotation.performed += context => ReverseRotation();
     }
 
     public void AddTime()
@@ -52,6 +53,12 @@ public class CheatCodes : MonoBehaviour
         float hue = Random.Range(0f, 1f);
         m_glouSpawner.SpawnGlousHue(hue);
         Debug.Log("<CHEAT> SpawnGlouHue " + hue);
+    }
+
+    public void ReverseRotation()
+    {
+        LevelProperties.Instance.SetRotationSpeed(-LevelProperties.Instance.rotationSpeed);
+        Debug.Log("<CHEAT> ReverseRotation ");
     }
 
     public void Enable()

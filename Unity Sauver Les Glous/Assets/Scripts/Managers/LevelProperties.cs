@@ -17,4 +17,9 @@ public class LevelProperties : AbstractSingleton<LevelProperties>
     {
         
     }
+
+    public void SetRotationSpeed(float newRotationSpeed)
+    {
+        rotationSpeed = newRotationSpeed;
+    }
 }
