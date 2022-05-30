@@ -72,6 +72,20 @@ public class GameManager : MonoBehaviour
 			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousAlive + "</color> Glous.  Bien joué !";
         }
 
+		// update players glous
+		List<Glou> survivorGlousList = new List<Glou>();
+		Transform glousParentGO = m_glousSpawner.GetGlousParentGO();
+		foreach (Transform child in glousParentGO)
+        {
+			Glou survivorGlou = child.GetComponent<GlouInGame>().GetGlou();
+			if (survivorGlou != null)
+            {
+				survivorGlousList.Add(survivorGlou);
+				Debug.Log("SurviverGlou Hue : " + survivorGlou.GetHue());
+            }
+        }
+
+		// pop up end menu
 		m_endMenu.SetActive(true);
 		Time.timeScale = 0f;
 		m_isGamePaused = true;

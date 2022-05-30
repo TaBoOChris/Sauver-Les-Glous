@@ -43,6 +43,7 @@ public class GlousSpawner : MonoBehaviour
         {
             GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO); // Spawn Glou
 
+            newGlou.GetComponent<GlouInGame>().SetGlou(glousList[i]);
             newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(glousList[i].GetHue(), 1, 1);
             SetUpNewGlou(newGlou);
 
@@ -61,5 +62,10 @@ public class GlousSpawner : MonoBehaviour
 
         float xRandomForce = Random.Range(-m_xMaxSpawnForce, m_xMaxSpawnForce); // Calculte force in X
         newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xRandomForce, -m_ySpawnForce)); // Add force on the new glou
+    }
+
+    public Transform GetGlousParentGO()
+    {
+        return m_glousParentGO;
     }
 }
