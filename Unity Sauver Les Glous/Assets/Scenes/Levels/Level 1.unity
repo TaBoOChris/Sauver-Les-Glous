@@ -869,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3707790681269893992, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -443.00003
+      value: -443
       objectReference: {fileID: 0}
     - target: {fileID: 3734631872890237727, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
       propertyPath: m_text
@@ -1462,6 +1462,10 @@ PrefabInstance:
       propertyPath: m_endMenu
       value: 
       objectReference: {fileID: 1191917568}
+    - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
+      propertyPath: m_gameTime
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
       propertyPath: endMenuText
       value: 
