@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
 		m_pauseMenu.SetActive(false);
 		m_endMenu.SetActive(false);
 
-		List<Glou> glousStartingList = new List<Glou> { new Glou(0.2f, 0.8f), new Glou(0.5f, 1f), new Glou(0.8f, 1.2f) };
+		//List<Glou> glousStartingList = new List<Glou> { new Glou(0.2f, 0.8f), new Glou(0.5f, 1f), new Glou(0.8f, 1.2f) };
+		List<Glou> glousStartingList = GlousData.Instance.GetGlousInSelector();
 
 		m_nbGlousAlive = glousStartingList.Count;
 		m_glousSpawner.SpawnGlous(glousStartingList);
@@ -88,6 +89,8 @@ public class GameManager : MonoBehaviour
 		endMenu.DisplayGlous(babyGlous);
 
 		// Create Glous list to give to the Village
+		aliveGlous.AddRange(babyGlous);
+		GlousData.Instance.SetGlousInSelector(aliveGlous);
 		// GlousData.m_glousInSelector = glousAlive + babyGlous
 
 		// pop up end menu
