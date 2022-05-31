@@ -27,11 +27,19 @@ public class EndMenu : MonoBehaviour
         m_endButtons.SetActive(false);
     }
 
-    public void DisplayGlous(List<GlouInGame> glousInGame)
+    public void DisplayGlous(List<GlouInGame> glous)
     {
-        foreach (GlouInGame glou in glousInGame)
+        foreach (GlouInGame glou in glous)
         {
             AddGlouToGrid(glou.GetGlou().hue, glou.IsAlive());
+        }
+    }
+
+    public void DisplayGlous(List<Glou> glous)
+    {
+        foreach (Glou glou in glous)
+        {
+            AddGlouToGrid(glou.hue, true);
         }
     }
 
