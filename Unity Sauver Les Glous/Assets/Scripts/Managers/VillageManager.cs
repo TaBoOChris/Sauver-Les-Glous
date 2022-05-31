@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VillageManager : AbstractSingleton<VillageManager>
 {
@@ -13,7 +14,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
     private List<GameObject> m_glousInVillage = new List<GameObject>();
     [SerializeField] private GameObject m_glouInVillagePrefab;
 
-    //Liste des maisons du village (auto enregistrée)
+    //Liste des maisons du village (auto enregistrï¿½e)
     [Header("Houses")]
     private List<House> m_villageHouses;
     [SerializeField] GameObject m_housesParent;
@@ -21,6 +22,11 @@ public class VillageManager : AbstractSingleton<VillageManager>
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayVillageMusic();
+        }
         m_villageHouses = new List<House>();
         //Add each of the registered houses to the village manager
         foreach (var house in m_housesParent.GetComponentsInChildren<House>())
@@ -29,51 +35,51 @@ public class VillageManager : AbstractSingleton<VillageManager>
         }
         Debug.Log("Village registered " + m_villageHouses.Count +" houses.");
 
-        // temporaire
-        GlousData.Instance.AddGlouToVillage(new Glou(0.1f, 0.14f), 0);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.2f, 0.18f), 1);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.3f, 0.24f), 1);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.4f, 0.28f), 2);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.5f, 0.31f), 3);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.6f, 0.12f), 4);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.7f, 0.11f), 4);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.8f, 0.18f), 5);
-        GlousData.Instance.AddGlouToVillage(new Glou(0.9f, 0.18f), 3);
-        GlousData.Instance.AddGlouToVillage(new Glou(1, 0.18f), 0);
-
         SpawnGlousInVillage();
+
+        foreach (Glou glou in GlousData.Instance.GetGlousInSelector())
+        {
+            AddGlouInUIBasket(glou);
+        }
     }
+    private GameObject SpawnGlou(Glou glouData)
+    {
+        // Spawn du glou
+        GameObject glou = Instantiate(m_glouInVillagePrefab, transform.position, Quaternion.identity, transform);
+
+        // Get glou data
+        GlouInVillage data = glou.GetComponent<GlouInVillage>();
+        data.SetHue(glouData.hue);
+        data.SetHouseID(glouData.houseID);
+        data.SetSize(glouData.sizeMultiplier);
+        data.SetGlou(glouData);
+
+        // Application des data au glou ï¿½ faire spawn
+        SpriteRenderer glouBody = data.GetBodyRenderer();
+        SpriteRenderer glouExpression = data.GetExpressionRenderer();
+
+        // couleur
+        glouBody.color = Color.HSVToRGB(data.GetHue(), 1, 1);
+
+        // taille
+        float size = data.GetSize();
+        Vector3 scale = new Vector3(size, size, size);
+        glouBody.transform.localScale = scale * 0.2f;
+        glouExpression.transform.localScale = scale * 0.2f;
+
+        BoxCollider2D glouCollider = glou.GetComponent<BoxCollider2D>();
+        glouCollider.size = new Vector2(size * 2, size * 2);
+
+        return glou;
+    }
+
 
     private void SpawnGlousInVillage()
     {
         foreach (Glou glouData in GlousData.Instance.GetGlousInVillage())
         {
-            // Spawn du glou
-            GameObject glou = Instantiate(m_glouInVillagePrefab, transform.position, Quaternion.identity, transform);
 
-            // Get glou data
-            GlouInVillage data = glou.GetComponent<GlouInVillage>();
-            data.SetHue(glouData.hue);
-            data.SetHouseID(glouData.houseID);
-            data.SetSize(glouData.sizeMultiplier);
-            data.SetGlou(glouData);
-
-            // Application des data au glou à faire spawn
-            SpriteRenderer glouBody = data.GetBodyRenderer();
-            SpriteRenderer glouExpression = data.GetExpressionRenderer();
-
-            // couleur
-            glouBody.color = Color.HSVToRGB(data.GetHue(), 1, 1);
-
-            // taille
-            float size = data.GetSize();
-            Vector3 scale = new Vector3(size, size, size);
-            glouBody.transform.localScale = scale;
-            glouExpression.transform.localScale = scale;
-
-            BoxCollider2D glouCollider = glou.GetComponent<BoxCollider2D>();
-            glouCollider.size = new Vector2(size * 5, size * 5);
-
+            GameObject glou = SpawnGlou(glouData);
 
             // maison -- 60% de chance de spawn dedans
             if (Random.Range(0f,1.0f) >= 0.4f)
@@ -107,12 +113,10 @@ public class VillageManager : AbstractSingleton<VillageManager>
                 Destroy(glou.gameObject);
 
                 //Move to selector
-                //GlousData.Instance.MoveGlouToSelector(ref data);
+                GlousData.Instance.MoveGlouToSelector(ref data);
 
                 //UI Show in basket
-                GameObject glouUI = Instantiate(m_GlouUIPrefab, m_canvasBasket.transform, true);
-                glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+                AddGlouInUIBasket(data);
             }
             return true;
         } else
@@ -170,6 +174,69 @@ public class VillageManager : AbstractSingleton<VillageManager>
 
     }
 
+    public bool DropGlouFromUI(UIGlouDragSelect glou)
+    {
+        // Check if within the dropzone
+        Vector3 pt = glou.transform.position;
+
+        bool droppedInAHouse = false;
+
+        for (int i = 0; i < m_villageHouses.Count; i++)
+        {
+            BoxCollider2D boxc = m_villageHouses[i].GetComponent<BoxCollider2D>();
+            if (boxc.bounds.Contains(pt))
+            {
+                droppedInAHouse = true;
+                Debug.Log("Glou dropped in house " + m_villageHouses[i].GetHouseID());
+
+
+                Bounds b = boxc.bounds;
+                Vector3 target = glou.transform.position;
+                if (m_SetPositionInHouse)
+                {
+                    target = PositionInHouse(b);
+                }
+
+                var glouPos = b.ClosestPoint(target);
+                var villageMono = glou.GetComponent<GlouInVillage>();
+                if (villageMono != null)
+                {
+                    Glou data = villageMono.GetGlou();
+                    if (data != null)
+                    {
+                        data.houseID = m_villageHouses[i].GetHouseID();
+                        Debug.Log("Glou assigned to house " + m_villageHouses[i].GetHouseID());
+
+                        GlousData.Instance.MoveGlouToVillage(ref data);
+
+                        GameObject newGlou = SpawnGlou(data);
+                        newGlou.transform.position = PositionInHouse(b);
+                        newGlou.GetComponent<GlouMovement>().enabled = false;
+                    }
+                    else Debug.LogWarning("No Glou Reference found in GlouInVillage ! Couldn't assign house");
+                }
+                else Debug.LogWarning("No GlouInVillage Component found ! Couldn't assign house");
+
+                break;
+            }
+        }
+
+        //Fail case : dropped in no interesting position
+        if (droppedInAHouse == false)
+        {
+            glou.JumpToLastPosition();
+        }
+        return droppedInAHouse;
+    }
+
+    private void AddGlouInUIBasket(Glou data)
+    {
+        GameObject glouUI = Instantiate(m_GlouUIPrefab, m_canvasBasket.transform, true);
+        glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+        glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+        glouUI.GetComponentInChildren<Image>().color = Color.HSVToRGB(data.hue, 1, 1);
+        glouUI.GetComponent<GlouInVillage>().SetGlou(data);
+    }
 
     static Vector3 PositionInHouse(Bounds b)
     {
@@ -177,6 +244,12 @@ public class VillageManager : AbstractSingleton<VillageManager>
             Random.Range(b.min.x + 0.5f, b.max.x - 0.5f),
             Random.Range(b.min.y + 0.75f, b.max.y - 0.75f),
             0);
+    }
+
+
+    public void ToGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
     }
 
 }

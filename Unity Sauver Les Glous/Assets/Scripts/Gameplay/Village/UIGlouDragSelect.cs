@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+public class UIGlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     /* -------------- Drag And Drop ----------*/
     private bool m_isDragged = false;
     private bool m_isHovered = false;
 
     private Vector3 m_lastPosition;
-    private int m_sortingOrder;
+    //private int m_sortingOrder;
 
     private void Start()
     {
@@ -22,8 +22,11 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     /* This method is called once a glou is put somewhere */
     private void OnMoved()
     {
-        if (VillageManager.Instance.DropGlou(this)) // drop is successful
+        if (VillageManager.Instance.DropGlouFromUI(this)) // drop is successful
+        {
             CursorManager.Instance.SetPointer();
+            GameObject.Destroy(this.gameObject);
+        }
     }
 
     public void JumpToLastPosition()
@@ -48,17 +51,17 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         m_isDragged = true;
         m_isHovered = true;
         m_lastPosition = transform.position;
-        m_sortingOrder = GetComponentInChildren<SpriteRenderer>().sortingOrder;
-        var renderers = GetComponentsInChildren<SpriteRenderer>();
+        //m_sortingOrder = GetComponentInChildren<SpriteRenderer>().sortingOrder;
+        //var renderers = GetComponentsInChildren<SpriteRenderer>();
 
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayGlouCute();
         }
-        for (int i=0; i< renderers.Length; i++)
-        {
-            renderers[i].sortingOrder = 15 + i;
-        }
+        //for (int i=0; i< renderers.Length; i++)
+        //{
+       //     renderers[i].sortingOrder = 15 + i;
+       // }
         if (CursorManager.Instance != null)
             CursorManager.Instance.SetGrab();
 
@@ -69,11 +72,11 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (m_isDragged)
         {
             m_isDragged = false;
-            var renderers = GetComponentsInChildren<SpriteRenderer>();
-            for (int i = 0; i < renderers.Length; i++)
-            {
-                renderers[i].sortingOrder = m_sortingOrder + i;
-            }
+            //var renderers = GetComponentsInChildren<SpriteRenderer>();
+            //for (int i = 0; i < renderers.Length; i++)
+           // {
+           //     renderers[i].sortingOrder = m_sortingOrder + i;
+           // }
             if (CursorManager.Instance != null)
                 CursorManager.Instance.SetHand();
             OnMoved();

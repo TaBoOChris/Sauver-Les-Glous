@@ -21,11 +21,17 @@ public class MenuBG : MonoBehaviour
 
     void SpawnGlou()
     {
-        GameObject newGlou = Instantiate(glou, spawner.position, Quaternion.identity);     // Spawn Glou
-        //AudioManager.Instance.PlayGlouSpawn();                                          // Glou spawn sound
-        newGlou.transform.parent = this.transform;
-        newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xSpawnForce+Random.Range(-50f,50f), -ySpawnForce)); // Add force on the new glou
+        GameObject newGlou = Instantiate(glou, spawner.position, Quaternion.identity); // Spawn Glou
+        //AudioManager.Instance.PlayGlouSpawn(); // Glou spawn sound
 
+        // set glou color and size
+        float hue = Random.Range(0f, 1f);
+        float scale = Random.Range(0.8f, 1.2f);
+        newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(hue, 1, 1); ;
+        newGlou.transform.localScale = new Vector3(scale, scale, scale);
+
+        newGlou.transform.parent = this.transform;
+        newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xSpawnForce + Random.Range(-50f, 50f), -ySpawnForce)); // Add force on the new glou
     }
 
     // Update is called once per frame

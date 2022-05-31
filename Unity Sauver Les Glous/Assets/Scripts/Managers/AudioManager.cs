@@ -13,12 +13,14 @@ public class AudioManager : MonoBehaviour
 	[Header("Music")]
 	[SerializeField] public AudioClip m_menuMusic;
 	[SerializeField] public AudioClip m_gameMusic;
+	[SerializeField] public AudioClip m_villageMusic;
 
 	[Header("Menu")]
 	[SerializeField] public AudioClip m_buttonSfx;
 
 	[Header("Glou")]
 	[SerializeField] public AudioClip m_GlouSfx;
+	[SerializeField] public AudioClip m_GlouSfxCute;
 	[SerializeField] public AudioClip m_GlouSpawnSfx;
 	[SerializeField] public AudioClip m_GlouDieSfx;
 
@@ -52,13 +54,21 @@ public class AudioManager : MonoBehaviour
 
 	public void PlayGameMusic()
 	{
+		m_musicSource.Stop();
 		m_musicSource.clip = m_gameMusic;
 		m_musicSource.Play();
 	}
-    #endregion
 
-    #region Menu Sfx
-    public void PlayButtonMenu()
+	public void PlayVillageMusic()
+	{
+		m_musicSource.Stop();
+		m_musicSource.clip = m_villageMusic;
+		m_musicSource.Play();
+	}
+	#endregion
+
+	#region Menu Sfx
+	public void PlayButtonMenu()
 	{
 		m_sfxSource.PlayOneShot(m_buttonSfx);
 	}
@@ -68,6 +78,10 @@ public class AudioManager : MonoBehaviour
     public void PlayGlou()
 	{
 		m_sfxSource.PlayOneShot(m_GlouSfx);
+	}
+	public void PlayGlouCute()
+	{
+		m_sfxSource.PlayOneShot(m_GlouSfxCute);
 	}
 	public void PlayGlouSpawn()
 	{

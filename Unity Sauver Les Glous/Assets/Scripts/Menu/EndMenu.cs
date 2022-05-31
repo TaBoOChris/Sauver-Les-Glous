@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+
 public class EndMenu : MonoBehaviour
 {
     [SerializeField] private GameObject m_endButtons;
@@ -55,5 +57,10 @@ public class EndMenu : MonoBehaviour
             newGlou = Instantiate(m_glouDeadUI, m_gridSurvivorGlous.transform);
         }
         newGlou.GetComponentInChildren<Image>().color = Color.HSVToRGB(hue, 1, 1);
+    }
+
+    public void ToVillage()
+    {
+        SceneManager.LoadScene("village");
     }
 }
