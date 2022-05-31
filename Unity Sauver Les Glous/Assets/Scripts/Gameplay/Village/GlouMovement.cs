@@ -5,8 +5,9 @@ using UnityEngine;
 public class GlouMovement : MonoBehaviour
 {
     private float m_deltaY = 0.5f;
-    private float m_xRange = 1f;
+    private float m_deltaX = 1f;
     private bool isMovingToTheRight;
+    [SerializeField] private bool isMoving = true;
 
     // Zone autorisé pour les déplacement
     private float m_ilandMaxX = 12.57f;
@@ -28,14 +29,25 @@ public class GlouMovement : MonoBehaviour
 
     private void Update()
     {
-        if(m_destination == transform.position)
+        if(!isMoving)
+        {
+            // Le glou a une chance sur 10 de se remettre en marche
+            int i = Random.Range(0, 1000);
+            if (i == 0)
+            {
+                isMoving = true;
+                m_destination = PickRandomDestination();
+                if (isMoving) MoveTo(m_destination);
+            }
+        }
+        else if(m_destination == transform.position)
         {
             m_destination = PickRandomDestination();
-            MoveTo(m_destination);
+            if(isMoving) MoveTo(m_destination);
         }
     }
 
-    // Choisi un point aléatoire dans un carré de "rayon" m_rayon
+    // Choisi un point aléatoire dans une zone autour du Glou
     private Vector3 PickRandomDestination()
     {
         Vector3 glouPos = transform.position;
@@ -43,7 +55,7 @@ public class GlouMovement : MonoBehaviour
         float xPos = glouPos.x; ;
         if (isMovingToTheRight)
         {
-            xPos += m_xRange;
+            xPos += m_deltaX;
             if (xPos > m_ilandMaxX)
             {
                 xPos = m_ilandMaxX;
@@ -53,7 +65,7 @@ public class GlouMovement : MonoBehaviour
         }
         else
         {
-            xPos -= m_xRange;
+            xPos -= m_deltaX;
             if(xPos < m_ilandMinX)
             {
                 xPos = m_ilandMinX;
@@ -70,6 +82,10 @@ public class GlouMovement : MonoBehaviour
         int i = Random.Range(0, 10);
         if (i == 0) isMovingToTheRight = !isMovingToTheRight;
 
+        // Le glou a une chance sur 10 de s'arrêter
+        i = Random.Range(0, 10);
+        if (i == 0) isMoving = false;
+
         return new Vector3(xPos, Random.Range(minY, maxY), 0);
     }
 
@@ -82,7 +98,7 @@ public class GlouMovement : MonoBehaviour
     private IEnumerator MoveTo_Coroutine(Vector3 destination)
     {
         float time = 0;
-        float duration = 1f;
+        float duration = 2f;
         Vector2 glouPos = transform.position;
 
 
