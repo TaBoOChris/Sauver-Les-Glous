@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2744392010316194057}
   - component: {fileID: 2744392010316194054}
+  - component: {fileID: 1348185953143309946}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,9 +45,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f898087535058d74a856780a29df3b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NbGlousStartLevel: 10
-  glousSpawner: {fileID: 0}
-  timer: {fileID: 0}
-  gameTime: 40
-  endMenu: {fileID: 0}
-  endMenuText: {fileID: 0}
+  m_glousSpawner: {fileID: 0}
+  m_timer: {fileID: 0}
+  m_gameTime: 60
+  m_endMenu: {fileID: 0}
+  m_endMenuText: {fileID: 0}
+  m_pauseMenu: {fileID: 0}
+--- !u!114 &1348185953143309946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744392010316194055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48142ea748253894dab7ef1bcbae202c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -53,6 +53,24 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpawnGlouHue"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9f6d86a-9717-4ead-a81d-52536c950038"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReverseRotation"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b59027e-be11-44f2-a5c6-7a0e62971c9e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -86,6 +104,28 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpawnGlou"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29d082be-6950-4ab0-8d97-e8cbdef4e27e"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnGlouHue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b17b7087-294e-4686-bb32-0c1ade6c8f79"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReverseRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -127,6 +167,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_CheatCodes_AddTime = m_CheatCodes.FindAction("AddTime", throwIfNotFound: true);
         m_CheatCodes_EndTimer = m_CheatCodes.FindAction("EndTimer", throwIfNotFound: true);
         m_CheatCodes_SpawnGlou = m_CheatCodes.FindAction("SpawnGlou", throwIfNotFound: true);
+        m_CheatCodes_SpawnGlouHue = m_CheatCodes.FindAction("SpawnGlouHue", throwIfNotFound: true);
+        m_CheatCodes_ReverseRotation = m_CheatCodes.FindAction("ReverseRotation", throwIfNotFound: true);
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
@@ -192,6 +234,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_CheatCodes_AddTime;
     private readonly InputAction m_CheatCodes_EndTimer;
     private readonly InputAction m_CheatCodes_SpawnGlou;
+    private readonly InputAction m_CheatCodes_SpawnGlouHue;
+    private readonly InputAction m_CheatCodes_ReverseRotation;
     public struct CheatCodesActions
     {
         private @InputActions m_Wrapper;
@@ -199,6 +243,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @AddTime => m_Wrapper.m_CheatCodes_AddTime;
         public InputAction @EndTimer => m_Wrapper.m_CheatCodes_EndTimer;
         public InputAction @SpawnGlou => m_Wrapper.m_CheatCodes_SpawnGlou;
+        public InputAction @SpawnGlouHue => m_Wrapper.m_CheatCodes_SpawnGlouHue;
+        public InputAction @ReverseRotation => m_Wrapper.m_CheatCodes_ReverseRotation;
         public InputActionMap Get() { return m_Wrapper.m_CheatCodes; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -217,6 +263,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SpawnGlou.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnSpawnGlou;
                 @SpawnGlou.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnSpawnGlou;
                 @SpawnGlou.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnSpawnGlou;
+                @SpawnGlouHue.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnSpawnGlouHue;
+                @SpawnGlouHue.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnSpawnGlouHue;
+                @SpawnGlouHue.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnSpawnGlouHue;
+                @ReverseRotation.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnReverseRotation;
+                @ReverseRotation.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnReverseRotation;
+                @ReverseRotation.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnReverseRotation;
             }
             m_Wrapper.m_CheatCodesActionsCallbackInterface = instance;
             if (instance != null)
@@ -230,6 +282,12 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @SpawnGlou.started += instance.OnSpawnGlou;
                 @SpawnGlou.performed += instance.OnSpawnGlou;
                 @SpawnGlou.canceled += instance.OnSpawnGlou;
+                @SpawnGlouHue.started += instance.OnSpawnGlouHue;
+                @SpawnGlouHue.performed += instance.OnSpawnGlouHue;
+                @SpawnGlouHue.canceled += instance.OnSpawnGlouHue;
+                @ReverseRotation.started += instance.OnReverseRotation;
+                @ReverseRotation.performed += instance.OnReverseRotation;
+                @ReverseRotation.canceled += instance.OnReverseRotation;
             }
         }
     }
@@ -272,6 +330,8 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnAddTime(InputAction.CallbackContext context);
         void OnEndTimer(InputAction.CallbackContext context);
         void OnSpawnGlou(InputAction.CallbackContext context);
+        void OnSpawnGlouHue(InputAction.CallbackContext context);
+        void OnReverseRotation(InputAction.CallbackContext context);
     }
     public interface IGameActions
     {

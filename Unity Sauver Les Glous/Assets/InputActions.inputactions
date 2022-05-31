@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SpawnGlouHue",
+                    "type": "Button",
+                    "id": "e9f6d86a-9717-4ead-a81d-52536c950038",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReverseRotation",
+                    "type": "Button",
+                    "id": "3b59027e-be11-44f2-a5c6-7a0e62971c9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -64,6 +82,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpawnGlou",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29d082be-6950-4ab0-8d97-e8cbdef4e27e",
+                    "path": "<Keyboard>/h",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpawnGlouHue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b17b7087-294e-4686-bb32-0c1ade6c8f79",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReverseRotation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

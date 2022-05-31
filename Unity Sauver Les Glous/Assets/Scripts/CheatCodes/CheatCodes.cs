@@ -26,7 +26,9 @@ public class CheatCodes : MonoBehaviour
 
         m_inputActions.CheatCodes.AddTime.performed += context => AddTime();
         m_inputActions.CheatCodes.EndTimer.performed += context => EndTimer();
-        m_inputActions.CheatCodes.SpawnGlou.performed += context => SpawnGlou();
+        m_inputActions.CheatCodes.SpawnGlou.performed += context => SpawnGlou(); // glou will not be in the village after the game
+        m_inputActions.CheatCodes.SpawnGlouHue.performed += context => SpawnNewGlou(); // glou will be in the village after the game
+        m_inputActions.CheatCodes.ReverseRotation.performed += context => ReverseRotation();
     }
 
     public void AddTime()
@@ -43,8 +45,22 @@ public class CheatCodes : MonoBehaviour
 
     public void SpawnGlou()
     {
-        m_glouSpawner.SpawnGlous(1);
+        m_glouSpawner.SpawnGlou();
+        GameManager.Instance.AddGlou();
         Debug.Log("<CHEAT> SpawnGlou");
+    }
+
+    public void SpawnNewGlou()
+    {
+        m_glouSpawner.SpawnNewGlou();
+        GameManager.Instance.AddGlou();
+        Debug.Log("<CHEAT> SpawnNewGlou");
+    }
+
+    public void ReverseRotation()
+    {
+        LevelProperties.Instance.SetRotationSpeed(-LevelProperties.Instance.rotationSpeed);
+        Debug.Log("<CHEAT> ReverseRotation ");
     }
 
     public void Enable()

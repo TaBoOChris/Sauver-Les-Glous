@@ -54,6 +54,7 @@ public class Timer : MonoBehaviour
         {
             DisplayTimer();
             seconds -= 1;
+            LevelProperties.Instance.SpeedUpDown();
             yield return new WaitForSeconds(1f);
         }
         GameManager.Instance.EndGame();
