@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class House : MonoBehaviour
 {
-    public int identifier;
+    [SerializeField] private int m_identifier;
     private BoxCollider2D m_collider;
     // Start is called before the first frame update
     void Start()
     {
         m_collider = GetComponent<BoxCollider2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnDrawGizmos()
@@ -31,8 +25,14 @@ public class House : MonoBehaviour
         var restoreColor = GUI.color;
         GUI.color = Color.blue;
 
-        UnityEditor.Handles.Label(pos - new Vector3(0.5f,-1.0f,0), "House N°" + identifier);
+        UnityEditor.Handles.Label(pos - new Vector3(0.5f,-1.0f,0), "House N°" + m_identifier);
         GUI.color = restoreColor;
 
     }
+
+    public int GetHouseID()
+    {
+        return m_identifier;
+    }
+
 }

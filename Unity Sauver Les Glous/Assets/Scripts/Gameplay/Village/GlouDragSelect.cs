@@ -11,6 +11,7 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private bool m_isDragged = false;
     private bool m_isHovered = false;
 
+    private Vector3 m_lastPosition;
     private int m_sortingOrder;
 
     private void Start()
@@ -24,6 +25,11 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (CursorManager.Instance != null)
             CursorManager.Instance.SetPointer();
         VillageManager.Instance.DropGlou(this);
+    }
+
+    public void JumpToLastPosition()
+    {
+        transform.position = m_lastPosition;
     }
 
     private void Update()
@@ -42,6 +48,7 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         m_isDragged = true;
         m_isHovered = true;
+        m_lastPosition = transform.position;
         m_sortingOrder = GetComponentInChildren<SpriteRenderer>().sortingOrder;
         var renderers = GetComponentsInChildren<SpriteRenderer>();
         for (int i=0; i< renderers.Length; i++)

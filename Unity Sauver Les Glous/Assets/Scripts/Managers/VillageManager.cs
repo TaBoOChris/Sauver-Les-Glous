@@ -13,8 +13,22 @@ public class VillageManager : AbstractSingleton<VillageManager>
     private List<GameObject> m_glousInVillage = new List<GameObject>();
     [SerializeField] private GameObject m_glouInVillagePrefab;
 
+    //Liste des maisons du village (auto enregistrée)
+    [Header("Houses")]
+    private List<House> m_villageHouses;
+    [SerializeField] GameObject m_housesParent;
+    [SerializeField] bool m_SetPositionInHouse = false;
+
     private void Start()
     {
+        m_villageHouses = new List<House>();
+        //Add each of the registered houses to the village manager
+        foreach (var house in m_housesParent.GetComponentsInChildren<House>())
+        {
+            m_villageHouses.Add(house);
+        }
+        Debug.Log("Village registered " + m_villageHouses.Count +" houses.");
+
         // temporaire
         GlousData.Instance.AddGlouToVillage(new Glou(0.1f, 0.14f), 0);
         GlousData.Instance.AddGlouToVillage(new Glou(0.2f, 0.18f), 0);
@@ -42,6 +56,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
             data.SetHue(glouData.hue);
             data.SetHouseID(glouData.houseID);
             data.SetSize(glouData.sizeMultiplier);
+            data.SetGlou(glouData);
 
             // Application des data au glou à faire spawn
             SpriteRenderer glouBody = data.GetBodyRenderer();
@@ -88,7 +103,53 @@ public class VillageManager : AbstractSingleton<VillageManager>
             }
         } else
         {
-            Debug.Log("Glou dropped somewhere");
+            bool droppedInAHouse = false;
+
+            for(int i=0; i< m_villageHouses.Count; i++)
+            {
+                BoxCollider2D boxc = m_villageHouses[i].GetComponent<BoxCollider2D>();
+                if (boxc.bounds.Contains(pt))
+                {
+                    droppedInAHouse = true;
+                    Debug.Log("Glou dropped in house " + m_villageHouses[i].GetHouseID());
+
+
+                    Bounds b = boxc.bounds;
+                    Vector3 target = glou.transform.position;
+                    if (m_SetPositionInHouse)
+                    {
+                        target = new Vector3(
+                            Random.Range(b.min.x + 0.2f, b.max.x - 0.2f),
+                            Random.Range(b.min.y + 0.2f, b.max.y - 0.2f),
+                            0  );
+                    }
+
+                    glou.transform.position = b.ClosestPoint(target);
+                    var villageMono = glou.GetComponent<GlouInVillage>();
+                    if (villageMono != null)
+                    {
+                        Glou data = villageMono.GetGlou();
+                        if (data != null)
+                        {
+                            data.houseID = m_villageHouses[i].GetHouseID();
+                            Debug.Log("Glou assigned to house " + m_villageHouses[i].GetHouseID());
+                        } 
+                        else Debug.LogWarning("No Glou Reference found in GlouInVillage ! Couldn't assign house");
+                    }
+                    else Debug.LogWarning("No GlouInVillage Component found ! Couldn't assign house");
+
+
+
+                    break;
+
+                }
+            } // end searcch
+            
+            //Fail case : dropped in no interesting position
+            if(droppedInAHouse == false)
+            {
+                glou.JumpToLastPosition();
+            }
         }
 
     }
