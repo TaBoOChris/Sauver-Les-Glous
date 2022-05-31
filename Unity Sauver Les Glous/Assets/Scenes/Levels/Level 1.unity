@@ -867,17 +867,49 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3707790681269893992, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -443.00006
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734631872890237727, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_text
+      value: Retour au  village
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734631872890237727, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_fontSize
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734631872890237727, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3928271746236849717, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3928271746236849717, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1191917569}
+    - target: {fileID: 3928271746236849717, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928271746236849717, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReloadScene
+      value: ToVillage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928271746236849717, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EndMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3928271746236849717, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: NewDesignMainLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928271746236849719, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+      propertyPath: m_Name
+      value: VillageButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
@@ -902,6 +934,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 409887528231400166, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
   m_PrefabInstance: {fileID: 1191917565}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1191917569 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2672118975837104142, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
+  m_PrefabInstance: {fileID: 1191917565}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191917568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8081becbaf0cddd448723ec1eb0e807c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1266669472
 PrefabInstance:
   m_ObjectHideFlags: 0
