@@ -1394,6 +1394,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 457044110}
     m_Modifications:
+    - target: {fileID: 1348185953143309946, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
+      propertyPath: m_babyGlousPerc
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2744392010316194054, guid: b66ec1770a3ae6a45a3306c362a5cf6c, type: 3}
       propertyPath: timer
       value: 

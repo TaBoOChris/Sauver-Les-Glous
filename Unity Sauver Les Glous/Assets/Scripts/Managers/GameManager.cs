@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	[SerializeField] private int m_nbGlousStartLevel = 10;
-	private int m_nbGlousAlive;
-
+	[Header("Glous")]
 	[SerializeField] private GlousSpawner m_glousSpawner;
+	private int m_nbGlousAlive;
+	private List<GlouInGame> m_glousInGame = new List<GlouInGame>();
 
 	[Header("Timer")]
 	[SerializeField] private Timer m_timer;
@@ -51,9 +51,14 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1;
 		m_isGamePaused = false;
 
+		m_pauseMenu.SetActive(false);
 		m_endMenu.SetActive(false);
-		m_nbGlousAlive = 0;
-		m_glousSpawner.SpawnGlous(m_nbGlousStartLevel);	//SpawnGlous();
+
+		List<Glou> glousStartingList = new List<Glou> { new Glou(0.2f, 0.8f), new Glou(0.5f, 1f), new Glou(0.8f, 1.2f) };
+
+		m_nbGlousAlive = glousStartingList.Count;
+		m_glousSpawner.SpawnGlous(glousStartingList);
+
 		//SpawnPlaterform();
 		//Rotation();
 		m_timer.StartTimer(m_gameTime);	//StartTimer();
@@ -72,18 +77,18 @@ public class GameManager : MonoBehaviour
 			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousAlive + "</color> Glous.  Bien joué !";
         }
 
-		// update players glous
-		List<Glou> survivorGlousList = new List<Glou>();
-		Transform glousParentGO = m_glousSpawner.GetGlousParentGO().transform;
-		foreach (Transform child in glousParentGO)
-        {
-			Glou survivorGlou = child.GetComponent<GlouInGame>().GetGlou();
-			if (survivorGlou != null)
-            {
-				survivorGlousList.Add(survivorGlou);
-				Debug.Log("SurviverGlou Hue : " + survivorGlou.hue);
-            }
-        }
+		// create list of alive glous
+		List<Glou> aliveGlous = GetAliveGlous();
+		// Create baby glous
+		List<Glou> babyGlous = GetComponent<BabyGlousCreator>().CreateChildrenGlous(aliveGlous, m_nbGlousAlive);
+
+		EndMenu endMenu = m_endMenu.GetComponent<EndMenu>();
+		// display glous killed and saved and babies
+		endMenu.DisplayGlous(m_glousInGame);
+		endMenu.DisplayGlous(babyGlous);
+
+		// Create Glous list to give to the Village
+		// GlousData.m_glousInSelector = glousAlive + babyGlous
 
 		// pop up end menu
 		m_endMenu.SetActive(true);
@@ -93,9 +98,29 @@ public class GameManager : MonoBehaviour
 		m_inputActions.Game.Disable();
 	}
 
+	private List<Glou> GetAliveGlous()
+    {
+		List<Glou> aliveGlous = new List<Glou>();
+
+		foreach (GlouInGame glou in m_glousInGame)
+		{
+			if (glou.IsAlive())
+			{
+				aliveGlous.Add(glou.GetGlou());
+			}
+		}
+
+		return aliveGlous;
+	}
+
 	public void AddGlou()
     {
 		m_nbGlousAlive++;
+    }
+
+	public void AddGlouInGame(GlouInGame glouInGame)
+    {
+		m_glousInGame.Add(glouInGame);
     }
 
 	public void GlouDie()

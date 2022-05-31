@@ -5,6 +5,7 @@ using UnityEngine;
 public class GlouInGame : MonoBehaviour
 {
     private Glou m_glou = null;
+    private bool m_isAlive = true;
 
     public void SetGlou(Glou glou)
     {
@@ -14,5 +15,15 @@ public class GlouInGame : MonoBehaviour
     public Glou GetGlou()
     {
         return m_glou;
+    }
+
+    public void KillGlou()
+    {
+        m_isAlive = false;
+    }
+
+    public bool IsAlive()
+    {
+        return m_isAlive;
     }
 }
