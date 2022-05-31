@@ -29,6 +29,12 @@ public class GlouMovement : MonoBehaviour
 
     private void Update()
     {
+        if (GetComponent<GlouDragSelect>().IsDragged())
+        {
+            StopAllCoroutines();
+            isMoving = false;
+            return;
+        }
         if(!isMoving)
         {
             // Le glou a une chance sur 10 de se remettre en marche
