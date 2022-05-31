@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GlouMovement : MonoBehaviour
 {
-    // Zone autour du Glou (un carré de "rayon" X parceque flemme de faire un cercle ça revient au même ^^)
-    private int m_rayon = 2;
+    private float m_deltaY = 0.5f;
+    private float m_xRange = 1f;
+    private bool isMovingToTheRight;
 
     // Zone autorisé pour les déplacement
     private float m_ilandMaxX = 12.57f;
@@ -21,6 +22,8 @@ public class GlouMovement : MonoBehaviour
     private void Awake()
     {
         m_destination = transform.position;
+
+        DetermineOrientation();
     }
 
     private void Update()
@@ -37,16 +40,37 @@ public class GlouMovement : MonoBehaviour
     {
         Vector3 glouPos = transform.position;
 
-        float maxX = glouPos.x + m_rayon;
-        if (maxX > m_ilandMaxX) maxX = m_ilandMaxX;
-        float minX = glouPos.x - m_rayon;
-        if (minX < m_ilandMinX) minX = m_ilandMinX;
-        float maxY = glouPos.y + m_rayon;
+        float xPos = glouPos.x; ;
+        if (isMovingToTheRight)
+        {
+            xPos += m_xRange;
+            if (xPos > m_ilandMaxX)
+            {
+                xPos = m_ilandMaxX;
+                isMovingToTheRight = !isMovingToTheRight;
+            }
+
+        }
+        else
+        {
+            xPos -= m_xRange;
+            if(xPos < m_ilandMinX)
+            {
+                xPos = m_ilandMinX;
+                isMovingToTheRight = !isMovingToTheRight;
+            }
+        }
+
+        float maxY = glouPos.y + m_deltaY;
         if (maxY > m_ilandMaxY) maxY = m_ilandMaxY;
-        float minY = glouPos.y - m_rayon;
+        float minY = glouPos.y - m_deltaY;
         if (minY < m_ilandMinY) minY = m_ilandMinY;
 
-        return new Vector3(Random.Range(minX, minY), Random.Range(minY, maxY), 0);
+        // Le glou a une chance sur 10 de changer de direction
+        int i = Random.Range(0, 10);
+        if (i == 0) isMovingToTheRight = !isMovingToTheRight;
+
+        return new Vector3(xPos, Random.Range(minY, maxY), 0);
     }
 
     // Déplace le glou de façon fluide vers sa destination
@@ -69,5 +93,13 @@ public class GlouMovement : MonoBehaviour
             yield return null;
         }
         transform.position = destination;
+    }
+
+    // Permet d'orienter le glou pour qu'il se déplace vers la gauche ou vers la droite
+    private void DetermineOrientation()
+    {
+        int i = Random.Range(0, 2);
+        if (i == 1) isMovingToTheRight = true;
+        else isMovingToTheRight = false;
     }
 }
