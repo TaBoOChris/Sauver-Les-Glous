@@ -283,7 +283,7 @@ MonoBehaviour:
   DoNotDestroyOnLoad: 0
   m_dropzoneCollider: {fileID: 376394558}
   m_canvasBasket: {fileID: 51197347}
-  m_GlouUIPrefab: {fileID: 8814648169640405553, guid: 4e2f6bba98340d24696f76f843d171e8, type: 3}
+  m_GlouUIPrefab: {fileID: 2163071425844327266, guid: 3c868c050db530b4f8b544115874e7e7, type: 3}
   m_glouInVillagePrefab: {fileID: 5150726409085085805, guid: acc52acbc7a4c2c4ba15c7ae354fbb38, type: 3}
   m_housesParent: {fileID: 486829798}
   m_SetPositionInHouse: 0
