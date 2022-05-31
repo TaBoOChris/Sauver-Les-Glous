@@ -20,7 +20,7 @@ public class GlouMovement : MonoBehaviour
 
     private Vector3 m_destination;
 
-    private void Awake()
+    public void Awake()
     {
         m_destination = transform.position;
 

@@ -85,7 +85,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
             else
             {
                 glou.transform.position = new Vector3(Random.Range(-19.39f, 12.57f), Random.Range(-12.38f, 7.41f), 0);
-                glou.GetComponent<GlouMovement>().PickRandomDestination();
+                glou.GetComponent<GlouMovement>().Awake();
             }
 
             m_glousInVillage.Add(glou);
