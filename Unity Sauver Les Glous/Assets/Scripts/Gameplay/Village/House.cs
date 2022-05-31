@@ -24,9 +24,10 @@ public class House : MonoBehaviour
 
         var restoreColor = GUI.color;
         GUI.color = Color.blue;
-
+#if UNITY_EDITOR
         UnityEditor.Handles.Label(pos - new Vector3(0.5f,-1.0f,0), "House N°" + m_identifier);
         GUI.color = restoreColor;
+#endif
 
     }
 
