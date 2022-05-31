@@ -16,8 +16,8 @@ public class BabyGlousCreator : MonoBehaviour
 
         for (int i=0; i<nbBabyGlous; ++i)
         {
-            int idParent1 = Random.Range(0, nbGlousAlive - 1);
-            int idParent2 = Random.Range(0, nbGlousAlive - 1);
+            int idParent1 = Random.Range(0, nbGlousAlive);
+            int idParent2 = Random.Range(0, nbGlousAlive);
 
             float babyHue = (aliveGlous[idParent1].hue + aliveGlous[idParent2].hue) / 2;
             float babyScale = (aliveGlous[idParent1].sizeMultiplier + aliveGlous[idParent2].sizeMultiplier) / 2;
