@@ -489,7 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 1306256097}
   glou: {fileID: 8130033672022096456, guid: c6084c51d1161644e84f7566fc9c24be, type: 3}
-  spawnInterval: 5
+  spawnInterval: 1
   xSpawnForce: 250
   ySpawnForce: 140
 --- !u!4 &564731196 stripped
