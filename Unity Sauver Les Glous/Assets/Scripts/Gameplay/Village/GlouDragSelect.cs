@@ -50,6 +50,11 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         m_lastPosition = transform.position;
         m_sortingOrder = GetComponentInChildren<SpriteRenderer>().sortingOrder;
         var renderers = GetComponentsInChildren<SpriteRenderer>();
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayGlouCute();
+        }
         for (int i=0; i< renderers.Length; i++)
         {
             renderers[i].sortingOrder = 15 + i;

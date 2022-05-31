@@ -195,6 +195,7 @@ MonoBehaviour:
   m_villageMusic: {fileID: 8300000, guid: 3be5673f16dd45a408822f1e799d1405, type: 3}
   m_buttonSfx: {fileID: 8300000, guid: bc71c02b64fbfec4b84d3272406ba2b4, type: 3}
   m_GlouSfx: {fileID: 8300000, guid: 6d4845c5144135d45a521897d13d5828, type: 3}
+  m_GlouSfxCute: {fileID: 8300000, guid: 80cc3f228dacbbd4490382182469787f, type: 3}
   m_GlouSpawnSfx: {fileID: 8300000, guid: 13d63e528d94a254bb3df916abf2d5cf, type: 3}
   m_GlouDieSfx: {fileID: 8300000, guid: 8667cc9aee2c764439a3eefe7dd98000, type: 3}
 --- !u!1 &7556058132160576919
