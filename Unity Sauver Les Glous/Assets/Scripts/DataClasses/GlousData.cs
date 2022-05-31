@@ -36,4 +36,9 @@ public class GlousData : AbstractSingleton<GlousData>
         m_glousInSelector.Remove(g);
         m_glousInVillage.Add(glou);
     }
+
+    public void SetGlousInSelector(List<Glou> newList)
+    {
+        m_glousInSelector = newList;
+    }
 }
