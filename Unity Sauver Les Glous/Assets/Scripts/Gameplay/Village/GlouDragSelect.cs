@@ -11,6 +11,13 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private bool m_isDragged = false;
     private bool m_isHovered = false;
 
+    private int m_sortingOrder;
+
+    private void Start()
+    {
+        
+    }
+
     /* This method is called once a glou is put somewhere */
     private void OnMoved()
     {
@@ -35,6 +42,12 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         m_isDragged = true;
         m_isHovered = true;
+        m_sortingOrder = GetComponentInChildren<SpriteRenderer>().sortingOrder;
+        var renderers = GetComponentsInChildren<SpriteRenderer>();
+        for (int i=0; i< renderers.Length; i++)
+        {
+            renderers[i].sortingOrder = 15 + i;
+        }
         if (CursorManager.Instance != null)
             CursorManager.Instance.SetGrab();
 
@@ -45,6 +58,11 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (m_isDragged)
         {
             m_isDragged = false;
+            var renderers = GetComponentsInChildren<SpriteRenderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].sortingOrder = m_sortingOrder + i;
+            }
             OnMoved();
             if (CursorManager.Instance != null)
                 CursorManager.Instance.SetHand();
