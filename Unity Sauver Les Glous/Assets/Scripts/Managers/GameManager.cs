@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
     {
+		AudioManager.Instance.PlayGameMusic();
 		StartGame();
 		if(CursorManager.Instance != null)
 			CursorManager.Instance.SetPointer();

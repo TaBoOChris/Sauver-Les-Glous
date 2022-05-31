@@ -54,6 +54,7 @@ public class AudioManager : MonoBehaviour
 
 	public void PlayGameMusic()
 	{
+		m_musicSource.Stop();
 		m_musicSource.clip = m_gameMusic;
 		m_musicSource.Play();
 	}
