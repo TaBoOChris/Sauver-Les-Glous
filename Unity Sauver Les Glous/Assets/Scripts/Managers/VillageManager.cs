@@ -93,7 +93,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
 
     }
 
-    public void DropGlou(GlouDragSelect glou)
+    public bool DropGlou(GlouDragSelect glou)
     {
         // Check if within the dropzone
         Vector3 pt = glou.transform.position;
@@ -114,6 +114,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
                 glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
             }
+            return true;
         } else
         {
             bool droppedInAHouse = false;
@@ -153,13 +154,18 @@ public class VillageManager : AbstractSingleton<VillageManager>
                     break;
 
                 }
-            } // end searcch
+            } // end search
             
             //Fail case : dropped in no interesting position
             if(droppedInAHouse == false)
             {
                 glou.JumpToLastPosition();
             }
+            else
+            {
+                glou.GetComponent<GlouMovement>().enabled = false;
+            }
+            return droppedInAHouse;
         }
 
     }

@@ -22,9 +22,8 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     /* This method is called once a glou is put somewhere */
     private void OnMoved()
     {
-        if (CursorManager.Instance != null)
+        if (VillageManager.Instance.DropGlou(this)) // drop is successful
             CursorManager.Instance.SetPointer();
-        VillageManager.Instance.DropGlou(this);
     }
 
     public void JumpToLastPosition()
@@ -70,9 +69,9 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             {
                 renderers[i].sortingOrder = m_sortingOrder + i;
             }
-            OnMoved();
             if (CursorManager.Instance != null)
                 CursorManager.Instance.SetHand();
+            OnMoved();
         }
 
     }
