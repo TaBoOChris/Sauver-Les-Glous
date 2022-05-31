@@ -54,7 +54,7 @@ public class GlouMovement : MonoBehaviour
     }
 
     // Choisi un point aléatoire dans une zone autour du Glou
-    private Vector3 PickRandomDestination()
+    public Vector3 PickRandomDestination()
     {
         Vector3 glouPos = transform.position;
 
