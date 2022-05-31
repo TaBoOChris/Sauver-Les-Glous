@@ -249,7 +249,8 @@ public class VillageManager : AbstractSingleton<VillageManager>
 
     public void ToGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
+        if(GlousData.Instance.GetGlousInSelector().Count > 0)
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
     }
 
 }

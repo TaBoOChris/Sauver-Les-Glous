@@ -14,6 +14,7 @@ public class MenuBG : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayMenuMusic();
         Time.timeScale = 1;
 
         t = spawnInterval - 0.5f;

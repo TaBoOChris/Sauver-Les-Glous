@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
 	[Header("End menu")]
 	[SerializeField] private GameObject m_endMenu;
+	[SerializeField] private GameObject m_endMenuVillageBtn;
 	[SerializeField] private TextMeshProUGUI m_endMenuText;
 
 	[Header("Pause")]
@@ -93,6 +94,11 @@ public class GameManager : MonoBehaviour
 		aliveGlous.AddRange(babyGlous);
 		GlousData.Instance.SetGlousInSelector(aliveGlous);
 		// GlousData.m_glousInSelector = glousAlive + babyGlous
+
+		if(GlousData.Instance.GetGlousInSelector().Count == 0 && GlousData.Instance.GetGlousInVillage().Count == 0)
+        {
+			m_endMenuVillageBtn.SetActive(false);
+        }
 
 		// pop up end menu
 		m_endMenu.SetActive(true);
