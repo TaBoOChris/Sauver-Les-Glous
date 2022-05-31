@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VillageManager : AbstractSingleton<VillageManager>
 {
@@ -117,7 +118,8 @@ public class VillageManager : AbstractSingleton<VillageManager>
                 //UI Show in basket
                 GameObject glouUI = Instantiate(m_GlouUIPrefab, m_canvasBasket.transform, true);
                 glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+                glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+                glouUI.GetComponentInChildren<Image>().color = Color.HSVToRGB(data.hue, 1, 1);
             }
             return true;
         } else
