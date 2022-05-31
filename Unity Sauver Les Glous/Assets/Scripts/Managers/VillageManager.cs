@@ -184,4 +184,10 @@ public class VillageManager : AbstractSingleton<VillageManager>
             0);
     }
 
+
+    public void ToGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
+    }
+
 }
