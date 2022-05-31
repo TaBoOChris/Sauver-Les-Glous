@@ -22,6 +22,10 @@ public class VillageManager : AbstractSingleton<VillageManager>
     private void Start()
     {
         Time.timeScale = 1.0f;
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayVillageMusic();
+        }
         m_villageHouses = new List<House>();
         //Add each of the registered houses to the village manager
         foreach (var house in m_housesParent.GetComponentsInChildren<House>())

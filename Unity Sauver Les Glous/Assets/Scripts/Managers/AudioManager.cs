@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
 	[Header("Music")]
 	[SerializeField] public AudioClip m_menuMusic;
 	[SerializeField] public AudioClip m_gameMusic;
+	[SerializeField] public AudioClip m_villageMusic;
 
 	[Header("Menu")]
 	[SerializeField] public AudioClip m_buttonSfx;
@@ -55,10 +56,17 @@ public class AudioManager : MonoBehaviour
 		m_musicSource.clip = m_gameMusic;
 		m_musicSource.Play();
 	}
-    #endregion
 
-    #region Menu Sfx
-    public void PlayButtonMenu()
+	public void PlayVillageMusic()
+	{
+		m_musicSource.Stop();
+		m_musicSource.clip = m_villageMusic;
+		m_musicSource.Play();
+	}
+	#endregion
+
+	#region Menu Sfx
+	public void PlayButtonMenu()
 	{
 		m_sfxSource.PlayOneShot(m_buttonSfx);
 	}
