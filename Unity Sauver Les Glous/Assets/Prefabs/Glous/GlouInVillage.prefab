@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6707203193294713452}
   - component: {fileID: 9032316070981872803}
   - component: {fileID: 5124076673451138917}
+  - component: {fileID: 1086894175}
   m_Layer: 0
   m_Name: GlouInVillage
   m_TagString: Glou
@@ -192,6 +193,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a50ca1de948c10a4c82067c01ef3f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1086894175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150726409085085805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5382a05ec218c80428dbbfd08a994581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5371806422156015598

@@ -90,4 +90,9 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             cursorManager.SetPointer();
         }
     }
+
+    public bool IsDragged()
+    {
+        return m_isDragged;
+    }
 }
