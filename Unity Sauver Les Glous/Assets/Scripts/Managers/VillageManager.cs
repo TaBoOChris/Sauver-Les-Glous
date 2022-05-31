@@ -80,10 +80,12 @@ public class VillageManager : AbstractSingleton<VillageManager>
             {
                 House glouHouse = m_villageHouses.Find(house => house.GetHouseID() == glouData.houseID);
                 glou.transform.position = PositionInHouse(glouHouse.GetComponent<BoxCollider2D>().bounds);
+                glou.GetComponent<GlouMovement>().enabled = false;
             }
             else
             {
                 glou.transform.position = new Vector3(Random.Range(-19.39f, 12.57f), Random.Range(-12.38f, 7.41f), 0);
+                glou.GetComponent<GlouMovement>().PickRandomDestination();
             }
 
             m_glousInVillage.Add(glou);
