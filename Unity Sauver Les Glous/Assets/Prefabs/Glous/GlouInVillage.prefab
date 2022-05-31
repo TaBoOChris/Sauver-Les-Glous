@@ -182,7 +182,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.15
 --- !u!114 &5124076673451138917
 MonoBehaviour:
   m_ObjectHideFlags: 0

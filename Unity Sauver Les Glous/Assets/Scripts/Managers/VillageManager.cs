@@ -71,6 +71,10 @@ public class VillageManager : AbstractSingleton<VillageManager>
             glouBody.transform.localScale = scale;
             glouExpression.transform.localScale = scale;
 
+            BoxCollider2D glouCollider = glou.GetComponent<BoxCollider2D>();
+            glouCollider.size = new Vector2(size * 5, size * 5);
+
+
             // maison -- 60% de chance de spawn dedans
             if (Random.Range(0f,1.0f) >= 0.4f)
             {
