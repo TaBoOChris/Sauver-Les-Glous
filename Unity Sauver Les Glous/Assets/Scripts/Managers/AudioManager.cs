@@ -38,11 +38,11 @@ public class AudioManager : MonoBehaviour
 		PlayMenuMusic();
 	}
 	void Update()
-	{
+	{/* --quick fix de merde
 		if (!m_musicSource.isPlaying)
 		{
 			m_musicSource.Play();
-		}
+		}*/
 	}
 
     #region Menu Music
@@ -51,7 +51,12 @@ public class AudioManager : MonoBehaviour
 		m_musicSource.clip = m_menuMusic;
 		m_musicSource.Play();
 	}
+	public void StopMusic()
+    {
+		m_musicSource.Stop();
+		m_sfxSource.Stop();
 
+	}
 	public void PlayGameMusic()
 	{
 		m_musicSource.Stop();
