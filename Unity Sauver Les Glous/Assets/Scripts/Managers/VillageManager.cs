@@ -36,6 +36,11 @@ public class VillageManager : AbstractSingleton<VillageManager>
         Debug.Log("Village registered " + m_villageHouses.Count +" houses.");
 
         SpawnGlousInVillage();
+
+        foreach (Glou glou in GlousData.Instance.GetGlousInSelector())
+        {
+            AddGlouInUIBasket(glou);
+        }
     }
 
     private void SpawnGlousInVillage()
@@ -104,10 +109,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
                 GlousData.Instance.MoveGlouToSelector(ref data);
 
                 //UI Show in basket
-                GameObject glouUI = Instantiate(m_GlouUIPrefab, m_canvasBasket.transform, true);
-                glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-                glouUI.GetComponentInChildren<Image>().color = Color.HSVToRGB(data.hue, 1, 1);
+                AddGlouInUIBasket(data);
             }
             return true;
         } else
@@ -165,6 +167,13 @@ public class VillageManager : AbstractSingleton<VillageManager>
 
     }
 
+    private void AddGlouInUIBasket(Glou data)
+    {
+        GameObject glouUI = Instantiate(m_GlouUIPrefab, m_canvasBasket.transform, true);
+        glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+        glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+        glouUI.GetComponentInChildren<Image>().color = Color.HSVToRGB(data.hue, 1, 1);
+    }
 
     static Vector3 PositionInHouse(Bounds b)
     {
