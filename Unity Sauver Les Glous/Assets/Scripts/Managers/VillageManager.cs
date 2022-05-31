@@ -62,11 +62,11 @@ public class VillageManager : AbstractSingleton<VillageManager>
             // taille
             float size = data.GetSize();
             Vector3 scale = new Vector3(size, size, size);
-            glouBody.transform.localScale = scale;
-            glouExpression.transform.localScale = scale;
+            glouBody.transform.localScale = scale * 0.2f;
+            glouExpression.transform.localScale = scale * 0.2f;
 
             BoxCollider2D glouCollider = glou.GetComponent<BoxCollider2D>();
-            glouCollider.size = new Vector2(size * 5, size * 5);
+            glouCollider.size = new Vector2(size * 2, size * 2);
 
 
             // maison -- 60% de chance de spawn dedans
