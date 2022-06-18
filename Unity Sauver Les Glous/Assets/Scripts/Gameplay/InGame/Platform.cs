@@ -96,6 +96,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (!isDraggable || GameManager.Instance.IsGamePaused())
             return; //Abort if not draggable or if the game is paused
         isDragged = true;
+        gameObject.GetComponentInChildren<Collider2D>().enabled = false;
         isHovered = true;
         //Debug.Log("dragging " + name);
         if (CursorManager.Instance != null)
@@ -108,6 +109,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (isDragged)
         {
             isDragged = false;
+            gameObject.GetComponentInChildren<Collider2D>().enabled = true;
             OnMoved();
             //Debug.Log("no more dragging " + name);
             if (CursorManager.Instance != null)
