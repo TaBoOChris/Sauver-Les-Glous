@@ -19,9 +19,15 @@ public class BabyGlousCreator : MonoBehaviour
             int idParent1 = Random.Range(0, nbGlousAlive);
             int idParent2 = Random.Range(0, nbGlousAlive);
 
-            float babyHue = (aliveGlous[idParent1].hue + aliveGlous[idParent2].hue) / 2;
+            // Temporaire, le skin du bebe est celui du pere ou de la mere
+            Glou.SkinGlou babySkin;
+            if (Random.Range(0,2) < 1)
+                babySkin = aliveGlous[idParent1].skin;
+            else
+                 babySkin = aliveGlous[idParent2].skin;
+
             float babyScale = (aliveGlous[idParent1].sizeMultiplier + aliveGlous[idParent2].sizeMultiplier) / 2;
-            Glou babyGlou = new Glou(babyHue, babyScale);
+            Glou babyGlou = new Glou(babySkin, babyScale);
 
             babyGlous.Add(babyGlou);
         }
