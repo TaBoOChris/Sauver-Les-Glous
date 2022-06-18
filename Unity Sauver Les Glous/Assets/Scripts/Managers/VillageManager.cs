@@ -49,18 +49,17 @@ public class VillageManager : AbstractSingleton<VillageManager>
 
         // Get glou data
         GlouInVillage data = glou.GetComponent<GlouInVillage>();
-        data.SetHue(glouData.hue);
+        data.SetSkin(glouData.skin);
         data.SetHouseID(glouData.houseID);
         data.SetSize(glouData.sizeMultiplier);
         data.SetGlou(glouData);
 
-        // Application des data au glou � faire spawn
+        // Application des data au glou a faire spawn
         SpriteRenderer glouBody = data.GetBodyRenderer();
         SpriteRenderer glouExpression = data.GetExpressionRenderer();
 
-        // couleur
-        glouBody.color = Color.HSVToRGB(data.GetHue(), 1, 1);
-
+        // le skin se met automatiquement avec le script skinGlou
+        
         // taille
         float size = data.GetSize();
         Vector3 scale = new Vector3(size, size, size);
@@ -234,7 +233,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
         GameObject glouUI = Instantiate(m_GlouUIPrefab, m_canvasBasket.transform, true);
         glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
         glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-        glouUI.GetComponentInChildren<Image>().color = Color.HSVToRGB(data.hue, 1, 1);
+        glouUI.GetComponent<GlouSkinUI>().SetSkin(data.skin);
         glouUI.GetComponent<GlouInVillage>().SetGlou(data);
     }
 

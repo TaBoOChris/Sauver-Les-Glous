@@ -6,9 +6,9 @@ public class GlouInVillage : MonoBehaviour
 {
     private Glou m_glou = null;
 
-    private float m_hue;
     private int? m_houseID;
     private float m_size;
+    private Glou.SkinGlou m_skin;
 
     [SerializeField] private SpriteRenderer m_bodyRenderer;
     [SerializeField] private SpriteRenderer m_expressionRenderer;
@@ -34,14 +34,14 @@ public class GlouInVillage : MonoBehaviour
         return m_expressionRenderer;
     }
 
-    public float GetHue()
+    public Glou.SkinGlou GetSkin()
     {
-        return m_hue;
+        return m_skin;
     }
 
-    public void SetHue(float hue)
+    public void SetSkin(Glou.SkinGlou skin)
     {
-        m_hue = hue;
+        m_skin = skin;
     }
 
     public int? GetHouseID()
