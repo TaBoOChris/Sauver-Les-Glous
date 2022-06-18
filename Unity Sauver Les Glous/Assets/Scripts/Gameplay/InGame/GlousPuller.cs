@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class GlousPuller : MonoBehaviour
 {
-    public float pullRadius = 5;
-    public float pullForce = 10;
+    public float pullRadius = 2;
+    public float pullForce = 50;
 
     public void FixedUpdate()
     {
-        foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, pullRadius) ){
+        Collider2D[] detectedCollider = Physics2D.OverlapCircleAll(transform.position, pullRadius);
+                
+        foreach (Collider2D collider in detectedCollider)
+        {
 
-            if(collider.transform.parent.tag != "Glou") { return; }
+            if (collider.transform.parent == null) { continue; }
+            if (collider.transform.parent.tag != "Glou") { continue; }
 
             // calcul de la direction pour attirer le glou
             Vector2 forceDirection = transform.position - collider.gameObject.transform.position;
@@ -19,8 +23,6 @@ public class GlousPuller : MonoBehaviour
             // application de la force
             if (collider.GetComponentInParent<Rigidbody2D>())
             {
-                Debug.Log("GLOUS PULLER : Aspiration de " + collider.gameObject.name);
-
                 collider.GetComponentInParent<Rigidbody2D>().AddForce(forceDirection.normalized * pullForce * Time.fixedDeltaTime);
             }
 
