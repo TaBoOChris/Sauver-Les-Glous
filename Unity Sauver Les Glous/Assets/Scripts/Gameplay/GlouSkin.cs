@@ -4,22 +4,33 @@ using UnityEngine;
 
 public class GlouSkin : MonoBehaviour
 {
-    public enum SkinGlou {Rouge, Bleu, Jaune, Orange, Vert, Violet,
-                       Feu, Dore, Cupcake, Fleur, Glace, Dark}
-
     [SerializeField] private Sprite[] _skinsBase;
 
-    [SerializeField] private SkinGlou _skin = SkinGlou.Rouge;
     [SerializeField] private SpriteRenderer _sr;
 
+    public Glou.SkinGlou _skin;
+
+    private void Awake()
+    {
+        
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        if (GetComponent<GlouInGame>())
+        {
+            _skin = GetComponent<GlouInGame>().GetGlou().skin;
+        }
+        else if (GetComponent<GlouInVillage>())
+        {
+            _skin = GetComponent<GlouInVillage>().GetGlou().skin;
+        }
+
         _sr.sprite = _skinsBase[(int)_skin];
     }
 
-    public void SetSkin(SkinGlou skin)
+    public void SetSkin(Glou.SkinGlou skin)
     {
         _skin = skin;
         _sr.sprite = _skinsBase[(int)_skin];
