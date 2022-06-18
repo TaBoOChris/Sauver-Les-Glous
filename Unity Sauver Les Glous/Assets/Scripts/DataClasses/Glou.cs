@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class Glou
 {
-    public float hue { get; } // [0.0f, 1.0f]
     public float sizeMultiplier { get; } //Normal size = 1.0f
     public int? houseID { get; set; }
 
-    public Glou(float hue, float sizeMultiplier)
+    public enum SkinGlou {Rouge, Bleu, Jaune, Orange, Vert, Violet,
+                       Feu, Dore, Cupcake, Fleur, Glace, Dark}
+
+    private int nbrSkin = 12;
+
+    public SkinGlou skin { get; set; }
+
+    public Glou(SkinGlou skin, float sizeMultiplier)
     {
-        this.hue = hue;
+        this.skin = skin;
         this.sizeMultiplier = sizeMultiplier;
     }
-}
+
+    public void RandomSkin()
+    {
+        int index = Random.Range(0, nbrSkin);
+        this.skin = (SkinGlou)index;
+    }
+}// var myEnumMemberCount = Enum.GetNames(typeof(MyEnum)).Length;
+
