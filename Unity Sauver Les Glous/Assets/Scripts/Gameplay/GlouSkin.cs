@@ -10,11 +10,6 @@ public class GlouSkin : MonoBehaviour
 
     public Glou.SkinGlou _skin;
 
-    private void Awake()
-    {
-        
-    }
-
     // Start is called before the first frame update
     void Start()
     {
