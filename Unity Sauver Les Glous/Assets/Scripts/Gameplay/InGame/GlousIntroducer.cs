@@ -27,7 +27,13 @@ public class GlousIntroducer : MonoBehaviour
             return;
         }
 
-        m_glousToIntroduce = transform;
+        m_glousToIntroduce.position = transform.position;
+    }
+
+
+    public void setGlouToIntroduce(Transform glouToIntroduce)
+    {
+        m_glousToIntroduce = glouToIntroduce;
     }
 
 }
