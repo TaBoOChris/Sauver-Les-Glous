@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class BabyGlousCreator : MonoBehaviour
 {
-    [SerializeField] private float m_babyGlousPerc;
-
     private List<Glou> m_glousAlive = new List<Glou>();
 
     public List<Glou> CreateChildrenGlous(List<Glou> aliveGlous, int nbGlousAlive)
     {
         List<Glou> babyGlous = new List<Glou>();
 
-        int nbBabyGlous = (int)(nbGlousAlive * m_babyGlousPerc);
+        // Création de 1 bébe par 2 glous
+        int nbBabyGlous = (int)(nbGlousAlive/2);
 
-        for (int i=0; i<nbBabyGlous; ++i)
+        List<Glou> parents = new List<Glou>(aliveGlous);
+
+        for (int i = 0; i < nbBabyGlous; ++i)
         {
-            int idParent1 = Random.Range(0, nbGlousAlive);
-            int idParent2 = Random.Range(0, nbGlousAlive);
+            // Sélection du premier parent
+            int id = Random.Range(0, parents.Count);
+            Glou parent1 = parents[id];
+            parents.RemoveAt(id);
 
-            // Temporaire, le skin du bebe est celui du pere ou de la mere
-            Glou.SkinGlou babySkin;
-            if (Random.Range(0,2) < 1)
-                babySkin = aliveGlous[idParent1].skin;
-            else
-                 babySkin = aliveGlous[idParent2].skin;
+            // Sélection du second parent
+            id = Random.Range(0, parents.Count);
+            Glou parent2 = parents[id];
+            parents.RemoveAt(id);
 
-            float babyScale = (aliveGlous[idParent1].sizeMultiplier + aliveGlous[idParent2].sizeMultiplier) / 2;
-            Glou babyGlou = new Glou(babySkin, babyScale);
+            CercleGloumatique fusionneur = new CercleGloumatique();
+            Glou babyGlou = fusionneur.Fusion(parent1, parent2);
 
-            babyGlous.Add(babyGlou);
+            // Si la fusion a réussie alors on retourne le bébé
+            if (babyGlou != parent1)
+            {
+                Debug.Log("Nouveau Glou créé");
+                babyGlous.Add(babyGlou);
+            }
+            else Debug.Log("Le bébé est identique au parent");
+
         }
 
         return babyGlous;
