@@ -10,8 +10,6 @@ public class Glou
     public enum SkinGlou {Rouge, Bleu, Jaune, Orange, Vert, Violet,
                        Feu, Dore, Cupcake, Fleur, Glace, Dark}
 
-    private int nbrSkin = 12;
-
     public SkinGlou skin { get; set; }
 
     public Glou(SkinGlou skin, float sizeMultiplier)
@@ -20,10 +18,10 @@ public class Glou
         this.sizeMultiplier = sizeMultiplier;
     }
 
-    public void RandomSkin()
+    // Retourne le skin Rouge, Jaune ou Bleu
+    public static SkinGlou RandomSkinRYB()
     {
-        int index = Random.Range(0, nbrSkin);
-        this.skin = (SkinGlou)index;
+        return (SkinGlou)Random.Range(0, 3);
     }
-}// var myEnumMemberCount = Enum.GetNames(typeof(MyEnum)).Length;
+}
 
