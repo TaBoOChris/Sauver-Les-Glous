@@ -80,15 +80,4 @@ public class GlousSpawner : MonoBehaviour
         return m_glousParentGO;
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        // Spawn un Glou apres avoir fait un tour complet
-        if(collision.tag == "SpawnerTrigger")
-        {
-            Debug.Log("ROTATION : Spawn Glou (collision with " + collision.gameObject.name + "  )");
-            SpawnGlou();   
-        }
-    }
 }
