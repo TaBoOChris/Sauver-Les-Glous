@@ -16,12 +16,15 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     private float rotationOffset;
 
     private PolarCoords2D coords;
+
+    private GameObject DeadZoneCircle;
     
     // Start is called before the first frame update
     void Start()
     {
         isDragged = false;
         OnMoved();
+        DeadZoneCircle = GameObject.FindWithTag("DrumLimit");
     }
 
     private void FixedUpdate()
@@ -114,8 +117,15 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             //Debug.Log("no more dragging " + name);
             if (CursorManager.Instance != null)
                 CursorManager.Instance.SetHand();
-        }
 
+            float scaledRadius = Mathf.Max(DeadZoneCircle.transform.localScale.x, DeadZoneCircle.transform.localScale.y);
+            float scaledCircleCollider = DeadZoneCircle.GetComponent<CircleCollider2D>().radius;
+            float dist = Vector3.Distance(Vector3.zero, transform.position);
+            if (dist > scaledCircleCollider * scaledRadius * 1.05f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

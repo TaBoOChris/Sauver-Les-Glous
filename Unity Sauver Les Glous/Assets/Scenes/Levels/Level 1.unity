@@ -877,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3707790681269893992, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -443
+      value: -442.99988
       objectReference: {fileID: 0}
     - target: {fileID: 3734631872890237727, guid: 9d8b94327fcb1c445b15a17abe46001f, type: 3}
       propertyPath: m_text
@@ -1746,6 +1746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadZone
       objectReference: {fileID: 0}
+    - target: {fileID: 661453694215961242, guid: 7a63315cf4bd3ca4e8dc476c82418084, type: 3}
+      propertyPath: m_TagString
+      value: DrumLimit
+      objectReference: {fileID: 0}
     - target: {fileID: 661453694215961245, guid: 7a63315cf4bd3ca4e8dc476c82418084, type: 3}
       propertyPath: m_LocalScale.x
       value: 8.677632
@@ -1761,6 +1765,10 @@ PrefabInstance:
     - target: {fileID: 661453694215961245, guid: 7a63315cf4bd3ca4e8dc476c82418084, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.0829
+      objectReference: {fileID: 0}
+    - target: {fileID: 661453694215961245, guid: 7a63315cf4bd3ca4e8dc476c82418084, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a63315cf4bd3ca4e8dc476c82418084, type: 3}
