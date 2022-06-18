@@ -6,6 +6,7 @@ public class GlousIntroducer : MonoBehaviour
 {
 
     Transform m_glousToIntroduce;
+    [SerializeField] GlousPuller m_glousPuller;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,6 +29,8 @@ public class GlousIntroducer : MonoBehaviour
         }
 
         m_glousToIntroduce.position = transform.position;
+        m_glousToIntroduce = null;
+        m_glousPuller.StartPull();
     }
 
 
