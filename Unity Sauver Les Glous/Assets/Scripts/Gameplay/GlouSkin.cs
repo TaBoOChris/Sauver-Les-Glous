@@ -15,7 +15,9 @@ public class GlouSkin : MonoBehaviour
     {
         if (GetComponent<GlouInGame>())
         {
-            _skin = GetComponent<GlouInGame>().GetGlou().skin;
+            if (GetComponent<GlouInGame>().GetGlou() != null)
+                _skin = GetComponent<GlouInGame>().GetGlou().skin;
+            else _skin = Glou.RandomSkinRYB();
         }
         else if (GetComponent<GlouInVillage>())
         {
