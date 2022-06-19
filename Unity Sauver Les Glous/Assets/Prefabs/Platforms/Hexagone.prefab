@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 710498624467219172}
   - component: {fileID: 3382696696741858476}
+  - component: {fileID: -6937045961601027972}
   m_Layer: 0
   m_Name: Hexagone
   m_TagString: Untagged
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDraggable: 1
   alwaysFaceCenter: 0
+--- !u!114 &-6937045961601027972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710498624467219194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ca28e14489da94788a5a30b461b6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeLimit: 5
 --- !u!1 &5821700616751989986
 GameObject:
   m_ObjectHideFlags: 0
