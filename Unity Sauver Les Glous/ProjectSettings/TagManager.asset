@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Glou
   - DrumLimit
+  - SpawnerTrigger
   layers:
   - Default
   - TransparentFX
