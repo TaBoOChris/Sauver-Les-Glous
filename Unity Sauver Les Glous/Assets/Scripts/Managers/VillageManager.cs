@@ -108,7 +108,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
         // Ajout des Glous de couleur primaire dans le village
         for (int i = 0; i < m_maxGlousPrimaires - nbrGlous; i++)
         {
-            GlousData.Instance.AddGlouToVillage(new Glou(skin, 1), Random.Range(0, m_villageHouses.Count));
+            GlousData.Instance.AddGlouToVillage(new Glou(skin, Random.Range(0.6f, 1.2f)), Random.Range(0, m_villageHouses.Count));
         }
     }
 

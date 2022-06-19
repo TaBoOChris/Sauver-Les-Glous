@@ -45,7 +45,7 @@ public class GlousSpawner : MonoBehaviour
         }
         else
         {
-            skin = Glou.RandomSkinRYB();
+            skin = Glou.RandomSkinRYBOGP();
             scale = 1f;
         }
 

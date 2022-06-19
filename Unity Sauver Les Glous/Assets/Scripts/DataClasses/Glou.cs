@@ -18,6 +18,12 @@ public class Glou
         this.sizeMultiplier = sizeMultiplier;
     }
 
+    // Retourne le skin Rouge, Jaune, Bleu, Violet, Vert ou Orange
+    public static SkinGlou RandomSkinRYBOGP()
+    {
+        return (SkinGlou)Random.Range(0, 6);
+    }
+
     // Retourne le skin Rouge, Jaune ou Bleu
     public static SkinGlou RandomSkinRYB()
     {

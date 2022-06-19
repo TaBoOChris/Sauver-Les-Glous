@@ -79,23 +79,24 @@ public class CercleGloumatique
             {
                 if(skinP1 == skinP2)
                 {
-                    Debug.Log("Skin en commun : " + skinP1 + " et " + skinP2);
+                    //Debug.Log("Skin en commun : " + skinP1 + " et " + skinP2);
                     listeDesFusions.Add(skinP1);
                 }
                 else
                 {
-                    Debug.Log(skinP1 + " et " + skinP2 + " ne sont pas des skins en commun");
+                    //Debug.Log(skinP1 + " et " + skinP2 + " ne sont pas des skins en commun");
                 }
             }
         }
 
         Debug.Log("Resultats :");
 
-        Debug.Log("Nombre de skins restants : " + listeDesFusions.Count);
+        //Debug.Log("Nombre de skins restants : " + listeDesFusions.Count);
 
         // Si il n'y a qu'un seul skin possible alors la fusion a réussie, on retourne ce Glou
         if(listeDesFusions.Count == 1)
         {
+            Debug.Log("Création d'un Glou : " +  listeDesFusions[0]);
             Glou.SkinGlou babySkin = listeDesFusions[0];
             float babyScale = (glou1.sizeMultiplier +glou2.sizeMultiplier) / 2;
             return new Glou(babySkin, babyScale);

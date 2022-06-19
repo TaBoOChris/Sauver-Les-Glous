@@ -27,7 +27,7 @@ public class MenuBG : MonoBehaviour
 
         // set glou skin and size
         float scale = Random.Range(0.8f, 1.2f);
-        Glou.SkinGlou skin = Glou.RandomSkinRYB();
+        Glou.SkinGlou skin = Glou.RandomSkinRYBOGP();
 
         newGlou.GetComponent<GlouInGame>().SetGlou(new Glou(skin, scale)); ;
         newGlou.transform.localScale = new Vector3(scale, scale, scale);
