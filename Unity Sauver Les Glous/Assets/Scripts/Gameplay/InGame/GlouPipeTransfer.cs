@@ -15,6 +15,10 @@ public class GlouPipeTransfer : MonoBehaviour
     [SerializeField] Transform m_glouArrivePosition;
     [SerializeField] GameObject m_fakeGlou;
 
+    [Header("Puller and introducer")]
+    [SerializeField] GlousPuller m_glousPuller;
+    [SerializeField] GlousIntroducer m_glousIntroducer;
+
     public bool canReceiveGlou = false;
 
     bool m_glouInPipe = false;
@@ -23,6 +27,8 @@ public class GlouPipeTransfer : MonoBehaviour
 
     private float curX = 0.0f;
     private float destX = 10.0f;
+
+    public float dSpeed = 3.0f;
 
     private void Start()
     {
@@ -47,7 +53,7 @@ public class GlouPipeTransfer : MonoBehaviour
 
     float ForwardFunction(float x)
     {
-        return x-Mathf.Exp(x/3.5f) + Mathf.Log(2+x);
+        return x-1.2f*Mathf.Exp(x/4f) + 1.6f*Mathf.Log(2+x);
     }
 
     private void FixedUpdate()
@@ -61,15 +67,19 @@ public class GlouPipeTransfer : MonoBehaviour
                     m_curGlou.SetActive(true);
                     m_curGlou.transform.position = m_glouArrivePosition.position;
                     m_curGlou.transform.rotation = Quaternion.identity;
+
+                    m_glousIntroducer.setGlouToIntroduce(m_curGlou.transform);
+
                     //Free reference
                     m_curGlou = null;
                     //Hide fake glou
                     m_fakeGlou.SetActive(false);
 
+
                     m_glouInPipe = false;
                     return;
                 }
-                curX += Time.deltaTime;
+                curX += Time.deltaTime * dSpeed;
                 float curY = ForwardFunction(curX);
 
                 Vector3 arrPos = m_glouDetectorInCage.transform.position;
@@ -85,6 +95,7 @@ public class GlouPipeTransfer : MonoBehaviour
                     if(r.tag == "Glou")
                     {
                         canReceiveGlou = false;
+                        m_glousPuller.StopPull();
                         SendGlou(r.gameObject);
                     }
                 }
@@ -92,7 +103,7 @@ public class GlouPipeTransfer : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     { 
         Gizmos.color = Color.red;
         float dest_x_gizmo = m_glouArrivePosition.transform.position.x - m_glouDetectorInCage.transform.position.x - 0.45f;
@@ -101,8 +112,12 @@ public class GlouPipeTransfer : MonoBehaviour
         float inc = dest_x_gizmo / (float)div;
         float cur_x_gizmo = 0.0f;
 
+
         Vector3 last = m_glouDetectorInCage.transform.position;
-        for(int i=0; i<div; i++)
+
+        Gizmos.DrawSphere(last, 0.2f);
+
+        for (int i=0; i<div; i++)
         {
             cur_x_gizmo += inc;
             float y = ForwardFunction(cur_x_gizmo);
