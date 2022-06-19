@@ -13,6 +13,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
     [Header("Spawn properties")]
     private List<GameObject> m_glousInVillage = new List<GameObject>();
     [SerializeField] private GameObject m_glouInVillagePrefab;
+    private int m_maxGlousPrimaires = 4;
 
     //Liste des maisons du village (auto enregistr�e)
     [Header("Houses")]
@@ -72,9 +73,50 @@ public class VillageManager : AbstractSingleton<VillageManager>
         return glou;
     }
 
+    private void RegenerateRYBGlous()
+    {
+        int nbrRouge = 0;
+        int nbrJaune = 0;
+        int nbrBleu = 0;
+
+        // Nombre de Glous RYB dans le selector
+        foreach (Glou gloudata in GlousData.Instance.GetGlousInSelector())
+        {
+            if (gloudata.skin == Glou.SkinGlou.Rouge) nbrRouge++;
+            if (gloudata.skin == Glou.SkinGlou.Jaune) nbrJaune++;
+            if (gloudata.skin == Glou.SkinGlou.Bleu) nbrBleu++;
+        }
+
+        // Nombre de Glous RYB dans le village
+        foreach (Glou gloudata in GlousData.Instance.GetGlousInVillage())
+        {
+            if (gloudata.skin == Glou.SkinGlou.Rouge) nbrRouge++;
+            if (gloudata.skin == Glou.SkinGlou.Jaune) nbrJaune++;
+            if (gloudata.skin == Glou.SkinGlou.Bleu) nbrBleu++;
+        }
+
+        RegenerateGlou(nbrRouge, Glou.SkinGlou.Rouge);
+        RegenerateGlou(nbrJaune, Glou.SkinGlou.Jaune);
+        RegenerateGlou(nbrBleu, Glou.SkinGlou.Bleu);
+    }
+
+    private void RegenerateGlou(int nbrGlous, Glou.SkinGlou skin)
+    {
+        // Limitation du nombre de Glous
+        if (nbrGlous > m_maxGlousPrimaires) nbrGlous = m_maxGlousPrimaires;
+
+        // Ajout des Glous de couleur primaire dans le village
+        for (int i = 0; i < m_maxGlousPrimaires - nbrGlous; i++)
+        {
+            GlousData.Instance.AddGlouToVillage(new Glou(skin, 1), Random.Range(0, m_villageHouses.Count));
+        }
+    }
+
 
     private void SpawnGlousInVillage()
     {
+        RegenerateRYBGlous();
+
         foreach (Glou glouData in GlousData.Instance.GetGlousInVillage())
         {
 

@@ -95,10 +95,11 @@ public class GameManager : MonoBehaviour
 		GlousData.Instance.SetGlousInSelector(aliveGlous);
 		// GlousData.m_glousInSelector = glousAlive + babyGlous
 
-		if(GlousData.Instance.GetGlousInSelector().Count == 0 && GlousData.Instance.GetGlousInVillage().Count == 0)
+		// Plus utile car maintenant il y a toujours au minimun 4 Glous Rouge/Bleu/Jaune
+		/*if(GlousData.Instance.GetGlousInSelector().Count == 0 && GlousData.Instance.GetGlousInVillage().Count == 0)
         {
 			m_endMenuVillageBtn.SetActive(false);
-        }
+        }*/
 
 		// pop up end menu
 		m_endMenu.SetActive(true);
