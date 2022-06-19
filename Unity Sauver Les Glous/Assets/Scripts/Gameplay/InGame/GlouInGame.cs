@@ -24,9 +24,13 @@ public class GlouInGame : MonoBehaviour
         m_isAlive = false;
 
         // effects of death
-        GameManager.Instance.GlouDie();
-        AudioManager.Instance.PlayGlouDie();
         StartCoroutine(GlouDieAnimation_Coroutine());
+
+        if (GameManager.Instance !=null)
+            GameManager.Instance.GlouDie();
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayGlouDie();
 
         Destroy(gameObject);
     }
