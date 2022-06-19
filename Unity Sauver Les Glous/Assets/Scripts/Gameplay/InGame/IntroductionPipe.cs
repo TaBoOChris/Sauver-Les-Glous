@@ -12,11 +12,11 @@ public class IntroductionPipe : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // TP le glou pour le preparer a etre introduit
-        if (collision.transform.parent.tag == "Glou")
+        if (collision.tag == "Glou")
         {
-            collision.transform.parent.transform.position = m_waitingPosition;
+            collision.transform.position = m_waitingPosition;
 
-            m_glousIntroducer.setGlouToIntroduce(collision.transform.parent);
+            m_glousIntroducer.setGlouToIntroduce(collision.transform);
             m_glousPuller.StopPull();
         }
     }
