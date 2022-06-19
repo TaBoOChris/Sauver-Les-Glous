@@ -4,26 +4,40 @@ using UnityEngine;
 
 public class BabyGlousCreator : MonoBehaviour
 {
-    [SerializeField] private float m_babyGlousPerc;
-
     private List<Glou> m_glousAlive = new List<Glou>();
 
     public List<Glou> CreateChildrenGlous(List<Glou> aliveGlous, int nbGlousAlive)
     {
         List<Glou> babyGlous = new List<Glou>();
 
-        int nbBabyGlous = (int)(nbGlousAlive * m_babyGlousPerc);
+        // Création de 1 bébe par 2 glous
+        int nbBabyGlous = (int)(nbGlousAlive/2);
 
-        for (int i=0; i<nbBabyGlous; ++i)
+        List<Glou> parents = new List<Glou>(aliveGlous);
+
+        for (int i = 0; i < nbBabyGlous; ++i)
         {
-            int idParent1 = Random.Range(0, nbGlousAlive);
-            int idParent2 = Random.Range(0, nbGlousAlive);
+            // Sélection du premier parent
+            int id = Random.Range(0, parents.Count);
+            Glou parent1 = parents[id];
+            parents.RemoveAt(id);
 
-            float babyHue = (aliveGlous[idParent1].hue + aliveGlous[idParent2].hue) / 2;
-            float babyScale = (aliveGlous[idParent1].sizeMultiplier + aliveGlous[idParent2].sizeMultiplier) / 2;
-            Glou babyGlou = new Glou(babyHue, babyScale);
+            // Sélection du second parent
+            id = Random.Range(0, parents.Count);
+            Glou parent2 = parents[id];
+            parents.RemoveAt(id);
 
-            babyGlous.Add(babyGlou);
+            CercleGloumatique fusionneur = new CercleGloumatique();
+            Glou babyGlou = fusionneur.Fusion(parent1, parent2);
+
+            // Si la fusion a réussie alors on retourne le bébé
+            if (babyGlou != parent1)
+            {
+                Debug.Log("Nouveau Glou créé");
+                babyGlous.Add(babyGlou);
+            }
+            else Debug.Log("Le bébé est identique au parent");
+
         }
 
         return babyGlous;

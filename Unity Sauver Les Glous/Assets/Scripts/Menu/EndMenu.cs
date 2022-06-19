@@ -33,7 +33,7 @@ public class EndMenu : MonoBehaviour
     {
         foreach (GlouInGame glou in glous)
         {
-            AddGlouToGrid(glou.GetGlou().hue, glou.IsAlive());
+            AddGlouToGrid(glou.GetGlou().skin, glou.IsAlive());
         }
     }
 
@@ -41,11 +41,11 @@ public class EndMenu : MonoBehaviour
     {
         foreach (Glou glou in glous)
         {
-            AddGlouToGrid(glou.hue, true);
+            AddGlouToGrid(glou.skin, true);
         }
     }
 
-    private void AddGlouToGrid(float hue, bool isAlive)
+    private void AddGlouToGrid(Glou.SkinGlou skin, bool isAlive)
     {
         GameObject newGlou;
         if (isAlive)
@@ -56,7 +56,7 @@ public class EndMenu : MonoBehaviour
         {
             newGlou = Instantiate(m_glouDeadUI, m_gridSurvivorGlous.transform);
         }
-        newGlou.GetComponentInChildren<Image>().color = Color.HSVToRGB(hue, 1, 1);
+        newGlou.GetComponent<GlouSkinUI>().SetSkin(skin);
     }
 
     public void ToVillage()

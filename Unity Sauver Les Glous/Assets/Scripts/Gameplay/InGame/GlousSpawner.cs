@@ -13,8 +13,6 @@ public class GlousSpawner : MonoBehaviour
     [SerializeField] private float m_scaleMax = 1.2f;
     [SerializeField] private float m_scaleMin = 0.6f;
 
-    [SerializeField] private Color m_defaultGlousColor = new Color(229, 118, 238); // pink
-
     public void SpawnGlous(List<Glou> glousList)
     {
         StartCoroutine(SpawnGlousCoroutine(glousList));
@@ -32,7 +30,7 @@ public class GlousSpawner : MonoBehaviour
 
     public void SpawnGlou(Glou glou)
     {
-        Color color;
+        Glou.SkinGlou skin;
         float scale;
 
         GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform);
@@ -40,19 +38,19 @@ public class GlousSpawner : MonoBehaviour
 
         if (glou != null)
         {
-            color = Color.HSVToRGB(glou.hue, 1, 1);
+            skin = glou.skin;
             scale = glou.sizeMultiplier;
 
             GameManager.Instance.AddGlouInGame(newGlou.GetComponent<GlouInGame>());
         }
         else
         {
-            color = m_defaultGlousColor;
+            skin = Glou.RandomSkinRYBOGP();
             scale = 1f;
         }
 
-        // set glouGO color
-        newGlou.GetComponentInChildren<SpriteRenderer>().color = color;
+        // set glouGO skin
+        newGlou.GetComponent<GlouSkin>().SetSkin(skin);
         // set glouGO size
         newGlou.transform.localScale = new Vector3(scale, scale, scale);
 
@@ -69,10 +67,10 @@ public class GlousSpawner : MonoBehaviour
 
     public void SpawnNewGlou()
     {
-        float hue = Random.Range(0f, 1f);
+        Glou.SkinGlou skin = Glou.RandomSkinRYB();
         float scale = Random.Range(m_scaleMin, m_scaleMax);
 
-        Glou glou = new Glou(hue, scale);
+        Glou glou = new Glou(skin, scale);
 
         SpawnGlou(glou);
     }

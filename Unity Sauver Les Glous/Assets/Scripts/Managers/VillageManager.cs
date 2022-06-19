@@ -13,6 +13,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
     [Header("Spawn properties")]
     private List<GameObject> m_glousInVillage = new List<GameObject>();
     [SerializeField] private GameObject m_glouInVillagePrefab;
+    private int m_maxGlousPrimaires = 4;
 
     //Liste des maisons du village (auto enregistr�e)
     [Header("Houses")]
@@ -49,18 +50,17 @@ public class VillageManager : AbstractSingleton<VillageManager>
 
         // Get glou data
         GlouInVillage data = glou.GetComponent<GlouInVillage>();
-        data.SetHue(glouData.hue);
+        data.SetSkin(glouData.skin);
         data.SetHouseID(glouData.houseID);
         data.SetSize(glouData.sizeMultiplier);
         data.SetGlou(glouData);
 
-        // Application des data au glou � faire spawn
+        // Application des data au glou a faire spawn
         SpriteRenderer glouBody = data.GetBodyRenderer();
         SpriteRenderer glouExpression = data.GetExpressionRenderer();
 
-        // couleur
-        glouBody.color = Color.HSVToRGB(data.GetHue(), 1, 1);
-
+        // le skin se met automatiquement avec le script skinGlou
+        
         // taille
         float size = data.GetSize();
         Vector3 scale = new Vector3(size, size, size);
@@ -73,9 +73,50 @@ public class VillageManager : AbstractSingleton<VillageManager>
         return glou;
     }
 
+    private void RegenerateRYBGlous()
+    {
+        int nbrRouge = 0;
+        int nbrJaune = 0;
+        int nbrBleu = 0;
+
+        // Nombre de Glous RYB dans le selector
+        foreach (Glou gloudata in GlousData.Instance.GetGlousInSelector())
+        {
+            if (gloudata.skin == Glou.SkinGlou.Rouge) nbrRouge++;
+            if (gloudata.skin == Glou.SkinGlou.Jaune) nbrJaune++;
+            if (gloudata.skin == Glou.SkinGlou.Bleu) nbrBleu++;
+        }
+
+        // Nombre de Glous RYB dans le village
+        foreach (Glou gloudata in GlousData.Instance.GetGlousInVillage())
+        {
+            if (gloudata.skin == Glou.SkinGlou.Rouge) nbrRouge++;
+            if (gloudata.skin == Glou.SkinGlou.Jaune) nbrJaune++;
+            if (gloudata.skin == Glou.SkinGlou.Bleu) nbrBleu++;
+        }
+
+        RegenerateGlou(nbrRouge, Glou.SkinGlou.Rouge);
+        RegenerateGlou(nbrJaune, Glou.SkinGlou.Jaune);
+        RegenerateGlou(nbrBleu, Glou.SkinGlou.Bleu);
+    }
+
+    private void RegenerateGlou(int nbrGlous, Glou.SkinGlou skin)
+    {
+        // Limitation du nombre de Glous
+        if (nbrGlous > m_maxGlousPrimaires) nbrGlous = m_maxGlousPrimaires;
+
+        // Ajout des Glous de couleur primaire dans le village
+        for (int i = 0; i < m_maxGlousPrimaires - nbrGlous; i++)
+        {
+            GlousData.Instance.AddGlouToVillage(new Glou(skin, Random.Range(0.6f, 1.2f)), Random.Range(0, m_villageHouses.Count));
+        }
+    }
+
 
     private void SpawnGlousInVillage()
     {
+        RegenerateRYBGlous();
+
         foreach (Glou glouData in GlousData.Instance.GetGlousInVillage())
         {
 
@@ -234,7 +275,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
         GameObject glouUI = Instantiate(m_GlouUIPrefab, m_canvasBasket.transform, true);
         glouUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
         glouUI.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-        glouUI.GetComponentInChildren<Image>().color = Color.HSVToRGB(data.hue, 1, 1);
+        glouUI.GetComponent<GlouSkinUI>().SetSkin(data.skin);
         glouUI.GetComponent<GlouInVillage>().SetGlou(data);
     }
 
