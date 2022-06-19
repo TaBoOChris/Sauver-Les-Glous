@@ -59,8 +59,23 @@ public class PlatformStock : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             if (dist < scaledCircleCollider * scaledRadius * 1.05f)
             {
                 gameObject.GetComponent<Platform>().enabled = true;
+                gameObject.GetComponent<PlatformTimeLimit>().enabled = true;
                 gameObject.GetComponent<PlatformStock>().enabled = false;
+                gameObject.transform.parent = PlatformManager.Instance.GetPlatformDrumParent().transform;
             }
+            else
+            {
+                StartCoroutine(MoveBackToAnchor());
+            }
+        }
+    }
+    IEnumerator MoveBackToAnchor()
+    {
+        float startTime = Time.time;
+        while (Time.time - startTime <= 1)
+        {
+            transform.position = Vector3.Lerp(gameObject.transform.position, transform.parent.transform.position, Time.time - startTime);
+            yield return 1;
         }
     }
 

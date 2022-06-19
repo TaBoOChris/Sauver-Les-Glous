@@ -46,4 +46,10 @@ public class PlatformManager : MonoBehaviour
 			newPlatform.transform.eulerAngles = new Vector3(newPlatform.transform.eulerAngles.x, newPlatform.transform.eulerAngles.y, newPlatform.transform.eulerAngles.z + Random.Range(0f, 180.0f));
 		}
     }
+
+	public GameObject GetPlatformDrumParent()
+    {
+		return _platformDrumParent;
+
+	}
 }

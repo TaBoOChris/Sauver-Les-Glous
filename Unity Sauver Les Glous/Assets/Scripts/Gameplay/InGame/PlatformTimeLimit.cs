@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformTimeLimit : MonoBehaviour
 {
-    [SerializeField] private float _timeLimit = 5.0f;
+    [SerializeField] private float _timeLimit = 10.0f;
     private Color baseColor;
     private bool isFlash = false;
 
