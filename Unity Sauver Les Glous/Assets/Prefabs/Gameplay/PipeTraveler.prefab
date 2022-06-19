@@ -50,7 +50,11 @@ MonoBehaviour:
   m_glouDetectorInCage: {fileID: 3756402597816406024}
   m_glouArrivePosition: {fileID: 1662679708038892798}
   m_fakeGlou: {fileID: 5515506242091409515}
+  m_glousPuller: {fileID: 0}
+  m_glousIntroducer: {fileID: 0}
+  m_negativeFunction: 0
   canReceiveGlou: 1
+  dSpeed: 3
 --- !u!1 &3017977723488272574
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5798934076964490601
 Transform:
   m_ObjectHideFlags: 0

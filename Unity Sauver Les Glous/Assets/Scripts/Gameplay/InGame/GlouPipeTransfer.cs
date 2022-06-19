@@ -18,7 +18,7 @@ public class GlouPipeTransfer : MonoBehaviour
     [Header("Puller and introducer")]
     [SerializeField] GlousPuller m_glousPuller;
     [SerializeField] GlousIntroducer m_glousIntroducer;
-
+    [SerializeField] bool m_negativeFunction = false;
     public bool canReceiveGlou = false;
 
     bool m_glouInPipe = false;
@@ -37,7 +37,7 @@ public class GlouPipeTransfer : MonoBehaviour
 
     void SendGlou(GameObject obj)
     {
-        destX = m_glouArrivePosition.transform.position.x - m_glouDetectorInCage.transform.position.x - 0.45f;
+        destX = m_glouArrivePosition.transform.position.x - m_glouDetectorInCage.transform.position.x;
         m_curGlou = obj;
 
         curX = 0.0f;
@@ -53,7 +53,12 @@ public class GlouPipeTransfer : MonoBehaviour
 
     float ForwardFunction(float x)
     {
-        return x-1.2f*Mathf.Exp(x/4f) + 1.6f*Mathf.Log(2+x);
+        float result = x - 1.2f * Mathf.Exp(x / 4f) + 1.6f * Mathf.Log(2 + x);
+        if (m_negativeFunction)
+        {
+            return result * -1f;
+        }
+        return result;
     }
 
     private void FixedUpdate()
@@ -106,7 +111,7 @@ public class GlouPipeTransfer : MonoBehaviour
     private void OnDrawGizmos()
     { 
         Gizmos.color = Color.red;
-        float dest_x_gizmo = m_glouArrivePosition.transform.position.x - m_glouDetectorInCage.transform.position.x - 0.45f;
+        float dest_x_gizmo = m_glouArrivePosition.transform.position.x - m_glouDetectorInCage.transform.position.x;
 
         int div = 20;
         float inc = dest_x_gizmo / (float)div;
