@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
+    [SerializeField] private GameObject _tutorial;
+
     public void LoadScene(string sceneName)
     {
         Debug.Log("Load Scene " + sceneName);
@@ -27,6 +29,16 @@ public class Button : MonoBehaviour
         int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(sceneIndex);
         Debug.Log("Load Scene " + SceneManager.GetSceneByBuildIndex(sceneIndex).name);
+    }
+
+    public void TutorialDisplayOn()
+    {
+        _tutorial.SetActive(true);
+    }
+
+    public void TutorialDisplayOff()
+    {
+        _tutorial.SetActive(false);
     }
 
     public void ReloadScene()
