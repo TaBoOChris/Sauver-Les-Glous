@@ -42,7 +42,6 @@ public class GlousPuller : MonoBehaviour
         m_isPulling = true;
         if(m_spriteToColor != null)
             m_spriteToColor.color = Color.green;
-        
     }
     public void StopPull()  { 
         m_isPulling = false;

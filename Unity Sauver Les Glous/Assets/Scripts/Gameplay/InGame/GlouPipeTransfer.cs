@@ -21,6 +21,8 @@ public class GlouPipeTransfer : MonoBehaviour
     [SerializeField] bool m_negativeFunction = false;
     public bool canReceiveGlou = false;
 
+    [SerializeField] Animator m_toggleAnim;
+
     bool m_glouInPipe = false;
 
     private GameObject m_curGlou = null;
@@ -37,6 +39,11 @@ public class GlouPipeTransfer : MonoBehaviour
 
     void SendGlou()
     {
+        if (m_toggleAnim != null)
+        {
+            m_toggleAnim.enabled = true;
+            m_toggleAnim.speed = dSpeed;
+        }
         destX = Mathf.Abs(m_glouArrivePosition.position.x - m_glouDetectorInCage.transform.position.x);
 
         curX = 0.0f;
@@ -65,6 +72,13 @@ public class GlouPipeTransfer : MonoBehaviour
             {
                 if ((!m_negativeFunction && curX >= destX) || (m_negativeFunction && curX <= 0.1f))
                 {
+
+                    if (m_toggleAnim != null)
+                    {
+                        m_toggleAnim.speed = 0f;
+                        m_toggleAnim.enabled = false;
+                    }
+
                     // Reactivate and teleport glou
                     m_curGlou.SetActive(true);
                     m_curGlou.transform.position = m_glouArrivePosition.position;
@@ -76,7 +90,6 @@ public class GlouPipeTransfer : MonoBehaviour
                     m_curGlou = null;
                     //Hide fake glou
                     m_fakeGlou.SetActive(false);
-
 
                     m_glouInPipe = false;
                     return;
