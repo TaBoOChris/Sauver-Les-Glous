@@ -42,7 +42,7 @@ public class GlouPipeTransfer : MonoBehaviour
         curX = 0.0f;
         if (m_negativeFunction)
             curX = destX;
-        m_curGlou.GetComponent<Rigidbody2D>().isKinematic = false;
+
         m_curGlou.SetActive(false); //Hide the chosen glou
 
         //Display the fake glou (pipeSphere)
@@ -66,7 +66,11 @@ public class GlouPipeTransfer : MonoBehaviour
                 if ((!m_negativeFunction && curX >= destX) || (m_negativeFunction && curX <= 0.1f))
                 {
                     // Reactivate and teleport glou
-                    m_glousIntroducer.setGlouToIntroduce(m_curGlou.transform);
+                    m_curGlou.SetActive(true);
+                    m_curGlou.transform.position = m_glouArrivePosition.position;
+                    m_curGlou.transform.rotation = Quaternion.identity;
+
+                    m_glousIntroducer.setGlouToIntroduce(m_curGlou);
 
                     //Free reference
                     m_curGlou = null;
@@ -78,7 +82,7 @@ public class GlouPipeTransfer : MonoBehaviour
                     return;
                 }
                 if (m_negativeFunction)
-                    curX -= Time.deltaTime * dSpeed;
+                    curX -= Time.deltaTime * dSpeed*1.5f;
                 else
                     curX += Time.deltaTime * dSpeed;
                 float x = curX;

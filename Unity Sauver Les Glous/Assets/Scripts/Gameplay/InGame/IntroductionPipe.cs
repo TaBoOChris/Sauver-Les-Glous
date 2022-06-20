@@ -16,7 +16,7 @@ public class IntroductionPipe : MonoBehaviour
         {
             collision.transform.position = m_waitingPosition;
 
-            m_glousIntroducer.setGlouToIntroduce(collision.transform);
+            m_glousIntroducer.setGlouToIntroduce(collision.gameObject);
             m_glousPuller.StopPull();
         }
     }

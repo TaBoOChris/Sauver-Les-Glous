@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlousIntroducer : MonoBehaviour
 {
 
-    Transform m_glousToIntroduce;
+    GameObject m_glouToIntroduce;
     [SerializeField] GlousPuller m_glousPuller = null;
     [SerializeField] GlouPipeTransfer m_pipeTransferer = null;
 
@@ -25,15 +25,16 @@ public class GlousIntroducer : MonoBehaviour
 
     private void IntroduceGlou()
     {
-        if(m_glousToIntroduce == null)
+        if(m_glouToIntroduce == null)
         {
             Debug.Log("INTRODUCER : NO GLOU TO INTRODUCE");
             return;
         }
 
-        m_glousToIntroduce.position = transform.position;
-        m_glousToIntroduce.GetComponent<Rigidbody2D>().isKinematic = false;
-        m_glousToIntroduce = null;
+        m_glouToIntroduce.transform.position = transform.position;
+        m_glouToIntroduce.transform.rotation = Quaternion.identity;
+        m_glouToIntroduce.GetComponent<Rigidbody2D>().isKinematic = false;
+        m_glouToIntroduce = null;
 
         if(m_pipeTransferer != null)
             m_pipeTransferer.canReceiveGlou = true;
@@ -42,12 +43,12 @@ public class GlousIntroducer : MonoBehaviour
     }
 
 
-    public void setGlouToIntroduce(Transform glouToIntroduce)
+    public void setGlouToIntroduce(GameObject glouToIntroduce)
     {
-        m_glousToIntroduce = glouToIntroduce;
-        m_glousToIntroduce.gameObject.SetActive(true);
-        m_glousToIntroduce.position = transform.position;
-        m_glousToIntroduce.rotation = Quaternion.identity;
+        m_glouToIntroduce = glouToIntroduce;
+
+        m_glouToIntroduce.GetComponent<Rigidbody2D>().isKinematic = true;
+        m_glouToIntroduce.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         if (m_AutoIntroduce)
         {
             IntroduceGlou();
