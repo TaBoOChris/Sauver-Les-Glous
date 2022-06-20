@@ -10,11 +10,8 @@ public class GameManager : MonoBehaviour
 	[Header("Glous")]
 	[SerializeField] private GlousSpawner m_glousSpawner;
 	private int m_nbGlousAlive;
+	private int m_nbGlousSaved;
 	private List<GlouInGame> m_glousInGame = new List<GlouInGame>();
-
-	[Header("Timer")]
-	[SerializeField] private Timer m_timer;
-	[SerializeField] private int m_gameTime = 60;
 
 	[Header("End menu")]
 	[SerializeField] private GameObject m_endMenu;
@@ -25,6 +22,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject m_pauseMenu;
 	private static bool m_isGamePaused = false;
 	private InputActions m_inputActions;
+
+
+	// ================================================================
 
 	private void Awake()
 	{
@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
 
 	void Start()
     {
-		AudioManager.Instance.PlayGameMusic();
+        if (AudioManager.Instance)
+			AudioManager.Instance.PlayGameMusic();
+
 		StartGame();
 		if(CursorManager.Instance != null)
 			CursorManager.Instance.SetPointer();
@@ -56,28 +58,43 @@ public class GameManager : MonoBehaviour
 		m_pauseMenu.SetActive(false);
 		m_endMenu.SetActive(false);
 
-		//List<Glou> glousStartingList = new List<Glou> { new Glou(0.2f, 0.8f), new Glou(0.5f, 1f), new Glou(0.8f, 1.2f) };
-		List<Glou> glousStartingList = GlousData.Instance.GetGlousInSelector();
+
+		// Setup GlousStartingList
+		List<Glou> glousStartingList;
+
+		if (GlousData.Instance)
+        {
+			glousStartingList = GlousData.Instance.GetGlousInSelector();
+        }
+        else
+        {
+			Debug.Log("GAME MANAGER : NO INSTANCE OF GLOUSDATA");
+			glousStartingList = new List<Glou> { 
+				new Glou( Glou.SkinGlou.Bleu, 0.8f), 
+				new Glou( Glou.SkinGlou.Rouge, 1f), 
+				new Glou( Glou.SkinGlou.Vert, 1.2f) };
+
+        }
 
 		m_nbGlousAlive = glousStartingList.Count;
 		m_glousSpawner.SpawnGlous(glousStartingList);
 
 		//SpawnPlaterform();
 		//Rotation();
-		m_timer.StartTimer(m_gameTime);	//StartTimer();
     }
 
 	public void EndGame()
     {
 		if (CursorManager.Instance != null)
 			CursorManager.Instance.SetPointer();
-		if (m_nbGlousAlive <= 0)
+
+		if (m_nbGlousAlive <= 0 && m_nbGlousSaved ==0)
         {
 			m_endMenuText.text = "Tu n'as pas réussi à sauver les Glous ...";
         }
         else
         {
-			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousAlive + "</color> Glous.  Bien joué !";
+			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousSaved + "</color> Glous.  Bien joué !";
         }
 
 		// create list of alive glous
@@ -110,6 +127,9 @@ public class GameManager : MonoBehaviour
 		m_inputActions.Game.Disable();
 	}
 
+	// ============= GLOU =====================
+
+
 	private List<Glou> GetAliveGlous()
     {
 		List<Glou> aliveGlous = new List<Glou>();
@@ -125,29 +145,36 @@ public class GameManager : MonoBehaviour
 		return aliveGlous;
 	}
 
-	public void AddGlou()
-    {
-		m_nbGlousAlive++;
-    }
+	public void AddGlou() { m_nbGlousAlive++; }
 
-	public void AddGlouInGame(GlouInGame glouInGame)
-    {
-		m_glousInGame.Add(glouInGame);
-    }
+	public void AddGlouInGame(GlouInGame glouInGame) { m_glousInGame.Add(glouInGame); }
 
 	public void GlouDie()
     {
 		m_nbGlousAlive--;
-		if(m_nbGlousAlive <= 0)
-        {
-			EndGame();
-        }
+		CheckGlouAlive();
     }
 
-	public int GetNbGlousAlive()
+	public int GetNbGlousAlive() { return m_nbGlousAlive; }
+
+	public void AddGlouSaved()
     {
-		return m_nbGlousAlive;
+		m_nbGlousSaved++;
+		m_nbGlousAlive--;
+		CheckGlouAlive();
     }
+
+
+	private void CheckGlouAlive()
+    {
+		if (m_nbGlousAlive <= 0)
+		{
+			Invoke("EndGame", 2f);
+		}
+	}
+
+
+	// ============= PAUSE =============== 
 
 	public void PauseKeyPressed()
     {
@@ -187,19 +214,10 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public bool IsGamePaused()
-    {
-		return m_isGamePaused;
-    }
+	public bool IsGamePaused()	{ return m_isGamePaused; }
 
-	private void OnEnable()
-	{
-		m_inputActions.Game.Enable();
-	}
+	private void OnEnable()		{ m_inputActions.Game.Enable(); }
 
-	private void OnDisable()
-	{
-		m_inputActions.Game.Disable();
-	}
+	private void OnDisable()	{ m_inputActions.Game.Disable(); }
 }
 

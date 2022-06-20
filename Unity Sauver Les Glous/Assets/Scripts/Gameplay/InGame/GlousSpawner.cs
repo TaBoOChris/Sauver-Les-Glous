@@ -15,6 +15,7 @@ public class GlousSpawner : MonoBehaviour
 
     public void SpawnGlous(List<Glou> glousList)
     {
+        Debug.Log("SPAWNER : SPAWN " + glousList.Count + "GLOUS ");
         StartCoroutine(SpawnGlousCoroutine(glousList));
     }
 
@@ -23,6 +24,7 @@ public class GlousSpawner : MonoBehaviour
         for (int i = 0; i < glousList.Count; i++)
         {
             SpawnGlou(glousList[i]);
+            Debug.Log("SPAWNER :GLOUS " + i + " Spawned");
 
             yield return new WaitForSeconds(m_spawnDelay);
         }
@@ -54,7 +56,8 @@ public class GlousSpawner : MonoBehaviour
         // set glouGO size
         newGlou.transform.localScale = new Vector3(scale, scale, scale);
 
-        AudioManager.Instance.PlayGlouSpawn();
+        if(AudioManager.Instance)
+            AudioManager.Instance.PlayGlouSpawn();
 
         float xRandomForce = Random.Range(-m_xMaxSpawnForce, m_xMaxSpawnForce); // Calculte force in X
         newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xRandomForce, -m_ySpawnForce)); // Add force on the new glou
