@@ -16,10 +16,12 @@ public class GlouPipeTransfer : MonoBehaviour
     [SerializeField] GameObject m_fakeGlou;
 
     [Header("Puller and introducer")]
-    [SerializeField] GlousPuller m_glousPuller;
+    [SerializeField] GlousPuller m_glousPuller = null;
     [SerializeField] GlousIntroducer m_glousIntroducer;
-
+    [SerializeField] bool m_negativeFunction = false;
     public bool canReceiveGlou = false;
+
+    [SerializeField] Animator m_toggleAnim;
 
     bool m_glouInPipe = false;
 
@@ -35,17 +37,24 @@ public class GlouPipeTransfer : MonoBehaviour
         m_fakeGlou.SetActive(false);
     }
 
-    void SendGlou(GameObject obj)
+    void SendGlou()
     {
-        destX = m_glouArrivePosition.transform.position.x - m_glouDetectorInCage.transform.position.x - 0.45f;
-        m_curGlou = obj;
+        if (m_toggleAnim != null)
+        {
+            m_toggleAnim.enabled = true;
+            m_toggleAnim.speed = dSpeed;
+        }
+        destX = Mathf.Abs(m_glouArrivePosition.position.x - m_glouDetectorInCage.transform.position.x);
 
         curX = 0.0f;
-        m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
+        if (m_negativeFunction)
+            curX = destX;
+
         m_curGlou.SetActive(false); //Hide the chosen glou
 
         //Display the fake glou (pipeSphere)
         m_fakeGlou.SetActive(true);
+
         m_fakeGlou.transform.position = m_glouDetectorInCage.transform.position;
 
         m_glouInPipe = true;
@@ -53,7 +62,7 @@ public class GlouPipeTransfer : MonoBehaviour
 
     float ForwardFunction(float x)
     {
-        return x-1.2f*Mathf.Exp(x/4f) + 1.6f*Mathf.Log(2+x);
+        return x - 1.2f * Mathf.Exp(x / 4f) + 1.6f * Mathf.Log(2 + x);
     }
 
     private void FixedUpdate()
@@ -61,29 +70,46 @@ public class GlouPipeTransfer : MonoBehaviour
         if (!canReceiveGlou){  //Cannot receive; update if glou in pipe
             if (m_glouInPipe)
             {
-                if (curX >= destX)
+                if ((!m_negativeFunction && curX >= destX) || (m_negativeFunction && curX <= 0.1f))
                 {
+
+                    if (m_toggleAnim != null)
+                    {
+                        m_toggleAnim.speed = 0f;
+                        m_toggleAnim.enabled = false;
+                    }
+
                     // Reactivate and teleport glou
                     m_curGlou.SetActive(true);
                     m_curGlou.transform.position = m_glouArrivePosition.position;
                     m_curGlou.transform.rotation = Quaternion.identity;
 
-                    m_glousIntroducer.setGlouToIntroduce(m_curGlou.transform);
+                    m_glousIntroducer.setGlouToIntroduce(m_curGlou);
 
                     //Free reference
                     m_curGlou = null;
                     //Hide fake glou
                     m_fakeGlou.SetActive(false);
 
-
                     m_glouInPipe = false;
                     return;
                 }
-                curX += Time.deltaTime * dSpeed;
-                float curY = ForwardFunction(curX);
-
-                Vector3 arrPos = m_glouDetectorInCage.transform.position;
-                m_fakeGlou.transform.position = arrPos + new Vector3(curX, curY, 0);
+                if (m_negativeFunction)
+                    curX -= Time.deltaTime * dSpeed*1.5f;
+                else
+                    curX += Time.deltaTime * dSpeed;
+                float x = curX;
+                float y = ForwardFunction(curX);
+                Vector3 next;
+                if (m_negativeFunction)
+                {
+                    next = m_glouArrivePosition.transform.position + new Vector3(x, -y, 0);
+                }
+                else
+                {
+                    next = m_glouDetectorInCage.transform.position + new Vector3(x, y, 0);
+                }
+                m_fakeGlou.transform.position = next;
             }
         }
         else //can Receive
@@ -95,33 +121,76 @@ public class GlouPipeTransfer : MonoBehaviour
                     if(r.tag == "Glou")
                     {
                         canReceiveGlou = false;
-                        m_glousPuller.StopPull();
-                        SendGlou(r.gameObject);
+                        if(m_glousPuller != null)
+                            m_glousPuller.StopPull();
+                        m_curGlou = r.gameObject;
+                        if (m_negativeFunction)
+                        {
+                            Debug.Log("glou detected");
+                            m_curGlou.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                            m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
+                            m_curGlou.transform.rotation = Quaternion.identity;
+                            m_curGlou.transform.position = m_glouDetectorInCage.transform.position;
+                        }
+                        else 
+                            SendGlou();
                     }
                 }
             }
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!m_negativeFunction)
+            return;
+        // Spawn un Glou apres avoir fait un tour complet
+        if (collision.tag == "SpawnerTrigger")
+        {
+            Debug.Log("ROTATION : Spawn Glou (collision with " + collision.gameObject.name + "  )");
+            if(m_curGlou != null)
+            {
+                SendGlou();
+            }
+        }
+    }
+
+
     private void OnDrawGizmos()
     { 
-        Gizmos.color = Color.red;
-        float dest_x_gizmo = m_glouArrivePosition.transform.position.x - m_glouDetectorInCage.transform.position.x - 0.45f;
+        float dest_x_gizmo = Mathf.Abs(m_glouArrivePosition.position.x - m_glouDetectorInCage.transform.position.x);
 
         int div = 20;
         float inc = dest_x_gizmo / (float)div;
         float cur_x_gizmo = 0.0f;
 
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(m_glouArrivePosition.position, 0.2f);
 
         Vector3 last = m_glouDetectorInCage.transform.position;
+        if (m_negativeFunction)
+        {
+            last = m_glouArrivePosition.position;
+        }
 
-        Gizmos.DrawSphere(last, 0.2f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(m_glouDetectorInCage.transform.position, 0.2f);
 
         for (int i=0; i<div; i++)
         {
             cur_x_gizmo += inc;
             float y = ForwardFunction(cur_x_gizmo);
-            Vector3 next = m_glouDetectorInCage.transform.position + new Vector3(cur_x_gizmo, y, 0);
+            float x = cur_x_gizmo;
+            Vector3 next;
+            if (m_negativeFunction)
+            {
+                next = m_glouArrivePosition.transform.position + new Vector3(x, -y, 0);
+            }
+            else
+            {
+                next = m_glouDetectorInCage.transform.position + new Vector3(x, y, 0);
+            }
+            
             Gizmos.DrawLine(last, next);
             last = next;
         }

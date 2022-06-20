@@ -7,6 +7,12 @@ public class GlousPuller : MonoBehaviour
     public float pullRadius = 2;
     public float pullForce = 50;
     private bool m_isPulling = true;
+    [SerializeField] SpriteRenderer m_spriteToColor;
+
+    public void Start()
+    {
+        StartPull();
+    }
 
     public void FixedUpdate()
     {
@@ -32,8 +38,16 @@ public class GlousPuller : MonoBehaviour
         }
     }
 
-    public void StartPull() { m_isPulling = true;  }
-    public void StopPull()  { m_isPulling = false; }
+    public void StartPull() { 
+        m_isPulling = true;
+        if(m_spriteToColor != null)
+            m_spriteToColor.color = Color.green;
+    }
+    public void StopPull()  { 
+        m_isPulling = false;
+        if (m_spriteToColor != null)
+            m_spriteToColor.color = Color.red;
+    }
 
     private void OnDrawGizmos()
     {

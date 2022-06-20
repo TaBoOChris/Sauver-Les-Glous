@@ -10,7 +10,7 @@ public class DeadCircle : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.tag != "Glou") return;
-        
+        if (other.attachedRigidbody.isKinematic == true) return;
         // kill glou
         Debug.Log("Kill Glou");
         other.gameObject.GetComponent<GlouInGame>().KillGlou();
