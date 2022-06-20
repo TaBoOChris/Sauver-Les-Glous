@@ -25,6 +25,7 @@ public class PlatformTimeLimit : MonoBehaviour
         yield return new WaitForSecondsRealtime(_timeLimit - 3.0f);
         isFlash = true;
         yield return new WaitForSecondsRealtime(3.0f);
+        PlatformManager.Instance.ReducePlatformToDrum();
         Destroy(gameObject);
     }
 

@@ -8,12 +8,13 @@ public class PlatformManager : MonoBehaviour
 
 	[Header("Drum")]
 	[SerializeField] private GameObject _platformDrumParent;
-	[SerializeField] private List<GameObject> m_plaftormInDrum = new List<GameObject>();
+	[SerializeField] private int _maxPlatform = 5;
+	[SerializeField] private int _nbPlatformInDrum;
+	private bool _isDrumFull = false;
 
 	[Header("Stock")]
 	[SerializeField] private GameObject _platformStockParent;
 	[SerializeField] private List<GameObject> m_stockAnchor = new List<GameObject>();
-	private List<GameObject> m_plaftormInStock = new List<GameObject>();
 
 	[Header("Platform prefab")]
 	[SerializeField] private List<GameObject> m_plaftormPrefab = new List<GameObject>();
@@ -71,14 +72,31 @@ public class PlatformManager : MonoBehaviour
 		}
 	}
 
-	public void AddPlateformDrum(GameObject platform)
+	public void AddPlatformToDrum()
     {
-		m_plaftormInDrum.Add(platform);
+		_nbPlatformInDrum += 1;
+		if (_nbPlatformInDrum == _maxPlatform)
+        {
+			_isDrumFull = true;
+        }
+	}
+
+	public void ReducePlatformToDrum()
+    {
+		_nbPlatformInDrum -= 1;
+		if (_nbPlatformInDrum < _maxPlatform)
+		{
+			_isDrumFull = false;
+		}
 	}
 
 	public GameObject GetPlatformDrumParent()
     {
 		return _platformDrumParent;
+	}
 
+	public bool GetIsDrumFull()
+    {
+		return _isDrumFull;
 	}
 }

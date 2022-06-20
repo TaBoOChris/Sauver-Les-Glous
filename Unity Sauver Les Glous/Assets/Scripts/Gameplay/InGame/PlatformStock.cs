@@ -63,7 +63,7 @@ public class PlatformStock : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 gameObject.GetComponent<PlatformStock>().enabled = false;
                 PlatformManager.Instance.PlatformSpawnSpecificAnchor(gameObject.transform.parent);
                 gameObject.transform.parent = PlatformManager.Instance.GetPlatformDrumParent().transform;
-                PlatformManager.Instance.AddPlateformDrum(gameObject);
+                PlatformManager.Instance.AddPlatformToDrum();
             }
             else
             {
@@ -86,9 +86,18 @@ public class PlatformStock : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (!isDraggable || GameManager.Instance.IsGamePaused())
             return; //Abort if not draggable or if the game is paused
         CursorManager cursorManager = CursorManager.Instance;
+        PlatformManager platformManager = PlatformManager.Instance;
         if (cursorManager != null && cursorManager.IsPointer())
         {
-            cursorManager.SetHand();
+            if(platformManager != null && platformManager.GetIsDrumFull())
+            {
+                cursorManager.SetForbidden();
+                isDraggable = false;
+            }
+            else
+            {
+                cursorManager.SetHand();
+            }
         }
         isHovered = true;
     }
@@ -100,6 +109,11 @@ public class PlatformStock : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         CursorManager cursorManager = CursorManager.Instance;
         if (cursorManager != null && cursorManager.IsHand())
         {
+            cursorManager.SetPointer();
+        }
+        else if(cursorManager != null && cursorManager.IsForbidden())
+        {
+            isDraggable = true;
             cursorManager.SetPointer();
         }
     }

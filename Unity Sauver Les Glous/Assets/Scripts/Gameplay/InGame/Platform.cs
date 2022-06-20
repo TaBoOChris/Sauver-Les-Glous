@@ -123,6 +123,7 @@ public class Platform : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             float dist = Vector3.Distance(Vector3.zero, transform.position);
             if (dist > scaledCircleCollider * scaledRadius * 1.05f)
             {
+                PlatformManager.Instance.ReducePlatformToDrum();
                 Destroy(gameObject);
             }
         }
