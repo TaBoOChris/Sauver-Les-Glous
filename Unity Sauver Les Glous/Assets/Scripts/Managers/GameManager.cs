@@ -92,7 +92,8 @@ public class GameManager : MonoBehaviour
 
 		// Create Glous list to give to the Village
 		aliveGlous.AddRange(babyGlous);
-		GlousData.Instance.SetGlousInSelector(aliveGlous);
+		if(GlousData.Instance)
+			GlousData.Instance.SetGlousInSelector(aliveGlous);
 		// GlousData.m_glousInSelector = glousAlive + babyGlous
 
 		// Plus utile car maintenant il y a toujours au minimun 4 Glous Rouge/Bleu/Jaune

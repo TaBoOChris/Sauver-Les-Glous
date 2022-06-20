@@ -16,8 +16,7 @@ public class GlousPuller : MonoBehaviour
         foreach (Collider2D collider in detectedCollider)
         {
 
-            if (collider.transform.parent == null) { continue; }
-            if (collider.transform.parent.tag != "Glou") { continue; }
+            if (collider.tag != "Glou") { continue; }
 
             // calcul de la direction pour attirer le glou
             Vector2 forceDirection = transform.position - collider.gameObject.transform.position;

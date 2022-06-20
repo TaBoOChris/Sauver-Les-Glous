@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 199723752652534184}
   - component: {fileID: 7615416994555582244}
   - component: {fileID: 1923851781360905262}
+  - component: {fileID: 7432913436136047360}
   m_Layer: 0
   m_Name: Glou
   m_TagString: Glou
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b8489e82b23b946b662887be2f0cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_glouGhost: {fileID: 6837327870952140451, guid: f7c78d5a86975fa49b5ab2f5c82de7a9, type: 3}
 --- !u!50 &7615416994555582244
 Rigidbody2D:
   serializedVersion: 4
@@ -180,6 +182,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f7a4e50ea29a5584e8c1327545f08339, type: 3}
   _sr: {fileID: 3155758360830097421}
   _skin: 0
+--- !u!58 &7432913436136047360
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130033672022096456}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: -0.05}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &9017575994758751691
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4063393793839735419}
   - component: {fileID: 3155758360830097421}
-  - component: {fileID: 4403091036874302225}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -265,19 +282,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4403091036874302225
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9017575994758751691}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.13, y: -0.25}
-  serializedVersion: 2
-  m_Radius: 2.23
