@@ -24,6 +24,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Image m_formuleUI;
 
     [SerializeField] private Image m_notification;
+    private AudioSource _audiosource;
 
     private GameObject myEventSystem;
 
@@ -31,6 +32,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         m_imageBouton = GetComponent<Image>();
         myEventSystem = GameObject.Find("EventSystem");
+        _audiosource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -77,6 +79,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void RevealGlou()
     {
+        _audiosource.Play();
         m_fragmentCouleur.color = new Color(1, 1, 1, 1);
         m_imageBouton.sprite = m_skinGlou;
         m_notification.enabled = false;
