@@ -9,6 +9,17 @@ public class GlouInGame : MonoBehaviour
 
     [SerializeField] private GameObject m_glouGhost;
 
+
+    public enum State
+    {
+        Waiting,
+        InDrum,
+        Saved,
+        Dead
+    }
+
+    private State state = State.Waiting;
+
     public void SetGlou(Glou glou)
     {
         m_glou = glou;
@@ -22,6 +33,7 @@ public class GlouInGame : MonoBehaviour
     public void KillGlou()
     {
         m_isAlive = false;
+        state = State.Dead;
 
         // effects of death
         StartCoroutine(GlouDieAnimation_Coroutine());
@@ -53,4 +65,28 @@ public class GlouInGame : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         Destroy(newGlou);
     }
+
+    public void UpdateState()
+    {
+        switch (state)
+        {
+            case State.Waiting:
+                state = State.InDrum;
+                break;
+
+            case State.InDrum:
+                state = State.Saved;
+                if (GameManager.Instance)
+                    GameManager.Instance.AddGlouSaved();
+                break;
+            case State.Saved:
+                break;
+            case State.Dead:
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }
