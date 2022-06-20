@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pause
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
   m_sharedMaterial: {fileID: 5309716565216031011, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8576045961842759046
@@ -341,6 +341,14 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 105.65
       objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
 --- !u!224 &4913440951662377300 stripped
@@ -462,6 +470,14 @@ PrefabInstance:
     - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
       propertyPath: m_fontSize
       value: 105.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
