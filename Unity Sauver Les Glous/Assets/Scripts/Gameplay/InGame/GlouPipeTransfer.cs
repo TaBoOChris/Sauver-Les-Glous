@@ -32,6 +32,8 @@ public class GlouPipeTransfer : MonoBehaviour
 
     public float dSpeed = 3.0f;
 
+    private bool m_bCanSendGlou;
+
     private void Start()
     {
         m_fakeGlou.SetActive(false);
@@ -122,20 +124,34 @@ public class GlouPipeTransfer : MonoBehaviour
                 foreach(var r in results){
                     if(r.tag == "Glou")
                     {
-                        canReceiveGlou = false;
-                        if(m_glousPuller != null)
-                            m_glousPuller.StopPull();
-                        m_curGlou = r.gameObject;
-                        if (m_negativeFunction)
+                        if (m_negativeFunction) // is bottom
                         {
-                            Debug.Log("glou detected");
+                            if (m_bCanSendGlou)
+                            {
+                                canReceiveGlou = false;
+                                if (m_glousPuller != null)
+                                    m_glousPuller.StopPull();
+                                m_curGlou = r.gameObject;
+
+                                Debug.Log("PIPE : SEND GLOUUUUUU");
+                                SendGlou();
+
+                            }
+                            /*Debug.Log("glou detected");
                             m_curGlou.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                             m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
                             m_curGlou.transform.rotation = Quaternion.identity;
-                            m_curGlou.transform.position = m_glouDetectorInCage.transform.position;
+                            m_curGlou.transform.position = m_glouDetectorInCage.transform.position;*/
                         }
-                        else 
+                        else
+                        {
+                            canReceiveGlou = false;
+                            if (m_glousPuller != null)
+                                m_glousPuller.StopPull();
+                            m_curGlou = r.gameObject;
                             SendGlou();
+
+                        }
                     }
                 }
             }
@@ -149,13 +165,27 @@ public class GlouPipeTransfer : MonoBehaviour
         // Spawn un Glou apres avoir fait un tour complet
         if (collision.tag == "SpawnerTrigger")
         {
-            Debug.Log("ROTATION : Spawn Glou (collision with " + collision.gameObject.name + "  )");
+
+            m_bCanSendGlou = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!m_negativeFunction)
+            return;
+        // Spawn un Glou apres avoir fait un tour complet
+        if (collision.tag == "SpawnerTrigger")
+        {
+            /*Debug.Log("ROTATION : Spawn Glou (collision with " + collision.gameObject.name + "  )");
             if(m_curGlou != null)
             {
                 SendGlou();
-            }
+            }*/
+            m_bCanSendGlou = false;
         }
     }
+
 
 
     private void OnDrawGizmos()
