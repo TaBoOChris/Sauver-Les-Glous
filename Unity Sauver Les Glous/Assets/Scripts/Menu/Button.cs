@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
-    [SerializeField] private GameObject _tutorial;
-    [SerializeField] private GameObject _nextTutoButton;
-    [SerializeField] private GameObject _previousTutoButton;
-    [SerializeField] private List<GameObject> _tutorialList = new List<GameObject>();
-    private int _indexTutoList = 0;
+    [SerializeField] private GameObject m_nextTutoButton;
+    [SerializeField] private GameObject m_previousTutoButton;
+    [SerializeField] private List<GameObject> m_tutorialList = new List<GameObject>();
+    private int m_indexTutoList = 0;
 
     public void LoadScene(string sceneName)
     {
@@ -35,47 +34,47 @@ public class Button : MonoBehaviour
         Debug.Log("Load Scene " + SceneManager.GetSceneByBuildIndex(sceneIndex).name);
     }
 
-    public void TutorialDisplayOn()
+    public void DisplayOn(GameObject panel)
     {
-        _tutorial.SetActive(true);
+        panel.SetActive(true);
     }
 
-    public void TutorialDisplayOff()
+    public void DisplayOff(GameObject panel)
     {
-        _tutorial.SetActive(false);
+        panel.SetActive(false);
     }
 
     public void TutorialDisplayNext()
     {
-        _tutorialList[_indexTutoList].SetActive(false);
-        _indexTutoList++;
-        _tutorialList[_indexTutoList].SetActive(true);
-        if (_indexTutoList == _tutorialList.Count-1)
+        m_tutorialList[m_indexTutoList].SetActive(false);
+        m_indexTutoList++;
+        m_tutorialList[m_indexTutoList].SetActive(true);
+        if (m_indexTutoList == m_tutorialList.Count-1)
         {
-            _nextTutoButton.SetActive(false);
+            m_nextTutoButton.SetActive(false);
         }
         else
         {
-            _tutorialList[_indexTutoList].SetActive(true);
+            m_tutorialList[m_indexTutoList].SetActive(true);
         }
-        if (_indexTutoList > 0)
+        if (m_indexTutoList > 0)
         {
-            _previousTutoButton.SetActive(true);
+            m_previousTutoButton.SetActive(true);
         }
     }
 
     public void TutorialDisplayPrevious()
     {
-        _tutorialList[_indexTutoList].SetActive(false);
-        _indexTutoList--;
-        _tutorialList[_indexTutoList].SetActive(true);
-        if (_indexTutoList == 0)
+        m_tutorialList[m_indexTutoList].SetActive(false);
+        m_indexTutoList--;
+        m_tutorialList[m_indexTutoList].SetActive(true);
+        if (m_indexTutoList == 0)
         {
-            _previousTutoButton.SetActive(false);
+            m_previousTutoButton.SetActive(false);
         }
-        if (_indexTutoList == _tutorialList.Count-2)
+        if (m_indexTutoList == m_tutorialList.Count-2)
         {
-            _nextTutoButton.SetActive(true);
+            m_nextTutoButton.SetActive(true);
         }
     }
 
