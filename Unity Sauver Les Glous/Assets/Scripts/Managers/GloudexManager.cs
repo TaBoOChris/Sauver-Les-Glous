@@ -28,11 +28,6 @@ public class GloudexManager : MonoBehaviour
         Instance = this;
     }
 
-    public void Printprint()
-    {
-        Debug.Log("coucou");
-    }
-
     public bool IsInGloudex(Glou.SkinGlou skinTarget)
     {
         foreach(Glou.SkinGlou skin in glousInGloudex)

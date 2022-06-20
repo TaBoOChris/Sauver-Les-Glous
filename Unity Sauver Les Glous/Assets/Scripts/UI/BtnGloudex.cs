@@ -23,11 +23,12 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private TextMeshProUGUI _nomTMP;
     [SerializeField] private Image _formuleUI;
 
-
+    private GameObject myEventSystem;
 
     private void Awake()
     {
         _imageBouton = GetComponent<Image>();
+        myEventSystem = GameObject.Find("EventSystem");
     }
 
     // Start is called before the first frame update
@@ -65,6 +66,8 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             RevealGlou();
         }
+
+        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 
     private void RevealGlou()
