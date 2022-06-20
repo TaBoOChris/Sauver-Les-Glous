@@ -41,6 +41,8 @@ public class GlouPipeTransfer : MonoBehaviour
         m_curGlou = obj;
 
         curX = 0.0f;
+        if (m_negativeFunction)
+            curX = destX;
         m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
         m_curGlou.SetActive(false); //Hide the chosen glou
 
@@ -62,7 +64,7 @@ public class GlouPipeTransfer : MonoBehaviour
         if (!canReceiveGlou){  //Cannot receive; update if glou in pipe
             if (m_glouInPipe)
             {
-                if (curX >= destX)
+                if ((!m_negativeFunction && curX >= destX) || (m_negativeFunction && curX <= 0.1f))
                 {
                     // Reactivate and teleport glou
                     m_curGlou.SetActive(true);
@@ -80,7 +82,10 @@ public class GlouPipeTransfer : MonoBehaviour
                     m_glouInPipe = false;
                     return;
                 }
-                curX += Time.deltaTime * dSpeed;
+                if (m_negativeFunction)
+                    curX -= Time.deltaTime * dSpeed;
+                else
+                    curX += Time.deltaTime * dSpeed;
                 float x = curX;
                 float y = ForwardFunction(curX);
                 Vector3 next;
