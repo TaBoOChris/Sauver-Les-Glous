@@ -23,6 +23,8 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private TextMeshProUGUI _nomTMP;
     [SerializeField] private Image _formuleUI;
 
+    [SerializeField] private Image _notification;
+
     private GameObject myEventSystem;
 
     private void Awake()
@@ -41,6 +43,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             _fragmentCouleur.color = new Color(1, 1, 1, 1);
             // Le skin du Glou est visible
             _imageBouton.sprite = _skinGlou;
+            _notification.enabled = false;
         }
         // Si le Glou vient d'etre découvert
         else if (GloudexManager.Instance.IsWaitingToEnterGloudex(skin))
@@ -49,6 +52,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             _fragmentCouleur.color = new Color(1, 1, 1, 0);
             // Le skin du Glou est en notification
             _imageBouton.sprite = _exclamation;
+            _notification.enabled = true;
         }
         // Le glou n'a pas éte découvert
         else
@@ -57,6 +61,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             _fragmentCouleur.color = new Color(1, 1, 1, 0);
             // Le skin du Glou est caché
             _imageBouton.sprite = _interrogation;
+            _notification.enabled = false;
         }
     }
 
@@ -74,6 +79,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         _fragmentCouleur.color = new Color(1, 1, 1, 1);
         _imageBouton.sprite = _skinGlou;
+        _notification.enabled = false;
         GloudexManager.Instance.AddGlouInGloudex(skin);
     }
 

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GloudexManager : MonoBehaviour
 {
-    [SerializeField] private List<Glou.SkinGlou> glousDecouverts = new List<Glou.SkinGlou>();
-    [SerializeField] private List<Glou.SkinGlou> glousInGloudex = new List<Glou.SkinGlou>();
+    [SerializeField] private List<Glou.SkinGlou> _glousDecouverts = new List<Glou.SkinGlou>();
+    [SerializeField] private List<Glou.SkinGlou> _glousInGloudex = new List<Glou.SkinGlou>();
+
+    [SerializeField] private SpriteRenderer _notification;
 
     public static GloudexManager Instance { get; private set; }
 
@@ -28,9 +30,18 @@ public class GloudexManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        if (_glousDecouverts.Count > 0)
+        {
+            _notification.enabled = true;
+        }
+        else _notification.enabled = false;
+    }
+
     public bool IsInGloudex(Glou.SkinGlou skinTarget)
     {
-        foreach(Glou.SkinGlou skin in glousInGloudex)
+        foreach(Glou.SkinGlou skin in _glousInGloudex)
         {
             if (skinTarget == skin) return true;
         }
@@ -39,7 +50,7 @@ public class GloudexManager : MonoBehaviour
 
     public bool IsWaitingToEnterGloudex(Glou.SkinGlou skinTarget)
     {
-        foreach (Glou.SkinGlou skin in glousDecouverts)
+        foreach (Glou.SkinGlou skin in _glousDecouverts)
         {
             if (skinTarget == skin) return true;
         }
@@ -48,6 +59,10 @@ public class GloudexManager : MonoBehaviour
 
     public void AddGlouInGloudex(Glou.SkinGlou skin)
     {
-        glousInGloudex.Add(skin);
+        _glousInGloudex.Add(skin);
+        _glousDecouverts.Remove(skin);
+
+        if(_glousDecouverts.Count == 0)
+            _notification.enabled = false;
     }
 }
