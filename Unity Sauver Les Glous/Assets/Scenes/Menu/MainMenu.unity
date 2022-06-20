@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_text: "Le professeur Glouglou a cr\xE9\xE9 une machine capable de fusionner les
     Glous entre eux et souhaite recr\xE9er des esp\xE8ces rares de glous disparues
     depuis des mill\xE9naires. Sa premi\xE8re machine n'est qu'un prototype. Elle
-    est difficile \xE0 utiliser et les pertes en Glous sont cons\xE9quentes c'est
+    est difficile \xE0 utiliser et les pertes en Glous sont cons\xE9quentes, c'est
     pourquoi il a imagin\xE9 une nouvelle machine r\xE9volutionnaire qui r\xE9duit
     consid\xE9rablement les risques.\n"
   m_isRightToLeft: 0
@@ -2379,7 +2379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Malheureusement il n'a ni not\xE9 ni parl\xE9 de sa nouvelle machine a
+  m_text: "Malheureusement il n'a ni not\xE9 ni parl\xE9 de sa nouvelle machine \xE0
     quiconque et nous sommes dans une impasse. Sans lui le projet est fini. Le gouvernement
     vous donne pour mission d'utiliser la machine dangereuse et de recr\xE9er le
     Glou ultime."
