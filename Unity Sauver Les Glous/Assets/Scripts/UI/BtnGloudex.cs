@@ -24,6 +24,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Image m_formuleUI;
 
     [SerializeField] private Image m_notification;
+    [SerializeField] private SpriteRenderer m_GUInotification;
     private AudioSource _audiosource;
 
     private GameObject myEventSystem;
@@ -84,6 +85,9 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         m_imageBouton.sprite = m_skinGlou;
         m_notification.enabled = false;
         GloudexManager.Instance.AddGlouInGloudex(m_skin);
+
+        if(GloudexManager.Instance.GetGlouDecouvertsSize() == 0)
+            m_GUInotification.enabled = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

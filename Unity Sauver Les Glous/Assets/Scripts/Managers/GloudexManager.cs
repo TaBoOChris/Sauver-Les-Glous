@@ -9,8 +9,6 @@ public class GloudexManager : AbstractSingleton<GloudexManager>
     // Liste des Glous qu'on a inscrit dans le Gloudex
     [SerializeField] private List<Glou.SkinGlou> m_glousInGloudex = new List<Glou.SkinGlou>();
 
-    [SerializeField] private SpriteRenderer m_notification;
-
     protected override void Awake()
     {
         /*m_glousInGloudex.Add(Glou.SkinGlou.Rouge);
@@ -22,11 +20,7 @@ public class GloudexManager : AbstractSingleton<GloudexManager>
 
     private void Start()
     {
-        if (m_glousDecouverts.Count > 0)
-        {
-            m_notification.enabled = true;
-        }
-        else m_notification.enabled = false;
+        DetectNewGlou();
     }
 
     // Permet de voir si un Glou est dans le Gloudex
@@ -54,8 +48,29 @@ public class GloudexManager : AbstractSingleton<GloudexManager>
     {
         m_glousInGloudex.Add(skin);
         m_glousDecouverts.Remove(skin);
+    }
 
-        if(m_glousDecouverts.Count == 0)
-            m_notification.enabled = false;
+    // Permet d'ajouter un Glou à la liste d'attente
+    public void AddGlouInWaintingQueue(Glou.SkinGlou skin)
+    {
+        m_glousDecouverts.Add(skin);
+    }
+
+    // Cherches les nouveaux Glous
+    public void DetectNewGlou()
+    {
+        foreach (Glou glou in GlousData.Instance.GetGlousInSelector())
+        {
+            if (!IsInGloudex(glou.skin))
+            {
+                AddGlouInWaintingQueue(glou.skin);
+            }
+        }
+        
+    }
+
+    public int GetGlouDecouvertsSize()
+    {
+        return m_glousDecouverts.Count;
     }
 }
