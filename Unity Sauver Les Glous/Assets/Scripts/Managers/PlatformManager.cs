@@ -43,7 +43,7 @@ public class PlatformManager : MonoBehaviour
 			GameObject newPlatform = Instantiate(m_plaftormPrefab[randomNumber], m_stockAnchor[i].transform.position, Quaternion.identity, m_stockAnchor[i].transform);
 			newPlatform.GetComponent<Platform>().enabled = false;
 			newPlatform.GetComponent<PlatformStock>().enabled = true;
-			newPlatform.transform.localScale = Vector3.one * Random.Range(0.5f, 1.0f);
+			newPlatform.transform.localScale = Vector3.one * Random.Range(0.8f, 1.3f);
 			newPlatform.transform.eulerAngles = new Vector3(newPlatform.transform.eulerAngles.x, newPlatform.transform.eulerAngles.y, newPlatform.transform.eulerAngles.z + Random.Range(0f, 180.0f));
 		}
     }
@@ -67,7 +67,7 @@ public class PlatformManager : MonoBehaviour
 
 		while (Time.time - startTime <= 1)
 		{
-			platform.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * Random.Range(0.5f, 1.0f), Time.time - startTime);
+			platform.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * Random.Range(0.8f, 1.3f), Time.time - startTime);
 			platform.transform.eulerAngles = Vector3.Lerp(platform.transform.eulerAngles, newRotation, Time.time - startTime);
 			yield return 1;
 		}
