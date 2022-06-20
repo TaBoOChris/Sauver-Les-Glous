@@ -36,4 +36,9 @@ public class GlouCreatorJar : MonoBehaviour
             }
         }
     }
+
+    public GameObject getGlou()
+    {
+        return m_curGlou;
+    }
 }
