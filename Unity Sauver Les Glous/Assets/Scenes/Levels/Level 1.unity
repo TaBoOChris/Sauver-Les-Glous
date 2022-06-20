@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 710498624467219194, guid: 5e00b9608f12c914e9ca687da796bd43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e00b9608f12c914e9ca687da796bd43, type: 3}
 --- !u!4 &238057060 stripped
@@ -313,6 +317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hexagone
       objectReference: {fileID: 0}
+    - target: {fileID: 710498624467219194, guid: f294ef79cb114584fa776d0d5cb6f6c8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f294ef79cb114584fa776d0d5cb6f6c8, type: 3}
 --- !u!1 &552190209
@@ -405,6 +413,10 @@ PrefabInstance:
     - target: {fileID: 710498624467219194, guid: 8f722a4ae2b70554c8afeadd7eae10de, type: 3}
       propertyPath: m_Name
       value: Platform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 710498624467219194, guid: 8f722a4ae2b70554c8afeadd7eae10de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3382696696741858476, guid: 8f722a4ae2b70554c8afeadd7eae10de, type: 3}
       propertyPath: m_Enabled
@@ -889,6 +901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Losange
       objectReference: {fileID: 0}
+    - target: {fileID: 710498624467219194, guid: e513f236b9925a143b59a6808775e41b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e513f236b9925a143b59a6808775e41b, type: 3}
 --- !u!4 &1162297794 stripped
@@ -1149,6 +1165,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle
       objectReference: {fileID: 0}
+    - target: {fileID: 710498624467219194, guid: 5e00b9608f12c914e9ca687da796bd43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e00b9608f12c914e9ca687da796bd43, type: 3}
 --- !u!4 &1310233527 stripped
@@ -1390,6 +1410,10 @@ PrefabInstance:
     - target: {fileID: 710498624467219194, guid: 8f722a4ae2b70554c8afeadd7eae10de, type: 3}
       propertyPath: m_Name
       value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 710498624467219194, guid: 8f722a4ae2b70554c8afeadd7eae10de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5330960726341627798, guid: 8f722a4ae2b70554c8afeadd7eae10de, type: 3}
       propertyPath: m_LocalRotation.w

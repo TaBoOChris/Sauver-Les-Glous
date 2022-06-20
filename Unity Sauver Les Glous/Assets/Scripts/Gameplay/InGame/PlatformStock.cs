@@ -61,7 +61,9 @@ public class PlatformStock : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 gameObject.GetComponent<Platform>().enabled = true;
                 gameObject.GetComponent<PlatformTimeLimit>().enabled = true;
                 gameObject.GetComponent<PlatformStock>().enabled = false;
+                PlatformManager.Instance.PlatformSpawnSpecificAnchor(gameObject.transform.parent);
                 gameObject.transform.parent = PlatformManager.Instance.GetPlatformDrumParent().transform;
+                PlatformManager.Instance.AddPlateformDrum(gameObject);
             }
             else
             {
