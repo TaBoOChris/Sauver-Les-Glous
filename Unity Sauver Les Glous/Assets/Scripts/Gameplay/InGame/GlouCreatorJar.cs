@@ -37,6 +37,12 @@ public class GlouCreatorJar : MonoBehaviour
         }
     }
 
+    public void reset()
+    {
+        Destroy(m_curGlou);
+        m_glousPuller.enabled = true;
+    }
+
     public GameObject getGlou()
     {
         return m_curGlou;
