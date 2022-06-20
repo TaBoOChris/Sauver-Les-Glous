@@ -58,6 +58,8 @@ public class GlouPipeTransfer : MonoBehaviour
         m_fakeGlou.transform.position = m_glouDetectorInCage.transform.position;
 
         m_glouInPipe = true;
+
+        m_curGlou.GetComponent<GlouInGame>().UpdateState();
     }
 
     float ForwardFunction(float x)
