@@ -6,9 +6,10 @@ public class GlousIntroducer : MonoBehaviour
 {
 
     Transform m_glousToIntroduce;
-    [SerializeField] GlousPuller m_glousPuller;
-    [SerializeField] GlouPipeTransfer m_pipeTransferer;
+    [SerializeField] GlousPuller m_glousPuller = null;
+    [SerializeField] GlouPipeTransfer m_pipeTransferer = null;
 
+    [SerializeField] bool m_AutoIntroduce = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,14 +35,20 @@ public class GlousIntroducer : MonoBehaviour
         m_glousToIntroduce.GetComponent<Rigidbody2D>().isKinematic = false;
         m_glousToIntroduce = null;
 
-        m_pipeTransferer.canReceiveGlou = true;
-        m_glousPuller.StartPull();
+        if(m_pipeTransferer != null)
+            m_pipeTransferer.canReceiveGlou = true;
+        if(m_glousPuller != null)
+             m_glousPuller.StartPull();
     }
 
 
     public void setGlouToIntroduce(Transform glouToIntroduce)
     {
         m_glousToIntroduce = glouToIntroduce;
+        if (m_AutoIntroduce)
+        {
+            IntroduceGlou();
+        }
     }
 
 }
