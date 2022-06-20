@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
 
 	void Start()
     {
-		AudioManager.Instance.PlayGameMusic();
+        if (AudioManager.Instance)
+			AudioManager.Instance.PlayGameMusic();
+
 		StartGame();
 		if(CursorManager.Instance != null)
 			CursorManager.Instance.SetPointer();
@@ -56,15 +58,29 @@ public class GameManager : MonoBehaviour
 		m_pauseMenu.SetActive(false);
 		m_endMenu.SetActive(false);
 
-		//List<Glou> glousStartingList = new List<Glou> { new Glou(0.2f, 0.8f), new Glou(0.5f, 1f), new Glou(0.8f, 1.2f) };
-		List<Glou> glousStartingList = GlousData.Instance.GetGlousInSelector();
+
+		// Setup GlousStartingList
+		List<Glou> glousStartingList;
+
+		if (GlousData.Instance)
+        {
+			glousStartingList = GlousData.Instance.GetGlousInSelector();
+        }
+        else
+        {
+			Debug.Log("GAME MANAGER : NO INSTANCE OF GLOUSDATA");
+			glousStartingList = new List<Glou> { 
+				new Glou( Glou.SkinGlou.Bleu, 0.8f), 
+				new Glou( Glou.SkinGlou.Rouge, 1f), 
+				new Glou( Glou.SkinGlou.Vert, 1.2f) };
+
+        }
 
 		m_nbGlousAlive = glousStartingList.Count;
 		m_glousSpawner.SpawnGlous(glousStartingList);
 
 		//SpawnPlaterform();
 		//Rotation();
-		m_timer.StartTimer(m_gameTime);	//StartTimer();
     }
 
 	public void EndGame()
