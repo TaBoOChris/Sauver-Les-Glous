@@ -35,15 +35,14 @@ public class GlouPipeTransfer : MonoBehaviour
         m_fakeGlou.SetActive(false);
     }
 
-    void SendGlou(GameObject obj)
+    void SendGlou()
     {
         destX = Mathf.Abs(m_glouArrivePosition.position.x - m_glouDetectorInCage.transform.position.x);
-        m_curGlou = obj;
 
         curX = 0.0f;
         if (m_negativeFunction)
             curX = destX;
-        m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
+        m_curGlou.GetComponent<Rigidbody2D>().isKinematic = false;
         m_curGlou.SetActive(false); //Hide the chosen glou
 
         //Display the fake glou (pipeSphere)
@@ -67,10 +66,6 @@ public class GlouPipeTransfer : MonoBehaviour
                 if ((!m_negativeFunction && curX >= destX) || (m_negativeFunction && curX <= 0.1f))
                 {
                     // Reactivate and teleport glou
-                    m_curGlou.SetActive(true);
-                    m_curGlou.transform.position = m_glouArrivePosition.position;
-                    m_curGlou.transform.rotation = Quaternion.identity;
-
                     m_glousIntroducer.setGlouToIntroduce(m_curGlou.transform);
 
                     //Free reference
@@ -111,12 +106,38 @@ public class GlouPipeTransfer : MonoBehaviour
                         canReceiveGlou = false;
                         if(m_glousPuller != null)
                             m_glousPuller.StopPull();
-                        SendGlou(r.gameObject);
+                        m_curGlou = r.gameObject;
+                        if (m_negativeFunction)
+                        {
+                            Debug.Log("glou detected");
+                            m_curGlou.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                            m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
+                            m_curGlou.transform.rotation = Quaternion.identity;
+                            m_curGlou.transform.position = m_glouDetectorInCage.transform.position;
+                        }
+                        else 
+                            SendGlou();
                     }
                 }
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!m_negativeFunction)
+            return;
+        // Spawn un Glou apres avoir fait un tour complet
+        if (collision.tag == "SpawnerTrigger")
+        {
+            Debug.Log("ROTATION : Spawn Glou (collision with " + collision.gameObject.name + "  )");
+            if(m_curGlou != null)
+            {
+                SendGlou();
+            }
+        }
+    }
+
 
     private void OnDrawGizmos()
     { 

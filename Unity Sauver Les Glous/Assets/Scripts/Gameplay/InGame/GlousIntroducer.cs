@@ -45,6 +45,9 @@ public class GlousIntroducer : MonoBehaviour
     public void setGlouToIntroduce(Transform glouToIntroduce)
     {
         m_glousToIntroduce = glouToIntroduce;
+        m_glousToIntroduce.gameObject.SetActive(true);
+        m_glousToIntroduce.position = transform.position;
+        m_glousToIntroduce.rotation = Quaternion.identity;
         if (m_AutoIntroduce)
         {
             IntroduceGlou();

@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/village.unity
     guid: 1d085242426c3b04da32e89fc609a82d
+  - enabled: 1
+    path: Assets/Scenes/Levels/GameplayLvl.unity
+    guid: 748f8c03ec0025f44b7c894317ce6d26
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: bf9d5df47c3fe5148a7a655620318fc9, type: 2}
