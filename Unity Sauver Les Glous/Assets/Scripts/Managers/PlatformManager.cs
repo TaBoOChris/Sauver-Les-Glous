@@ -9,7 +9,7 @@ public class PlatformManager : MonoBehaviour
 	[Header("Drum")]
 	[SerializeField] private GameObject _platformDrumParent;
 	[SerializeField] private int _maxPlatform = 5;
-	[SerializeField] private int _nbPlatformInDrum;
+	private int _nbPlatformInDrum;
 	private bool _isDrumFull = false;
 
 	[Header("Stock")]
@@ -56,6 +56,7 @@ public class PlatformManager : MonoBehaviour
 		newPlatform.GetComponent<PlatformStock>().enabled = true;
 		newPlatform.transform.localScale = Vector3.zero;
 		StartCoroutine(ScaleRotateSpawn(newPlatform));
+		//newPlatform.transform.localScale = Vector3.one * Random.Range(0.5f, 1.0f);
 		//newPlatform.transform.eulerAngles = new Vector3(newPlatform.transform.eulerAngles.x, newPlatform.transform.eulerAngles.y, newPlatform.transform.eulerAngles.z + Random.Range(0f, 180.0f));
 	}
 
