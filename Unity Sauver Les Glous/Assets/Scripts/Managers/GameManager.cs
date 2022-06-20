@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	[Header("Glous")]
 	[SerializeField] private GlousSpawner m_glousSpawner;
 	private int m_nbGlousAlive;
+	private int m_nbGlousSaved;
 	private List<GlouInGame> m_glousInGame = new List<GlouInGame>();
 
 	[Header("End menu")]
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject m_pauseMenu;
 	private static bool m_isGamePaused = false;
 	private InputActions m_inputActions;
+
+
+	// ================================================================
 
 	private void Awake()
 	{
@@ -83,13 +87,14 @@ public class GameManager : MonoBehaviour
     {
 		if (CursorManager.Instance != null)
 			CursorManager.Instance.SetPointer();
-		if (m_nbGlousAlive <= 0)
+
+		if (m_nbGlousAlive <= 0 && m_nbGlousSaved ==0)
         {
 			m_endMenuText.text = "Tu n'as pas réussi à sauver les Glous ...";
         }
         else
         {
-			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousAlive + "</color> Glous.  Bien joué !";
+			m_endMenuText.text = "La machine est enfin arretée !\nTu as sauvé <color=#86E989>" + m_nbGlousSaved + "</color> Glous.  Bien joué !";
         }
 
 		// create list of alive glous
@@ -122,6 +127,9 @@ public class GameManager : MonoBehaviour
 		m_inputActions.Game.Disable();
 	}
 
+	// ============= GLOU =====================
+
+
 	private List<Glou> GetAliveGlous()
     {
 		List<Glou> aliveGlous = new List<Glou>();
@@ -137,15 +145,9 @@ public class GameManager : MonoBehaviour
 		return aliveGlous;
 	}
 
-	public void AddGlou()
-    {
-		m_nbGlousAlive++;
-    }
+	public void AddGlou() { m_nbGlousAlive++; }
 
-	public void AddGlouInGame(GlouInGame glouInGame)
-    {
-		m_glousInGame.Add(glouInGame);
-    }
+	public void AddGlouInGame(GlouInGame glouInGame) { m_glousInGame.Add(glouInGame); }
 
 	public void GlouDie()
     {
@@ -153,14 +155,13 @@ public class GameManager : MonoBehaviour
 		if(m_nbGlousAlive <= 0)
         {
 			Invoke("EndGame", 1.5f);
-			//EndGame();
         }
     }
 
-	public int GetNbGlousAlive()
-    {
-		return m_nbGlousAlive;
-    }
+	public int GetNbGlousAlive() { return m_nbGlousAlive; }
+
+
+	// ============= PAUSE =============== 
 
 	public void PauseKeyPressed()
     {
@@ -200,19 +201,10 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public bool IsGamePaused()
-    {
-		return m_isGamePaused;
-    }
+	public bool IsGamePaused()	{ return m_isGamePaused; }
 
-	private void OnEnable()
-	{
-		m_inputActions.Game.Enable();
-	}
+	private void OnEnable()		{ m_inputActions.Game.Enable(); }
 
-	private void OnDisable()
-	{
-		m_inputActions.Game.Disable();
-	}
+	private void OnDisable()	{ m_inputActions.Game.Disable(); }
 }
 
