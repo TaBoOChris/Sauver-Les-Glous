@@ -8,7 +8,7 @@ public class Gear : MonoBehaviour
     {
         Debug.Log("GEAR : Collision !");
 
-        if (collision.gameObject.tag == "Glou")
+        if (collision.gameObject.tag == "Glou" && collision.GetComponent<Rigidbody2D>().isKinematic == false)
         {
             Debug.Log("GEAR : kill glou !");
             collision.gameObject.GetComponent<GlouInGame>().KillGlou();
