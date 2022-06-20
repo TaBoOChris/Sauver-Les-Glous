@@ -152,7 +152,8 @@ public class GameManager : MonoBehaviour
 		m_nbGlousAlive--;
 		if(m_nbGlousAlive <= 0)
         {
-			EndGame();
+			Invoke("EndGame", 1.5f);
+			//EndGame();
         }
     }
 
