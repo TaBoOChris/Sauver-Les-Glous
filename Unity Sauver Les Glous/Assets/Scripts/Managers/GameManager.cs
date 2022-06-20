@@ -12,10 +12,6 @@ public class GameManager : MonoBehaviour
 	private int m_nbGlousAlive;
 	private List<GlouInGame> m_glousInGame = new List<GlouInGame>();
 
-	[Header("Timer")]
-	[SerializeField] private Timer m_timer;
-	[SerializeField] private int m_gameTime = 60;
-
 	[Header("End menu")]
 	[SerializeField] private GameObject m_endMenu;
 	[SerializeField] private GameObject m_endMenuVillageBtn;
