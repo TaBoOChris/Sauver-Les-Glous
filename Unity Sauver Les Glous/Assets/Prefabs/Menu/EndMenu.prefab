@@ -226,8 +226,8 @@ MonoBehaviour:
   m_text: "La machine est enfin arret\xE9e!\\nTu as sauv\xE9 <color=#86E989>7</color>
     Glous. Bien jou\xE9 !"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
-  m_sharedMaterial: {fileID: 5309716565216031011, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
+  m_sharedMaterial: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -361,8 +361,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Fin de la partie
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
-  m_sharedMaterial: {fileID: 5309716565216031011, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
+  m_sharedMaterial: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -580,8 +580,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
       propertyPath: m_fontSize
-      value: 105.65
+      value: 86.45
       objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
 --- !u!224 &3928271746236849716 stripped
@@ -702,8 +710,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
       propertyPath: m_fontSize
-      value: 105.65
+      value: 86.45
       objectReference: {fileID: 0}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
+    - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
 --- !u!224 &3928271746648825364 stripped
