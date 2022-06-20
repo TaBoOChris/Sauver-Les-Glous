@@ -8,28 +8,28 @@ using TMPro;
 public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Roue Gloumatique")]
-    [SerializeField] private Image _fragmentCouleur;
-    [SerializeField] private Sprite _interrogation;
-    [SerializeField] private Sprite _exclamation;
-    [SerializeField] private Sprite _skinGlou;
-    private Image _imageBouton;
+    [SerializeField] private Image m_fragmentCouleur;
+    [SerializeField] private Sprite m_interrogation;
+    [SerializeField] private Sprite m_exclamation;
+    [SerializeField] private Sprite m_skinGlou;
+    private Image m_imageBouton;
 
     [Header("Infos")]
-    [SerializeField] private string _nom;
-    [SerializeField] private Glou.SkinGlou skin;
-    [SerializeField] private Sprite _formule;
+    [SerializeField] private string m_nom;
+    [SerializeField] private Glou.SkinGlou m_skin;
+    [SerializeField] private Sprite m_formule;
 
-    [SerializeField] private GameObject _infoWindow;
-    [SerializeField] private TextMeshProUGUI _nomTMP;
-    [SerializeField] private Image _formuleUI;
+    [SerializeField] private GameObject m_infoWindow;
+    [SerializeField] private TextMeshProUGUI m_nomTMP;
+    [SerializeField] private Image m_formuleUI;
 
-    [SerializeField] private Image _notification;
+    [SerializeField] private Image m_notification;
 
     private GameObject myEventSystem;
 
     private void Awake()
     {
-        _imageBouton = GetComponent<Image>();
+        m_imageBouton = GetComponent<Image>();
         myEventSystem = GameObject.Find("EventSystem");
     }
 
@@ -37,37 +37,37 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     void Start()
     {
         // Si le Glou est dans le Gloudex
-        if (GloudexManager.Instance.IsInGloudex(skin))
+        if (GloudexManager.Instance.IsInGloudex(m_skin))
         {
             // Le fragment de couleur est visible
-            _fragmentCouleur.color = new Color(1, 1, 1, 1);
+            m_fragmentCouleur.color = new Color(1, 1, 1, 1);
             // Le skin du Glou est visible
-            _imageBouton.sprite = _skinGlou;
-            _notification.enabled = false;
+            m_imageBouton.sprite = m_skinGlou;
+            m_notification.enabled = false;
         }
         // Si le Glou vient d'etre découvert
-        else if (GloudexManager.Instance.IsWaitingToEnterGloudex(skin))
+        else if (GloudexManager.Instance.IsWaitingToEnterGloudex(m_skin))
         {
             // Le fragment de couleur est invisible
-            _fragmentCouleur.color = new Color(1, 1, 1, 0);
+            m_fragmentCouleur.color = new Color(1, 1, 1, 0);
             // Le skin du Glou est en notification
-            _imageBouton.sprite = _exclamation;
-            _notification.enabled = true;
+            m_imageBouton.sprite = m_exclamation;
+            m_notification.enabled = true;
         }
         // Le glou n'a pas éte découvert
         else
         {
             // Le fragment de couleur n'est pas visible
-            _fragmentCouleur.color = new Color(1, 1, 1, 0);
+            m_fragmentCouleur.color = new Color(1, 1, 1, 0);
             // Le skin du Glou est caché
-            _imageBouton.sprite = _interrogation;
-            _notification.enabled = false;
+            m_imageBouton.sprite = m_interrogation;
+            m_notification.enabled = false;
         }
     }
 
     public void ClicBouton()
     {
-        if(_imageBouton.sprite == _exclamation)
+        if(m_imageBouton.sprite == m_exclamation)
         {
             RevealGlou();
         }
@@ -77,25 +77,25 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void RevealGlou()
     {
-        _fragmentCouleur.color = new Color(1, 1, 1, 1);
-        _imageBouton.sprite = _skinGlou;
-        _notification.enabled = false;
-        GloudexManager.Instance.AddGlouInGloudex(skin);
+        m_fragmentCouleur.color = new Color(1, 1, 1, 1);
+        m_imageBouton.sprite = m_skinGlou;
+        m_notification.enabled = false;
+        GloudexManager.Instance.AddGlouInGloudex(m_skin);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (GloudexManager.Instance.IsInGloudex(skin))
+        if (GloudexManager.Instance.IsInGloudex(m_skin))
         {
-            _nomTMP.text = _nom;
-            _formuleUI.sprite = _formule;
-            _infoWindow.SetActive(true);
+            m_nomTMP.text = m_nom;
+            m_formuleUI.sprite = m_formule;
+            m_infoWindow.SetActive(true);
         }
             
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _infoWindow.SetActive(false);
+        m_infoWindow.SetActive(false);
     }
 }

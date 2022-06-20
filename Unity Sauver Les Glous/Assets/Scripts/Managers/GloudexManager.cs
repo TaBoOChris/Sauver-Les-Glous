@@ -2,67 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GloudexManager : MonoBehaviour
+public class GloudexManager : AbstractSingleton<GloudexManager>
 {
-    [SerializeField] private List<Glou.SkinGlou> _glousDecouverts = new List<Glou.SkinGlou>();
-    [SerializeField] private List<Glou.SkinGlou> _glousInGloudex = new List<Glou.SkinGlou>();
+    // Liste des Glous que l'on vient juste de découvir et qui sont à inscrire dans le Gloudex
+    [SerializeField] private List<Glou.SkinGlou> m_glousDecouverts = new List<Glou.SkinGlou>();
+    // Liste des Glous qu'on a inscrit dans le Gloudex
+    [SerializeField] private List<Glou.SkinGlou> m_glousInGloudex = new List<Glou.SkinGlou>();
 
-    [SerializeField] private SpriteRenderer _notification;
+    [SerializeField] private SpriteRenderer m_notification;
 
-    public static GloudexManager Instance { get; private set; }
-
-    private void Awake()
+    protected override void Awake()
     {
-        /*glousDecouverts.Add(Glou.SkinGlou.Rouge);
-        glousDecouverts.Add(Glou.SkinGlou.Jaune);
-        glousDecouverts.Add(Glou.SkinGlou.Bleu);*/
+        /*m_glousInGloudex.Add(Glou.SkinGlou.Rouge);
+        m_glousInGloudex.Add(Glou.SkinGlou.Bleu);
+        m_glousInGloudex.Add(Glou.SkinGlou.Jaune);*/
 
-        /*glousInGloudex.Add(Glou.SkinGlou.Rouge);
-        glousInGloudex.Add(Glou.SkinGlou.Jaune);
-        glousInGloudex.Add(Glou.SkinGlou.Bleu);*/
-
-        if (Instance != null)
-        {
-            Debug.LogWarning("Il y a plus d'une instance de GameManager dans la scene");
-            return;
-        }
-
-        Instance = this;
+        base.Awake();
     }
 
     private void Start()
     {
-        if (_glousDecouverts.Count > 0)
+        if (m_glousDecouverts.Count > 0)
         {
-            _notification.enabled = true;
+            m_notification.enabled = true;
         }
-        else _notification.enabled = false;
+        else m_notification.enabled = false;
     }
 
+    // Permet de voir si un Glou est dans le Gloudex
     public bool IsInGloudex(Glou.SkinGlou skinTarget)
     {
-        foreach(Glou.SkinGlou skin in _glousInGloudex)
+        foreach(Glou.SkinGlou skin in m_glousInGloudex)
         {
             if (skinTarget == skin) return true;
         }
         return false;
     }
 
+    // Permet de voir si un Glou vient d'être découvert
     public bool IsWaitingToEnterGloudex(Glou.SkinGlou skinTarget)
     {
-        foreach (Glou.SkinGlou skin in _glousDecouverts)
+        foreach (Glou.SkinGlou skin in m_glousDecouverts)
         {
             if (skinTarget == skin) return true;
         }
         return false;
     }
 
+    // Permet d'ajouter un Glou au Gloudex
     public void AddGlouInGloudex(Glou.SkinGlou skin)
     {
-        _glousInGloudex.Add(skin);
-        _glousDecouverts.Remove(skin);
+        m_glousInGloudex.Add(skin);
+        m_glousDecouverts.Remove(skin);
 
-        if(_glousDecouverts.Count == 0)
-            _notification.enabled = false;
+        if(m_glousDecouverts.Count == 0)
+            m_notification.enabled = false;
     }
 }
