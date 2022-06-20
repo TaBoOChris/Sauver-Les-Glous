@@ -152,13 +152,26 @@ public class GameManager : MonoBehaviour
 	public void GlouDie()
     {
 		m_nbGlousAlive--;
-		if(m_nbGlousAlive <= 0)
-        {
-			Invoke("EndGame", 1.5f);
-        }
+		CheckGlouAlive();
     }
 
 	public int GetNbGlousAlive() { return m_nbGlousAlive; }
+
+	public void AddGlouSaved()
+    {
+		m_nbGlousSaved++;
+		m_nbGlousAlive--;
+		CheckGlouAlive();
+    }
+
+
+	private void CheckGlouAlive()
+    {
+		if (m_nbGlousAlive <= 0)
+		{
+			Invoke("EndGame", 2f);
+		}
+	}
 
 
 	// ============= PAUSE =============== 
