@@ -10,6 +10,7 @@ public class GlousIntroducer : MonoBehaviour
     [SerializeField] GlouPipeTransfer m_pipeTransferer = null;
 
     [SerializeField] bool m_AutoIntroduce = false;
+    [SerializeField] float m_randomForceIntensity = 1.0f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,6 +35,10 @@ public class GlousIntroducer : MonoBehaviour
         m_glouToIntroduce.transform.position = transform.position;
         m_glouToIntroduce.transform.rotation = Quaternion.identity;
         m_glouToIntroduce.GetComponent<Rigidbody2D>().isKinematic = false;
+
+        float randomX = Mathf.Sin(Time.time)* m_randomForceIntensity;
+        Debug.Log("random force: " + randomX);
+        m_glouToIntroduce.GetComponent<Rigidbody2D>().AddForce(new Vector2(randomX, 0));
         m_glouToIntroduce.GetComponent<GlouInGame>().UpdateState();
         m_glouToIntroduce = null;
 
@@ -55,5 +60,4 @@ public class GlousIntroducer : MonoBehaviour
             IntroduceGlou();
         }
     }
-
 }
