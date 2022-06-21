@@ -6,7 +6,6 @@ public class Gear : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("GEAR : Collision !");
 
         if (collision.gameObject.tag == "Glou" && collision.GetComponent<Rigidbody2D>().isKinematic == false)
         {
