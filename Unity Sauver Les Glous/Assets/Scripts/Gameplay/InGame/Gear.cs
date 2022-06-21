@@ -11,7 +11,6 @@ public class Gear : MonoBehaviour
         {
             Debug.Log("GEAR : kill glou !");
             if(collision.GetComponent<GlouInGame>().GetState() == GlouInGame.State.Dead) { return; }
-            collision.GetComponent<GlouInGame>().SetState(GlouInGame.State.Dead);
             collision.gameObject.GetComponent<GlouInGame>().KillGlou();
         }
     }
