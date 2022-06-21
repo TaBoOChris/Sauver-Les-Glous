@@ -100,15 +100,15 @@ public class GameManager : MonoBehaviour
 		// create list of alive glous
 		List<Glou> aliveGlous = GetAliveGlous();
 		// Create baby glous
-		List<Glou> babyGlous = GetComponent<BabyGlousCreator>().CreateChildrenGlous(aliveGlous, m_nbGlousAlive);
+		//List<Glou> babyGlous = GetComponent<BabyGlousCreator>().CreateChildrenGlous(aliveGlous, m_nbGlousAlive);
 
 		EndMenu endMenu = m_endMenu.GetComponent<EndMenu>();
 		// display glous killed and saved and babies
 		endMenu.DisplayGlous(m_glousInGame);
-		endMenu.DisplayGlous(babyGlous);
+		//endMenu.DisplayGlous(babyGlous);
 
 		// Create Glous list to give to the Village
-		aliveGlous.AddRange(babyGlous);
+		//aliveGlous.AddRange(babyGlous);
 		if(GlousData.Instance)
 			GlousData.Instance.SetGlousInSelector(aliveGlous);
 		// GlousData.m_glousInSelector = glousAlive + babyGlous
