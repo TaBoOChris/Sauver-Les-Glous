@@ -34,6 +34,7 @@ public class GlousIntroducer : MonoBehaviour
         m_glouToIntroduce.transform.position = transform.position;
         m_glouToIntroduce.transform.rotation = Quaternion.identity;
         m_glouToIntroduce.GetComponent<Rigidbody2D>().isKinematic = false;
+        m_glouToIntroduce.GetComponent<GlouInGame>().UpdateState();
         m_glouToIntroduce = null;
 
         if(m_pipeTransferer != null)

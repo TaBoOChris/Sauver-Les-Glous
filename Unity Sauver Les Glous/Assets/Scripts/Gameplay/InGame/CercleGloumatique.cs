@@ -89,8 +89,6 @@ public class CercleGloumatique
             }
         }
 
-        Debug.Log("Resultats :");
-
         //Debug.Log("Nombre de skins restants : " + listeDesFusions.Count);
 
         // Si il n'y a qu'un seul skin possible alors la fusion a réussie, on retourne ce Glou
@@ -105,7 +103,7 @@ public class CercleGloumatique
         else
         {
             Debug.Log("LA FUSION A ECHOUÉE");
-            return glou1;
+            return null;
         }
     }
 

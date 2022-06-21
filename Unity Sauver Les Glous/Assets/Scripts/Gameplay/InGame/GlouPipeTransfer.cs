@@ -60,8 +60,6 @@ public class GlouPipeTransfer : MonoBehaviour
         m_fakeGlou.transform.position = m_glouDetectorInCage.transform.position;
 
         m_glouInPipe = true;
-
-        m_curGlou.GetComponent<GlouInGame>().UpdateState();
     }
 
     float ForwardFunction(float x)
@@ -122,18 +120,20 @@ public class GlouPipeTransfer : MonoBehaviour
             if(Physics2D.OverlapCollider(m_glouDetectorInCage, new ContactFilter2D(), results) > 0)
             {
                 foreach(var r in results){
-                    if(r.tag == "Glou")
+                    if (r.tag == "Glou")
                     {
-                        // Si c'est en bas et que le detecteur est bien placé, ou si c'est en haut 
-                        if ((m_negativeFunction && m_bCanSendGlou) || !m_negativeFunction){ 
+                        if (r.gameObject.GetComponent<GlouInGame>().GetState() == GlouInGame.State.InDrum || r.gameObject.GetComponent<GlouInGame>().GetState() == GlouInGame.State.Waiting)
+                        {
+                            // Si c'est en bas et que le detecteur est bien placé, ou si c'est en haut 
+                            if ((m_negativeFunction && m_bCanSendGlou) || !m_negativeFunction){ 
 
-                            canReceiveGlou = false;
-                            if (m_glousPuller != null)
-                                m_glousPuller.StopPull();
-                            m_curGlou = r.gameObject;
+                                canReceiveGlou = false;
+                                if (m_glousPuller != null)
+                                    m_glousPuller.StopPull();
+                                m_curGlou = r.gameObject;
 
-                            SendGlou();
-
+                                SendGlou();
+                            }
                         }
                     }
                 }
