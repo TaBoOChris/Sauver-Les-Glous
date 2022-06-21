@@ -42,6 +42,8 @@ public class VillageManager : AbstractSingleton<VillageManager>
         {
             AddGlouInUIBasket(glou);
         }
+
+        GloudexManager.Instance.DetectNewGlou();
     }
     private GameObject SpawnGlou(Glou glouData)
     {
@@ -292,7 +294,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
     {
         AudioManager.Instance.StopMusic();
         if (GlousData.Instance.GetGlousInSelector().Count > 0)
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameplayLvl");
     }
 
 }
