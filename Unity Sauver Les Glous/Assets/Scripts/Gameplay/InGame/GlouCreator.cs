@@ -22,6 +22,13 @@ public class GlouCreator : MonoBehaviour
             {
                 List<Glou> babyGlous = new List<Glou> { babyGlou, babyGlou, babyGlou };
                 m_spawner.SpawnGlous(babyGlous);
+
+                if (GameManager.Instance)
+                {
+                    GameManager.Instance.AddGlou();
+                    GameManager.Instance.AddGlou();
+                    GameManager.Instance.AddGlou();
+                }
             }
 
             // reset jars
