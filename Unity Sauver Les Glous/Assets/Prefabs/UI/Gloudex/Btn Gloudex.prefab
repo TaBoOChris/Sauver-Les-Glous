@@ -277,6 +277,9 @@ MonoBehaviour:
   m_nomTMP: {fileID: 0}
   m_formuleUI: {fileID: 0}
   m_notification: {fileID: 0}
+  m_GUInotification: {fileID: 0}
+  m_PGlouglounotification: {fileID: 0}
+  boutonGlouglou: {fileID: 0}
 --- !u!82 &7020451200854508067
 AudioSource:
   m_ObjectHideFlags: 0

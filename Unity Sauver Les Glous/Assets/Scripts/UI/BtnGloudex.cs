@@ -24,7 +24,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Image m_formuleUI;
 
     [SerializeField] private Image m_notification;
-    [SerializeField] private SpriteRenderer m_GUInotification;
+    [SerializeField] private GameObject m_GUInotification;
     [SerializeField] private Image m_PGlouglounotification;
     private AudioSource _audiosource;
 
@@ -84,7 +84,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if (GloudexManager.Instance.getIsProfesseurGlouglouDecouvert() && !GloudexManager.Instance.getIsProfesseurGlouglouInGloudex())
             {
                 // Notif du Gui
-                m_GUInotification.gameObject.SetActive(true);
+                m_GUInotification.SetActive(true);
 
                 // Notif du glouglou
                 boutonGlouglou.NotifGlouglou();
@@ -104,7 +104,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         GloudexManager.Instance.AddGlouInGloudex(m_skin);
 
         if (GloudexManager.Instance.GetGlouDecouvertsSize() == 0)
-            m_GUInotification.gameObject.SetActive(false);
+            m_GUInotification.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

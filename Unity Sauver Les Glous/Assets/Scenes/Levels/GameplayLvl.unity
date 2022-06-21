@@ -4327,12 +4327,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5831119394534149020, guid: 88c9af97a12d7e749b7e343ad23121dd, type: 3}
       propertyPath: pullRadius
-      value: 1.51
+      value: 3.18
       objectReference: {fileID: 0}
     - target: {fileID: 5831119394534149020, guid: 88c9af97a12d7e749b7e343ad23121dd, type: 3}
       propertyPath: m_toggleAnim
       value: 
       objectReference: {fileID: 1039154098}
+    - target: {fileID: 5831119394534149020, guid: 88c9af97a12d7e749b7e343ad23121dd, type: 3}
+      propertyPath: m_pullOnlyWaiting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5831119394534149021, guid: 88c9af97a12d7e749b7e343ad23121dd, type: 3}
       propertyPath: m_Enabled
       value: 0

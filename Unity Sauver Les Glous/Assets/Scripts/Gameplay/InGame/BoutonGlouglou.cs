@@ -11,7 +11,7 @@ public class BoutonGlouglou : MonoBehaviour
     private Image m_imageBouton;
 
     [SerializeField] private Image m_notification;
-    [SerializeField] private SpriteRenderer m_GUInotification;
+    [SerializeField] private GameObject m_GUInotification;
     private AudioSource _audiosource;
 
     private GameObject myEventSystem;
@@ -66,7 +66,7 @@ public class BoutonGlouglou : MonoBehaviour
         GloudexManager.Instance.setIsProfesseurGlouglouInGloudex(true);
 
         m_notification.enabled = false;
-        m_GUInotification.enabled = false;
+        m_GUInotification.SetActive(false);
 
     }
 
