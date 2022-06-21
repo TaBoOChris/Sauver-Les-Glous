@@ -35,7 +35,11 @@ public class GlouCreator : MonoBehaviour
             m_jar1.reset();
             m_jar2.reset();
 
-            // TURN DRUM ROTATION HERE
+            // reverse drum rotation
+            if (LevelProperties.Instance)
+            {
+                LevelProperties.Instance.SetRotationSpeed(- LevelProperties.Instance.rotationSpeed);
+            }
         }
     }
 }
