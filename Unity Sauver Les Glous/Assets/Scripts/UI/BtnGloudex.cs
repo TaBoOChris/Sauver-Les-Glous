@@ -84,7 +84,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if (GloudexManager.Instance.getIsProfesseurGlouglouDecouvert() && !GloudexManager.Instance.getIsProfesseurGlouglouInGloudex())
             {
                 // Notif du Gui
-                m_GUInotification.enabled = true;
+                m_GUInotification.gameObject.SetActive(true);
 
                 // Notif du glouglou
                 boutonGlouglou.NotifGlouglou();
@@ -103,8 +103,8 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         m_notification.enabled = false;
         GloudexManager.Instance.AddGlouInGloudex(m_skin);
 
-        if(GloudexManager.Instance.GetGlouDecouvertsSize() == 0)
-            m_GUInotification.enabled = false;
+        if (GloudexManager.Instance.GetGlouDecouvertsSize() == 0)
+            m_GUInotification.gameObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

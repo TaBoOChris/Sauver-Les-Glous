@@ -19,7 +19,7 @@ public class GlouInGame : MonoBehaviour
         Dead
     }
 
-    private State state = State.Waiting;
+    [SerializeField] private State state = State.Waiting;
 
     public void SetGlou(Glou glou)
     {
@@ -31,7 +31,7 @@ public class GlouInGame : MonoBehaviour
         return m_glou;
     }
 
-    public void KillGlou()
+    public void KillGlou(bool ghost=true)
     {
         if (state != State.InDrum && state != State.InFusion)
             return;
@@ -39,14 +39,19 @@ public class GlouInGame : MonoBehaviour
         m_isAlive = false;
         state = State.Dead;
 
-        // effects of death
-        StartCoroutine(GlouDieAnimation_Coroutine());
-
-        if (GameManager.Instance !=null)
+        if (GameManager.Instance != null)
             GameManager.Instance.GlouDie();
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayGlouDie();
+
+        // effects of death
+        if (ghost)
+            StartCoroutine(GlouDieAnimation_Coroutine());
+        else
+        {
+            Destroy(gameObject);
+        }
 
     }
 

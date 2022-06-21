@@ -62,9 +62,8 @@ public class GlouCreatorJar : MonoBehaviour
     public void reset()
     {
         StopAllCoroutines();
-        Destroy(m_curGlou);
-        if (GameManager.Instance)
-            GameManager.Instance.GlouDie();
+
+        m_curGlou.GetComponent<GlouInGame>().KillGlou(false);
 
         m_glousPuller.enabled = true;
         CanCatchGlou = true;
