@@ -11,6 +11,7 @@ public class CheatCodes : MonoBehaviour
 
     [SerializeField] private Timer m_timer;
     [SerializeField] private GlousSpawner m_glouSpawner;
+    [SerializeField] private GlousSpawner m_glouSpawnerCheat;
 
     // Start is called before the first frame update
     void Awake()
@@ -52,7 +53,7 @@ public class CheatCodes : MonoBehaviour
 
     public void SpawnGlou()
     {
-        m_glouSpawner.SpawnGlou();
+        m_glouSpawnerCheat.SpawnGlou();
         GameManager.Instance.AddGlou();
         Debug.Log("<CHEAT> SpawnGlou");
     }

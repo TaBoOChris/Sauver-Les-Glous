@@ -65,7 +65,12 @@ public class GlousSpawner : MonoBehaviour
 
     public void SpawnGlou()
     {
-        SpawnGlou(null);
+        Glou.SkinGlou skin = Glou.RandomSkinRYBOGP();
+        float scale = Random.Range(m_scaleMin, m_scaleMax);
+
+        Glou glou = new Glou(skin, scale);
+
+        SpawnGlou(glou);
     }
 
     public void SpawnNewGlou()
