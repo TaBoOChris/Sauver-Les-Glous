@@ -146,7 +146,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
     {
         // Check if within the dropzone
         Vector3 pt = glou.transform.position;
-        if (m_dropzoneCollider.bounds.Contains(pt))
+        if (m_dropzoneCollider.bounds.Contains(pt) && GlousData.Instance.GetGlousInSelectorCount() < 10)
         {
             Debug.Log("Glou dropped inside zone");
             var villageMono = glou.GetComponent<GlouInVillage>();

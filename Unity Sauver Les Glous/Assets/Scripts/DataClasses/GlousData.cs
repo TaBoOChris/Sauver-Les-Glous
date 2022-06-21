@@ -41,4 +41,9 @@ public class GlousData : AbstractSingleton<GlousData>
     {
         m_glousInSelector = newList;
     }
+
+    public int GetGlousInSelectorCount()
+    {
+        return m_glousInSelector.Count;
+    }
 }
