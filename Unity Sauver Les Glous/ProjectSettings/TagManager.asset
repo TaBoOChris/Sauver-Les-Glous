@@ -44,9 +44,6 @@ TagManager:
   - name: Background
     uniqueID: 1030354361
     locked: 0
-  - name: Glous
-    uniqueID: 371031225
-    locked: 0
   - name: Plateformes
     uniqueID: 183098265
     locked: 0
@@ -55,6 +52,9 @@ TagManager:
     locked: 0
   - name: Topground
     uniqueID: 2572371253
+    locked: 0
+  - name: Glous
+    uniqueID: 371031225
     locked: 0
   - name: Default
     uniqueID: 0
