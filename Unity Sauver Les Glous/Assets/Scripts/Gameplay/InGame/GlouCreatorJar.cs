@@ -80,7 +80,7 @@ public class GlouCreatorJar : MonoBehaviour
     IEnumerator ReleaseGlou()
     {
         // on attend 10 sec pour jeter le glou
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(15f);
 
         if(m_curGlou != null) {
 
