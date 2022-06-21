@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GlouCreator : MonoBehaviour
 {
+    [SerializeField] private int m_nbGlouFusion = 2;
 
     [SerializeField] private GlouCreatorJar m_jar1;
     [SerializeField] private GlouCreatorJar m_jar2;
@@ -20,14 +21,13 @@ public class GlouCreator : MonoBehaviour
 
             if (babyGlou != null)
             {
-                List<Glou> babyGlous = new List<Glou> { babyGlou, babyGlou, babyGlou };
-                m_spawner.SpawnGlous(babyGlous);
-
-                if (GameManager.Instance)
+                for (int i=0; i< m_nbGlouFusion; ++i)
                 {
-                    GameManager.Instance.AddGlou();
-                    GameManager.Instance.AddGlou();
-                    GameManager.Instance.AddGlou();
+                    m_spawner.SpawnGlou(babyGlou);
+                    if (GameManager.Instance)
+                    {
+                        GameManager.Instance.AddGlou();
+                    }
                 }
             }
 
