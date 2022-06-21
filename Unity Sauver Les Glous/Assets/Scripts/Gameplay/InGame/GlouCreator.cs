@@ -10,6 +10,9 @@ public class GlouCreator : MonoBehaviour
     [SerializeField] private GlouCreatorJar m_jar2;
     [SerializeField] private GlousSpawner m_spawner;
 
+    [SerializeField] private ParticleSystem m_fusionSucceededEffect;
+    [SerializeField] private ParticleSystem m_fusionFailedEffect;
+
     private CercleGloumatique m_glouFusion = new CercleGloumatique();
 
     void FixedUpdate()
@@ -21,6 +24,8 @@ public class GlouCreator : MonoBehaviour
 
             if (babyGlou != null)
             {
+                m_fusionSucceededEffect.Play();
+
                 for (int i=0; i< m_nbGlouFusion; ++i)
                 {
                     m_spawner.SpawnGlou(babyGlou);
@@ -29,6 +34,10 @@ public class GlouCreator : MonoBehaviour
                         GameManager.Instance.AddGlou();
                     }
                 }
+            }
+            else
+            {
+                m_fusionFailedEffect.Play();
             }
 
             // reset jars
