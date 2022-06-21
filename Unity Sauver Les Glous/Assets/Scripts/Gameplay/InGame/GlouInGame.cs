@@ -66,7 +66,8 @@ public class GlouInGame : MonoBehaviour
 
         float ghostScale = Mathf.Clamp(transform.localScale.x, 0.65f, 2.0f);
         m_myGhost.transform.localScale = new Vector3(ghostScale, ghostScale, 1f);
-        gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
 
         yield return new WaitForSecondsRealtime(1.0f);
 
