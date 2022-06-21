@@ -3473,6 +3473,10 @@ PrefabInstance:
       propertyPath: m_pipeTransferer
       value: 
       objectReference: {fileID: 1150322234}
+    - target: {fileID: 1166600859779944827, guid: dc69e1666fb84284ab214c08724caa59, type: 3}
+      propertyPath: m_randomForceIntensity
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1166600859779944832, guid: dc69e1666fb84284ab214c08724caa59, type: 3}
       propertyPath: m_Name
       value: GlousIntroducer
