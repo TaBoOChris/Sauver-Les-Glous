@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GlouCreator : MonoBehaviour
 {
+    [SerializeField] private int m_nbGlouFusion = 2;
 
     [SerializeField] private GlouCreatorJar m_jar1;
     [SerializeField] private GlouCreatorJar m_jar2;
     [SerializeField] private GlousSpawner m_spawner;
+
+    [SerializeField] private ParticleSystem m_fusionSucceededEffect;
+    [SerializeField] private ParticleSystem m_fusionFailedEffect;
 
     private CercleGloumatique m_glouFusion = new CercleGloumatique();
 
@@ -20,22 +24,31 @@ public class GlouCreator : MonoBehaviour
 
             if (babyGlou != null)
             {
-                List<Glou> babyGlous = new List<Glou> { babyGlou, babyGlou, babyGlou };
-                m_spawner.SpawnGlous(babyGlous);
+                m_fusionSucceededEffect.Play();
 
-                if (GameManager.Instance)
+                for (int i=0; i< m_nbGlouFusion; ++i)
                 {
-                    GameManager.Instance.AddGlou();
-                    GameManager.Instance.AddGlou();
-                    GameManager.Instance.AddGlou();
+                    m_spawner.SpawnGlou(babyGlou);
+                    if (GameManager.Instance)
+                    {
+                        GameManager.Instance.AddGlou();
+                    }
                 }
+            }
+            else
+            {
+                m_fusionFailedEffect.Play();
             }
 
             // reset jars
             m_jar1.reset();
             m_jar2.reset();
 
-            // TURN DRUM ROTATION HERE
+            // reverse drum rotation
+            if (LevelProperties.Instance)
+            {
+                LevelProperties.Instance.SetRotationSpeed(- LevelProperties.Instance.rotationSpeed);
+            }
         }
     }
 }
