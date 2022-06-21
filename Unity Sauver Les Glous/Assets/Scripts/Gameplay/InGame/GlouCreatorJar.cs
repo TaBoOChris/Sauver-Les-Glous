@@ -10,8 +10,10 @@ public class GlouCreatorJar : MonoBehaviour
 
     private GameObject m_curGlou = null;
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
+        if (!CanFusionGlous()) { return; }
+
         if (m_curGlou == null)
         {
             List<Collider2D> results = new List<Collider2D>();
@@ -51,5 +53,16 @@ public class GlouCreatorJar : MonoBehaviour
     public GameObject getGlou()
     {
         return m_curGlou;
+    }
+
+    public bool CanFusionGlous()
+    {
+        bool tmp = true;
+
+        if (GameManager.Instance)
+            tmp = GameManager.Instance.GetNbGlousAlive() >= 2;
+
+
+        return tmp;
     }
 }
