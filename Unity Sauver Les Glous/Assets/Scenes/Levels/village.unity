@@ -578,17 +578,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &518546062 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4265597881226000022, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-  m_PrefabInstance: {fileID: 2121244442}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &540204922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7123050777788088290, guid: 11ba7b058f3d36d47b61f84dee7179e3, type: 3}
@@ -17844,17 +17833,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &896533545 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 896533545, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-  m_PrefabInstance: {fileID: 2121244442}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0fe1be76f74da4a8740c2d9a50bfb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &960112414
 GameObject:
   m_ObjectHideFlags: 0
@@ -17983,7 +17961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1941974262104471145, guid: 19ddbeee4e56e14489849871dd10956b, type: 3}
       propertyPath: m_glousDecouverts.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1941974262104471145, guid: 19ddbeee4e56e14489849871dd10956b, type: 3}
       propertyPath: m_glousInGloudex.Array.data[3]
@@ -18015,7 +17993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1941974262104471145, guid: 19ddbeee4e56e14489849871dd10956b, type: 3}
       propertyPath: m_glousDecouverts.Array.data[0]
-      value: 11
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1941974262104471145, guid: 19ddbeee4e56e14489849871dd10956b, type: 3}
       propertyPath: m_glousDecouverts.Array.data[1]
@@ -44891,42 +44869,10 @@ PrefabInstance:
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
-    - target: {fileID: 186059844409358379, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: bd2f3a007b6495a4696d84d09d351ce1, type: 2}
-    - target: {fileID: 186059844409358388, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 186059844409358388, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClicBouton
-      objectReference: {fileID: 0}
-    - target: {fileID: 186059844409358388, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BoutonGlouglou, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 186059844409358391, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 186059844409358391, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1243529245985573400, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
     - target: {fileID: 1243529245985573400, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
-    - target: {fileID: 1243529245985573400, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
     - target: {fileID: 3249310093338017184, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_Camera
       value: 
@@ -45020,137 +44966,49 @@ PrefabInstance:
       value: CercleGloumatique
       objectReference: {fileID: 0}
     - target: {fileID: 5758796503569732873, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796503569732873, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_GUInotification
-      value: 
-      objectReference: {fileID: 2053005514}
-    - target: {fileID: 5758796503569732873, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796503581231901, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796503581231901, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796503581231901, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796503693787114, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796503693787114, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796503693787114, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796503741243853, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796503741243853, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796503741243853, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796503927027639, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796503927027639, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796503927027639, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796504108050935, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796504108050935, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796504108050935, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796504486539361, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796504486539361, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796504486539361, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796504742820110, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796504742820110, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796504742820110, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796504880561508, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796504880561508, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796504880561508, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796504960059079, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796504960059079, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796504960059079, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
-      value: 
-      objectReference: {fileID: 518546062}
-    - target: {fileID: 5758796505177088839, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: boutonGlouglou
-      value: 
-      objectReference: {fileID: 896533545}
-    - target: {fileID: 5758796505177088839, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
       objectReference: {fileID: 2053005514}
     - target: {fileID: 5758796505177088839, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-      propertyPath: m_PGlouglounotification
+      propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 518546062}
+      objectReference: {fileID: 2053005514}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
 --- !u!1001 &7123050778323984536
