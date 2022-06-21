@@ -114,7 +114,7 @@ public class GlouPipeTransfer : MonoBehaviour
                 m_fakeGlou.transform.position = next;
             }
         }
-        else //can Receive
+        else if(m_curGlou==null) //can Receive
         {
             List<Collider2D> results = new List<Collider2D>();
             if(Physics2D.OverlapCollider(m_glouDetectorInCage, new ContactFilter2D(), results) > 0)
@@ -133,6 +133,7 @@ public class GlouPipeTransfer : MonoBehaviour
                                 m_curGlou = r.gameObject;
 
                                 SendGlou();
+                                break;
                             }
                         }
                     }

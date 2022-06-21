@@ -24,7 +24,7 @@ public class GlousSpawner : MonoBehaviour
         for (int i = 0; i < glousList.Count; i++)
         {
             SpawnGlou(glousList[i]);
-            Debug.Log("SPAWNER :GLOUS " + i + " Spawned");
+            Debug.Log("SPAWNER :GLOUS " + (i+1) + " Spawned");
 
             yield return new WaitForSeconds(m_spawnDelay);
         }

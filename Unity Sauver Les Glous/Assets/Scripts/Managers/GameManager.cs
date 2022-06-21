@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         }
 
+		Debug.Log("GAME MANAGER : On va spawn " + glousStartingList.Count + " Glous");
 		m_nbGlousAlive = glousStartingList.Count;
 		m_glousSpawner.SpawnGlous(glousStartingList);
 
@@ -152,6 +153,7 @@ public class GameManager : MonoBehaviour
 	public void GlouDie()
     {
 		m_nbGlousAlive--;
+		DebugGlouNumber();
 		CheckGlouAlive();
     }
 
@@ -161,6 +163,7 @@ public class GameManager : MonoBehaviour
     {
 		m_nbGlousSaved++;
 		m_nbGlousAlive--;
+		DebugGlouNumber();
 		CheckGlouAlive();
     }
 
@@ -171,6 +174,12 @@ public class GameManager : MonoBehaviour
 		{
 			Invoke("EndGame", 2f);
 		}
+	}
+
+	public void DebugGlouNumber()
+    {
+		Debug.Log("GAME MANAGER : Glou in Drum = " + m_nbGlousAlive + " Glou saved = " + m_nbGlousSaved);
+
 	}
 
 

@@ -10,6 +10,7 @@ public class Gear : MonoBehaviour
         if (collision.gameObject.tag == "Glou" && collision.GetComponent<Rigidbody2D>().isKinematic == false)
         {
             Debug.Log("GEAR : kill glou !");
+            if(collision.GetComponent<GlouInGame>().GetState() == GlouInGame.State.Dead) { return; }
             collision.gameObject.GetComponent<GlouInGame>().KillGlou();
         }
     }
