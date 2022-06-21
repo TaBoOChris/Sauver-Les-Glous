@@ -14,6 +14,7 @@ public class GlouInGame : MonoBehaviour
     {
         Waiting,
         InDrum,
+        InFusion,
         Saved,
         Dead
     }
@@ -88,5 +89,13 @@ public class GlouInGame : MonoBehaviour
         }
     }
 
+    public void SetState(State state)
+    {
+        this.state = state;
+    }
 
+    public State GetState()
+    {
+        return state;
+    }
 }

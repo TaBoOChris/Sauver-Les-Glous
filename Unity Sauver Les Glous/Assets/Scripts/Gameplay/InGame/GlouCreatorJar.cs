@@ -21,16 +21,21 @@ public class GlouCreatorJar : MonoBehaviour
                 {
                     if (r.tag == "Glou")
                     {
-                        m_glousPuller.enabled = false;
-                        m_curGlou = r.gameObject;
+                        if (r.gameObject.GetComponent<GlouInGame>().GetState() == GlouInGame.State.InDrum)
+                        {
+                            m_glousPuller.enabled = false;
+                            m_curGlou = r.gameObject;
 
-                        Debug.Log("glou caught in creator jar");
-                        m_curGlou.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                        m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
-                        m_curGlou.transform.rotation = Quaternion.identity;
-                        m_curGlou.transform.position = m_glouInJarTrans.position;
+                            m_curGlou.GetComponent<GlouInGame>().SetState(GlouInGame.State.InFusion);
 
-                        m_curGlou.transform.SetParent(m_glousPuller.transform);
+                            Debug.Log("glou caught in creator jar");
+                            m_curGlou.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                            m_curGlou.GetComponent<Rigidbody2D>().isKinematic = true;
+                            m_curGlou.transform.rotation = Quaternion.identity;
+                            m_curGlou.transform.position = m_glouInJarTrans.position;
+
+                            m_curGlou.transform.SetParent(m_glousPuller.transform);
+                        }
                     }
                 }
             }
