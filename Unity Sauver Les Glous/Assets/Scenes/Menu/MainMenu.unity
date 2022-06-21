@@ -648,7 +648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -228, y: 147}
+  m_AnchoredPosition: {x: -255, y: 153.7}
   m_SizeDelta: {x: 240, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261392177
@@ -1276,7 +1276,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1407855234}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1625,7 +1625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &641639222
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2307,7 +2307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &894742875
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3583,7 +3583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1290309505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3625,12 +3625,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Le professeur Glouglou a cr\xE9\xE9 une machine capable de fusionner les
-    Glous entre eux et souhaite recr\xE9er des esp\xE8ces rares de glous disparues
-    depuis des mill\xE9naires. Sa premi\xE8re machine n'est qu'un prototype. Elle
-    est difficile \xE0 utiliser et les pertes en Glous sont cons\xE9quentes, c'est
-    pourquoi il a imagin\xE9 une nouvelle machine r\xE9volutionnaire qui r\xE9duit
-    consid\xE9rablement les risques.\n"
+  m_text: "Le professeur Glouglou a r\xE9ussi \xE0 ramener \xE0 la vie des cr\xE9atures
+    disparues depuis des mill\xE9naires : les Glous. Ses recherches ont abouti \xE0
+    la cr\xE9ation d\u2019un s\xE9rum permetant de fabriquer en grand nombre les
+    Glous primaires de type Rouge, Bleu et Jaune."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
   m_sharedMaterial: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
@@ -3924,7 +3922,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1341571632}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4087,9 +4085,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Toutefois un jour une exp\xE9rience a mal tourn\xE9 et plut\xF4t que de
-    cr\xE9er le glou ultime il s'est transform\xE9 en ce dernier avant de se scinder
-    en deux encore et encore et de devenir un Glou primaire. \n"
+  m_text: "Pour poursuivre son exp\xE9rience, il a imagin\xE9 une machine qui lui
+    permettait de faire revivre les Glous tr\xE8s rares en fusionnant les Glous primaires.
+    Mais ce processus est dangereux et un jour le professeur GlouGlou a disparu !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
   m_sharedMaterial: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
@@ -4225,10 +4223,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Malheureusement il n'a ni not\xE9 ni parl\xE9 de sa nouvelle machine \xE0
-    quiconque et nous sommes dans une impasse. Sans lui, le projet est fini. Le gouvernement
-    vous donne pour mission d'utiliser la machine dangereuse et de recr\xE9er le
-    Glou ultime."
+  m_text: "Puisque tu fais partie de la brigade des affaires myst\xE9rieuses, le
+    minist\xE8re t\u2019as charg\xE9 de poursuivre les exp\xE9riences du professeur
+    qui promettait de nous en apprendre beaucoup plus sur l\u2019\xE8re Glouzo\xEFque
+    oubli\xE9e\u2026 \nTout ce dont tu disposes c\u2019est d\u2019un Gloudex incomplet
+    que l\u2019on a retrouv\xE9 chez le professeur. Bon courage ! "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
   m_sharedMaterial: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
@@ -4674,7 +4673,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290309505}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
