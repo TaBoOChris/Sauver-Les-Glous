@@ -25,7 +25,10 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     [SerializeField] private Image m_notification;
     [SerializeField] private SpriteRenderer m_GUInotification;
+    [SerializeField] private Image m_PGlouglounotification;
     private AudioSource _audiosource;
+
+    [SerializeField] private BoutonGlouglou boutonGlouglou;
 
     private GameObject myEventSystem;
 
@@ -76,6 +79,17 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if(m_imageBouton.sprite == m_exclamation)
         {
             RevealGlou();
+
+            // Si tous les Glous sont dans le Gloudex, on découvre le professeur Glouglou
+            if (GloudexManager.Instance.getIsProfesseurGlouglouDecouvert() && !GloudexManager.Instance.getIsProfesseurGlouglouInGloudex())
+            {
+                // Notif du Gui
+                m_GUInotification.enabled = true;
+
+                // Notif du glouglou
+                boutonGlouglou.NotifGlouglou();
+
+            }
         }
 
         myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);

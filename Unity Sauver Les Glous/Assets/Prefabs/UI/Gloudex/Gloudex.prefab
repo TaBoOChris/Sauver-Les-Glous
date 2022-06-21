@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duplicationHandling: 1
   DoNotDestroyOnLoad: 1
-  m_glousDecouverts: 0300000005000000
+  m_glousDecouverts: 
   m_glousInGloudex: 000000000100000002000000
-  m_notification: {fileID: 0}
+  m_isProfGlouglouDecouvert: 0
+  m_isProfGlouglouInGloudex: 0
