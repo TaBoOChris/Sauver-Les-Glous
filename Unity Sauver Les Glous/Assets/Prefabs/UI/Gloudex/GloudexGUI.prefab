@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cercleGloumatique: {fileID: 0}
+  m_notification: {fileID: 463679213682764135}
 --- !u!95 &6526253035351143852
 Animator:
   serializedVersion: 4
@@ -266,6 +267,11 @@ PrefabInstance:
 --- !u!4 &463679213682764134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5189452623457373558, guid: 0eef7df58f86a144aa87b296889f48f0, type: 3}
+  m_PrefabInstance: {fileID: 5650876665600828432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &463679213682764135 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5189452623457373559, guid: 0eef7df58f86a144aa87b296889f48f0, type: 3}
   m_PrefabInstance: {fileID: 5650876665600828432}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &463679213682764136 stripped
