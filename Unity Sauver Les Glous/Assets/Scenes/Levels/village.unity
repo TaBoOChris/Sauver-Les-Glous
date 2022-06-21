@@ -44505,6 +44505,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 463679213682764136, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1396664549536925977, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -44590,6 +44594,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6526253035351143853, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
+      propertyPath: m_notification
+      value: 
+      objectReference: {fileID: 2053005514}
+    - target: {fileID: 6526253035351143853, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
       propertyPath: m_cercleGloumatique
       value: 
       objectReference: {fileID: 1784181553}
@@ -44601,7 +44609,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
 --- !u!212 &2053005514 stripped
 SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 463679213682764135, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4678403077752028525, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
   m_PrefabInstance: {fileID: 2053005513}
   m_PrefabAsset: {fileID: 0}
 --- !u!213 &2057019715
@@ -44908,11 +44916,11 @@ PrefabInstance:
     - target: {fileID: 896533545, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 1243529245985573400, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 3249310093338017184, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_Camera
       value: 
@@ -45012,47 +45020,47 @@ PrefabInstance:
     - target: {fileID: 5758796503569732873, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796503581231901, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796503693787114, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796503741243853, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796503927027639, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796504108050935, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796504486539361, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796504742820110, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796504880561508, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796504960059079, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 5758796505177088839, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_GUInotification
       value: 
-      objectReference: {fileID: 2053005514}
+      objectReference: {fileID: 0}
     - target: {fileID: 8358448142903550000, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
       propertyPath: m_fontAsset
       value: 
