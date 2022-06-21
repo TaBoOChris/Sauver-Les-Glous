@@ -21,6 +21,8 @@ public class GlouPipeTransfer : MonoBehaviour
     [SerializeField] bool m_negativeFunction = false;
     public bool canReceiveGlou = false;
 
+    [SerializeField] private ParticleSystem m_vacuumEffect;
+
     [SerializeField] Animator m_toggleAnim;
 
     bool m_glouInPipe = false;
@@ -153,6 +155,7 @@ public class GlouPipeTransfer : MonoBehaviour
             if (m_glousPuller != null)
             {
                 m_glousPuller.enabled = true;
+                m_vacuumEffect.Play();
             }
         }
     }
@@ -168,6 +171,7 @@ public class GlouPipeTransfer : MonoBehaviour
             if (m_glousPuller != null)
             {
                 m_glousPuller.enabled = false;
+                m_vacuumEffect.Stop();
             }
         }
 

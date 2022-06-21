@@ -8,6 +8,8 @@ public class GlouCreatorJar : MonoBehaviour
     [SerializeField] private Transform m_glouInJarTrans;
     [SerializeField] private GlousPuller m_glousPuller;
 
+    [SerializeField] private ParticleSystem m_vacuumEffect;
+
     private GameObject m_curGlou = null;
     private float newAspirationDelay = 2f;
     private bool CanCatchGlou = true;
@@ -31,6 +33,8 @@ public class GlouCreatorJar : MonoBehaviour
                         {
                             m_glousPuller.enabled = false;
                             m_curGlou = r.gameObject;
+
+                            m_vacuumEffect.Stop();
 
                             m_curGlou.GetComponent<GlouInGame>().SetState(GlouInGame.State.InFusion);
 
@@ -59,6 +63,7 @@ public class GlouCreatorJar : MonoBehaviour
         m_glousPuller.enabled = true;
         CanCatchGlou = true;
         m_curGlou = null;
+        m_vacuumEffect.Play();
     }
 
     public GameObject getGlou()
@@ -103,6 +108,8 @@ public class GlouCreatorJar : MonoBehaviour
             // On attend 2sec pour pouvoir attraper de nouveau un glou 
             yield return new WaitForSeconds(2f);
             CanCatchGlou = true;
+
+            m_vacuumEffect.Play();
         }
     }
 }
