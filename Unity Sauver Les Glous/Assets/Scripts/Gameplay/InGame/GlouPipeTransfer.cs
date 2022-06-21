@@ -125,10 +125,10 @@ public class GlouPipeTransfer : MonoBehaviour
                         if (r.gameObject.GetComponent<GlouInGame>().GetState() == GlouInGame.State.InDrum || r.gameObject.GetComponent<GlouInGame>().GetState() == GlouInGame.State.Waiting)
                         {
                             // Si c'est en bas et que le detecteur est bien placé, ou si c'est en haut 
-                            if ((m_negativeFunction && m_bCanSendGlou) || !m_negativeFunction){ 
+                            if ((m_negativeFunction && m_bCanSendGlou) || !m_negativeFunction){
 
                                 canReceiveGlou = false;
-                                if (m_glousPuller != null)
+                                if (m_glousPuller != null && !m_negativeFunction)
                                     m_glousPuller.StopPull();
                                 m_curGlou = r.gameObject;
 
@@ -146,7 +146,14 @@ public class GlouPipeTransfer : MonoBehaviour
 
         if (m_negativeFunction && collision.tag == "SpawnerTrigger")
             m_bCanSendGlou = true;
-     
+
+        if (m_negativeFunction && collision.tag == "AttractorTrigger")
+        {
+            if (m_glousPuller != null)
+            {
+                m_glousPuller.enabled = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -154,7 +161,15 @@ public class GlouPipeTransfer : MonoBehaviour
 
         if (m_negativeFunction && collision.tag == "SpawnerTrigger")
             m_bCanSendGlou = false;
-        
+
+        if (m_negativeFunction && collision.tag == "AttractorTrigger")
+        {
+            if (m_glousPuller != null)
+            {
+                m_glousPuller.enabled = false;
+            }
+        }
+
     }
 
 

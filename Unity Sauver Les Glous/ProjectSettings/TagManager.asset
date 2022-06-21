@@ -7,6 +7,7 @@ TagManager:
   - Glou
   - DrumLimit
   - SpawnerTrigger
+  - AttractorTrigger
   layers:
   - Default
   - TransparentFX
