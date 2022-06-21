@@ -20,9 +20,8 @@ public class GlouCreator : MonoBehaviour
 
             if (babyGlou != null)
             {
-                m_spawner.SpawnGlou(babyGlou);
-                m_spawner.SpawnGlou(babyGlou);
-                m_spawner.SpawnGlou(babyGlou);
+                List<Glou> babyGlous = new List<Glou> { babyGlou, babyGlou, babyGlou };
+                m_spawner.SpawnGlous(babyGlous);
             }
 
             // reset jars
