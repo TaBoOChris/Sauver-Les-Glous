@@ -52,6 +52,8 @@ MonoBehaviour:
   m_jar1: {fileID: 5658157792414377545}
   m_jar2: {fileID: 648188152467139055}
   m_spawner: {fileID: 0}
+  m_fusionSucceededEffect: {fileID: 0}
+  m_fusionFailedEffect: {fileID: 0}
 --- !u!1001 &1975474311122033117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,6 +258,14 @@ PrefabInstance:
     - target: {fileID: 6888619455812143510, guid: e2bc37983fae7784a9e6e02e2cf951b7, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435407389768551746, guid: e2bc37983fae7784a9e6e02e2cf951b7, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435407389768551746, guid: e2bc37983fae7784a9e6e02e2cf951b7, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2bc37983fae7784a9e6e02e2cf951b7, type: 3}

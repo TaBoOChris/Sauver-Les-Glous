@@ -343,8 +343,16 @@ PrefabInstance:
       value: VacuumEffect
       objectReference: {fileID: 0}
     - target: {fileID: 2994548401600274442, guid: 847f6ce9f267621418dde47c09f2116b, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994548401600274442, guid: 847f6ce9f267621418dde47c09f2116b, type: 3}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994548401600274442, guid: 847f6ce9f267621418dde47c09f2116b, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2994548401600274442, guid: 847f6ce9f267621418dde47c09f2116b, type: 3}
       propertyPath: InitialModule.startSize.scalar
