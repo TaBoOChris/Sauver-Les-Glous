@@ -8,7 +8,7 @@ public class GlouInGame : MonoBehaviour
     private bool m_isAlive = true;
 
     [SerializeField] private GameObject m_glouGhost;
-
+    GameObject m_myGhost;
 
     public enum State
     {
@@ -33,6 +33,9 @@ public class GlouInGame : MonoBehaviour
 
     public void KillGlou()
     {
+        if (state != State.InDrum && state != State.InFusion)
+            return;
+
         m_isAlive = false;
         state = State.Dead;
 
@@ -45,7 +48,6 @@ public class GlouInGame : MonoBehaviour
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayGlouDie();
 
-        Destroy(gameObject);
     }
 
     public bool IsAlive()
@@ -56,15 +58,21 @@ public class GlouInGame : MonoBehaviour
 
     IEnumerator GlouDieAnimation_Coroutine()
     {
-        GameObject newGlou = Instantiate(
+        m_myGhost = Instantiate(
             m_glouGhost, 
             transform.position + new Vector3(0f, 0.5f, 0f), 
             Quaternion.identity
             );
 
-        newGlou.transform.localScale = transform.localScale;
+        float ghostScale = Mathf.Clamp(transform.localScale.x, 0.65f, 2.0f);
+        m_myGhost.transform.localScale = new Vector3(ghostScale, ghostScale, 1f);
+        gameObject.SetActive(false);
+
         yield return new WaitForSecondsRealtime(1.0f);
-        Destroy(newGlou);
+
+        Destroy(m_myGhost);
+        Destroy(gameObject);
+        yield return null;
     }
 
     public void UpdateState()
