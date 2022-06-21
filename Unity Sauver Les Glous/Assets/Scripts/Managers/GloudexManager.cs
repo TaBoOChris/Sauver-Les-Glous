@@ -20,7 +20,7 @@ public class GloudexManager : AbstractSingleton<GloudexManager>
 
     private void Start()
     {
-        DetectNewGlou();
+        //DetectNewGlou();
     }
 
     // Permet de voir si un Glou est dans le Gloudex

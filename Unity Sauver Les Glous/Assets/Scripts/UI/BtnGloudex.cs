@@ -42,6 +42,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         // Si le Glou est dans le Gloudex
         if (GloudexManager.Instance.IsInGloudex(m_skin))
         {
+            //Debug.Log("Le " + m_skin + " est dans le Gloudex");
             // Le fragment de couleur est visible
             m_fragmentCouleur.color = new Color(1, 1, 1, 1);
             // Le skin du Glou est visible
@@ -51,6 +52,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         // Si le Glou vient d'etre découvert
         else if (GloudexManager.Instance.IsWaitingToEnterGloudex(m_skin))
         {
+            //Debug.Log("Le " + m_skin + " vient d'etre découvert");
             // Le fragment de couleur est invisible
             m_fragmentCouleur.color = new Color(1, 1, 1, 0);
             // Le skin du Glou est en notification
@@ -60,6 +62,7 @@ public class BtnGloudex : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         // Le glou n'a pas éte découvert
         else
         {
+            //Debug.Log("Le " + m_skin + " n'est pas découvert");
             // Le fragment de couleur n'est pas visible
             m_fragmentCouleur.color = new Color(1, 1, 1, 0);
             // Le skin du Glou est caché

@@ -42,6 +42,8 @@ public class VillageManager : AbstractSingleton<VillageManager>
         {
             AddGlouInUIBasket(glou);
         }
+
+        GloudexManager.Instance.DetectNewGlou();
     }
     private GameObject SpawnGlou(Glou glouData)
     {
