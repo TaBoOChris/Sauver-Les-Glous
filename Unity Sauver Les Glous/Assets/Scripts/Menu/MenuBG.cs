@@ -10,13 +10,14 @@ public class MenuBG : MonoBehaviour
     [SerializeField] float xSpawnForce = 180;
     [SerializeField] float ySpawnForce = 180;
     float t = 0;
+    int m_nbGlous = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         AudioManager.Instance.PlayMenuMusic();
         Time.timeScale = 1;
-
+        m_nbGlous = 0;
         t = spawnInterval - 0.5f;
     }
 
@@ -38,11 +39,15 @@ public class MenuBG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_nbGlous > 100)
+            return;
         t+=Time.deltaTime;
         if(t > spawnInterval)
         {
             SpawnGlou();
+            m_nbGlous++;
             t = 0;
+            spawnInterval += 0.09f;
         }
     }
 }
