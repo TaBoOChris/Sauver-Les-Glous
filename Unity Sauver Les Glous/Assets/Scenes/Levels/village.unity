@@ -14293,7 +14293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
       propertyPath: m_text
-      value: "vers l'ins\xE9mination >>"
+      value: Vers le labo !
       objectReference: {fileID: 0}
     - target: {fileID: 3919298737820784588, guid: bc53b0e3dd3012343b4d7acaeba8da0a, type: 3}
       propertyPath: m_fontSize
@@ -17961,7 +17961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1941974262104471145, guid: 19ddbeee4e56e14489849871dd10956b, type: 3}
       propertyPath: m_glousDecouverts.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1941974262104471145, guid: 19ddbeee4e56e14489849871dd10956b, type: 3}
       propertyPath: m_glousInGloudex.Array.data[3]
