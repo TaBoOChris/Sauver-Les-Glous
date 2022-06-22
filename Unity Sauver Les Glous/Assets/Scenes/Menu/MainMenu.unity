@@ -4836,6 +4836,10 @@ PrefabInstance:
       propertyPath: m_gameMusic
       value: 
       objectReference: {fileID: 8300000, guid: 90f088aae70d9d446b0d2c41ad310699, type: 3}
+    - target: {fileID: 5198530948436600710, guid: f2411686e98763f45ad2368db5ce88e0, type: 3}
+      propertyPath: m_villageMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 73badf65da1c0a7478e245a9a427f4d0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2411686e98763f45ad2368db5ce88e0, type: 3}
 --- !u!224 &1643915242 stripped

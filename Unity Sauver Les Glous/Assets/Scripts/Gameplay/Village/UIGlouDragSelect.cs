@@ -84,6 +84,8 @@ public class UIGlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (CursorManager.Instance != null)
             CursorManager.Instance.SetGrab();
 
+        VillageManager.Instance.ColliderHouses_On();
+
     }
 
     // Quand on relache le bouton de la souris
@@ -107,6 +109,7 @@ public class UIGlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             OnMoved();
         }
 
+        VillageManager.Instance.ColliderHouses_Off();
     }
 
     /* This method is called once a glou is put somewhere */
