@@ -44209,11 +44209,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11ba7b058f3d36d47b61f84dee7179e3, type: 3}
---- !u!223 &1784181553 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 3249310093338017184, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
-  m_PrefabInstance: {fileID: 2121244442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1868111399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44604,7 +44599,7 @@ PrefabInstance:
     - target: {fileID: 6526253035351143853, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
       propertyPath: m_cercleGloumatique
       value: 
-      objectReference: {fileID: 1784181553}
+      objectReference: {fileID: 2121244443}
     - target: {fileID: 8456111529470825675, guid: 9a11b4894d8e04b4c872cf64f462c906, type: 3}
       propertyPath: m_Name
       value: GloudexGUI
@@ -45104,6 +45099,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
+--- !u!1 &2121244443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3249310093338017191, guid: 390358684eaac384bbbb8788e4850d56, type: 3}
+  m_PrefabInstance: {fileID: 2121244442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7123050778323984536
 PrefabInstance:
   m_ObjectHideFlags: 0
