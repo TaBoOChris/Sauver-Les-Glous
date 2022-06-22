@@ -62,6 +62,8 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if (CursorManager.Instance != null)
             CursorManager.Instance.SetGrab();
 
+        VillageManager.Instance.ColliderHouses_On();
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -79,6 +81,7 @@ public class GlouDragSelect : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             OnMoved();
         }
 
+        VillageManager.Instance.ColliderHouses_Off();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

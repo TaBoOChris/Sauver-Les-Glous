@@ -41,6 +41,7 @@ public class VillageManager : AbstractSingleton<VillageManager>
         // Ceux qui étaient déjà dans le village
         // Mais aussi ceux qui viennent du sélector
         SpawnGlousInVillage();
+        ColliderHouses_Off();
 
         // Tous les Glous qui sont dans le sélector sont insant déplacés du village (visuellement) au panier
         foreach (Glou glou in GlousData.Instance.GetGlousInSelector())
@@ -67,14 +68,14 @@ public class VillageManager : AbstractSingleton<VillageManager>
             // Création du Glou
             GameObject glou = SpawnGlou(glouData);
 
-            // 40% de chance de spawn dans une maison (Glou fixe)
-            if (Random.Range(0f, 1.0f) >= 0.6f)
+            // 50% de chance de spawn dans une maison (Glou fixe)
+            if (Random.Range(0f, 1.0f) >= 0.5f)
             {
                 House glouHouse = m_villageHouses.Find(house => house.GetHouseID() == glouData.houseID);
                 glou.transform.position = PositionInHouse(glouHouse.GetComponent<BoxCollider2D>().bounds);
                 glou.GetComponent<GlouMovement>().enabled = false;
             }
-            // 60% de chance de spawn à l'extérieur (Glou qui se balade)
+            // 50% de chance de spawn à l'extérieur (Glou qui se balade)
             else
             {
                 glou.transform.position = new Vector3(Random.Range(-19.39f, 12.57f), Random.Range(-12.38f, 7.41f), 0);
@@ -114,8 +115,8 @@ public class VillageManager : AbstractSingleton<VillageManager>
         glouBody.transform.localScale = scale * 0.2f;
         glouExpression.transform.localScale = scale * 0.2f;
 
-        BoxCollider2D glouCollider = glou.GetComponent<BoxCollider2D>();
-        glouCollider.size = new Vector2(size * 2, size * 2);
+        //BoxCollider2D glouCollider = glou.GetComponent<BoxCollider2D>();
+        //glouCollider.size = new Vector2(size * 2, size * 2);
 
         return glou;
     }
@@ -331,4 +332,21 @@ public class VillageManager : AbstractSingleton<VillageManager>
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameplayLvl");
     }
 
+    public void ColliderHouses_Off()
+    {
+        foreach(House h in m_villageHouses)
+        {
+            BoxCollider2D collider = h.GetComponent<BoxCollider2D>();
+            collider.enabled = false;
+        }
+    }
+
+    public void ColliderHouses_On()
+    {
+        foreach (House h in m_villageHouses)
+        {
+            BoxCollider2D collider = h.GetComponent<BoxCollider2D>();
+            collider.enabled = true;
+        }
+    }
 }
