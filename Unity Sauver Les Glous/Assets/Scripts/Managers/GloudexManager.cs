@@ -22,15 +22,20 @@ public class GloudexManager : AbstractSingleton<GloudexManager>
         base.Awake();
     }
 
-    private void Start()
-    {
-        
-    }
-
     // Permet de voir si un Glou est dans le Gloudex
     public bool IsInGloudex(Glou.SkinGlou skinTarget)
     {
         foreach(Glou.SkinGlou skin in m_glousInGloudex)
+        {
+            if (skinTarget == skin) return true;
+        }
+        return false;
+    }
+
+    // Permet de voir si un Glou est dans la fille d'attente
+    public bool IsInGloudexQueue(Glou.SkinGlou skinTarget)
+    {
+        foreach (Glou.SkinGlou skin in m_glousDecouverts)
         {
             if (skinTarget == skin) return true;
         }
@@ -71,7 +76,7 @@ public class GloudexManager : AbstractSingleton<GloudexManager>
     {
         foreach (Glou glou in GlousData.Instance.GetGlousInSelector())
         {
-            if (!IsInGloudex(glou.skin))
+            if (!IsInGloudex(glou.skin) && !IsInGloudexQueue(glou.skin))
             {
                 AddGlouInWaintingQueue(glou.skin);
             }
