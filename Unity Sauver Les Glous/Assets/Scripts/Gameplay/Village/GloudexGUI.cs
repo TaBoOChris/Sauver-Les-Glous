@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class GloudexGUI : MonoBehaviour
 {
-    [SerializeField] private Canvas m_cercleGloumatique;
+    [SerializeField] private GameObject m_cercleGloumatique;
     private GameObject myEventSystem;
 
     [SerializeField] private SpriteRenderer m_notification;
+
+    private bool isActive = false;
 
     private void Awake()
     {
@@ -17,7 +19,7 @@ public class GloudexGUI : MonoBehaviour
 
     private void Start()
     {
-        m_cercleGloumatique.enabled = false;
+        m_cercleGloumatique.SetActive(false);
 
         if (GloudexManager.Instance.GetGlouDecouvertsSize() > 0)
         {
@@ -28,7 +30,8 @@ public class GloudexGUI : MonoBehaviour
 
     public void DisplayCercleGloumatique()
     {
-        m_cercleGloumatique.enabled = !m_cercleGloumatique.enabled;
+        isActive = !isActive;
+        m_cercleGloumatique.SetActive(isActive);
         myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 

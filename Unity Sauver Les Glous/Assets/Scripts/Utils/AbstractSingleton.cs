@@ -22,7 +22,7 @@ public abstract class AbstractSingleton<T> : MonoBehaviour where T : AbstractSin
 
     protected virtual void Awake()
     {
-        Debug.LogWarning("Please ensure that type T is equal to the daughter class : MySingleton : AbstractSingleton<MySingleton>");
+        //Debug.LogWarning("Please ensure that type T is equal to the daughter class : MySingleton : AbstractSingleton<MySingleton>");
         if (_instance == null)
         {
             _instance = (T)this;
