@@ -49,5 +49,6 @@ MonoBehaviour:
   pointerTexture: {fileID: 2800000, guid: 1be2ec69c8820b542a0290b116dfac48, type: 3}
   handTexture: {fileID: 2800000, guid: ebcb1e466f4666e4399c9f32c5a00c2b, type: 3}
   grabTexture: {fileID: 2800000, guid: 2643c2cd56fe24e4e912bb24312e9df0, type: 3}
+  forbiddenTexture: {fileID: 2800000, guid: 6c2cdd4de660921409819e0056a2d9aa, type: 3}
   cursorMode: 0
   hotSpot: {x: 16, y: 16}

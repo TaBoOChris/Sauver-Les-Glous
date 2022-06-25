@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 220, y: 100}
+  m_SizeDelta: {x: 220, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3689627725127891680
 CanvasRenderer:
@@ -148,6 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4563072e05a0fa4eabe4e29342a09ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tutorial: {fileID: 0}
+  _nextTutoButton: {fileID: 0}
+  _previousTutoButton: {fileID: 0}
+  _tutorialList: []
 --- !u!95 &3689627725127891683
 Animator:
   serializedVersion: 4
@@ -236,8 +240,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
-  m_sharedMaterial: {fileID: 5309716565216031011, guid: 2307e7d1c8ccbec4b83573e12ce978e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
+  m_sharedMaterial: {fileID: -8687584457977389723, guid: 3b04f5545c107d74abf0d563d7460ee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -261,7 +265,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 73.4
+  m_fontSize: 39.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

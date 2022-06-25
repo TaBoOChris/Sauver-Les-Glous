@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: 371031225
+  m_SortingLayer: -4
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4ed85cc83b0bdf54cb2ab3574f05c102, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 8130033672022096460}
   - component: {fileID: 199723752652534184}
   - component: {fileID: 7615416994555582244}
+  - component: {fileID: 1923851781360905262}
+  - component: {fileID: 7432913436136047360}
   m_Layer: 0
   m_Name: Glou
   m_TagString: Glou
@@ -131,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b8489e82b23b946b662887be2f0cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_glouGhost: {fileID: 6837327870952140451, guid: f7c78d5a86975fa49b5ab2f5c82de7a9, type: 3}
 --- !u!50 &7615416994555582244
 Rigidbody2D:
   serializedVersion: 4
@@ -152,6 +155,49 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1923851781360905262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130033672022096456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79139bc45b58ac44b59bcf88ab46463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skinsBase:
+  - {fileID: 21300000, guid: 1f3b91937c4af6f4cbab6e9f6a71978e, type: 3}
+  - {fileID: 21300000, guid: 6f19c8d71f337444da78f7f67afd5752, type: 3}
+  - {fileID: 21300000, guid: 87564846458d7c2489a9600f867de349, type: 3}
+  - {fileID: 21300000, guid: dc22725ce310d024f9f46a5fd83a2267, type: 3}
+  - {fileID: 21300000, guid: 5f06fffa34da11d4eb9a1c7b44906c2c, type: 3}
+  - {fileID: 21300000, guid: 0da2084e39460084d82c38bb683a3670, type: 3}
+  - {fileID: 21300000, guid: 9b12c04a8c447c64eb12e1ba70f67ed8, type: 3}
+  - {fileID: 21300000, guid: 1378baf7fb860d74587c9c238f2dd344, type: 3}
+  - {fileID: 21300000, guid: c0d45a2c869c5f74391075b3a72c5b55, type: 3}
+  - {fileID: 21300000, guid: ed7798cfe43c90c4fa2b7a3edaaa6103, type: 3}
+  - {fileID: 21300000, guid: 1d0ad16d4f4f62847be37392999727f5, type: 3}
+  - {fileID: 21300000, guid: f7a4e50ea29a5584e8c1327545f08339, type: 3}
+  _sr: {fileID: 3155758360830097421}
+  _skin: 0
+--- !u!58 &7432913436136047360
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130033672022096456}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: -0.05}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &9017575994758751691
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4063393793839735419}
   - component: {fileID: 3155758360830097421}
-  - component: {fileID: 4403091036874302225}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -223,9 +268,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 371031225
+  m_SortingLayer: -4
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a632c7c26e62e3d458c091de2d469061, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -237,19 +282,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4403091036874302225
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9017575994758751691}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.13, y: -0.25}
-  serializedVersion: 2
-  m_Radius: 2.23

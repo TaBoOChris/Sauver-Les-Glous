@@ -10,13 +10,14 @@ public class MenuBG : MonoBehaviour
     [SerializeField] float xSpawnForce = 180;
     [SerializeField] float ySpawnForce = 180;
     float t = 0;
+    int m_nbGlous = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         AudioManager.Instance.PlayMenuMusic();
         Time.timeScale = 1;
-
+        m_nbGlous = 0;
         t = spawnInterval - 0.5f;
     }
 
@@ -25,12 +26,12 @@ public class MenuBG : MonoBehaviour
         GameObject newGlou = Instantiate(glou, spawner.position, Quaternion.identity); // Spawn Glou
         //AudioManager.Instance.PlayGlouSpawn(); // Glou spawn sound
 
-        // set glou color and size
-        float hue = Random.Range(0f, 1f);
+        // set glou skin and size
         float scale = Random.Range(0.8f, 1.2f);
-        newGlou.GetComponentInChildren<SpriteRenderer>().color = Color.HSVToRGB(hue, 1, 1); ;
-        newGlou.transform.localScale = new Vector3(scale, scale, scale);
+        Glou.SkinGlou skin = Glou.RandomSkinRYBOGP();
 
+        newGlou.GetComponent<GlouInGame>().SetGlou(new Glou(skin, scale)); ;
+        newGlou.transform.localScale = new Vector3(scale, scale, scale);
         newGlou.transform.parent = this.transform;
         newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xSpawnForce + Random.Range(-50f, 50f), -ySpawnForce)); // Add force on the new glou
     }
@@ -38,11 +39,15 @@ public class MenuBG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_nbGlous > 100)
+            return;
         t+=Time.deltaTime;
         if(t > spawnInterval)
         {
             SpawnGlou();
+            m_nbGlous++;
             t = 0;
+            spawnInterval += 0.09f;
         }
     }
 }

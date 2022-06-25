@@ -13,10 +13,9 @@ public class GlousSpawner : MonoBehaviour
     [SerializeField] private float m_scaleMax = 1.2f;
     [SerializeField] private float m_scaleMin = 0.6f;
 
-    [SerializeField] private Color m_defaultGlousColor = new Color(229, 118, 238); // pink
-
     public void SpawnGlous(List<Glou> glousList)
     {
+        Debug.Log("SPAWNER : SPAWN " + glousList.Count + "GLOUS ");
         StartCoroutine(SpawnGlousCoroutine(glousList));
     }
 
@@ -25,6 +24,7 @@ public class GlousSpawner : MonoBehaviour
         for (int i = 0; i < glousList.Count; i++)
         {
             SpawnGlou(glousList[i]);
+            Debug.Log("SPAWNER :GLOUS " + (i+1) + " Spawned");
 
             yield return new WaitForSeconds(m_spawnDelay);
         }
@@ -32,7 +32,7 @@ public class GlousSpawner : MonoBehaviour
 
     public void SpawnGlou(Glou glou)
     {
-        Color color;
+        Glou.SkinGlou skin;
         float scale;
 
         GameObject newGlou = Instantiate(m_glou, m_spawnTransform.position, Quaternion.identity, m_glousParentGO.transform);
@@ -40,23 +40,24 @@ public class GlousSpawner : MonoBehaviour
 
         if (glou != null)
         {
-            color = Color.HSVToRGB(glou.hue, 1, 1);
+            skin = glou.skin;
             scale = glou.sizeMultiplier;
 
             GameManager.Instance.AddGlouInGame(newGlou.GetComponent<GlouInGame>());
         }
         else
         {
-            color = m_defaultGlousColor;
+            skin = Glou.RandomSkinRYBOGP();
             scale = 1f;
         }
 
-        // set glouGO color
-        newGlou.GetComponentInChildren<SpriteRenderer>().color = color;
+        // set glouGO skin
+        newGlou.GetComponent<GlouSkin>().SetSkin(skin);
         // set glouGO size
         newGlou.transform.localScale = new Vector3(scale, scale, scale);
 
-        AudioManager.Instance.PlayGlouSpawn();
+        if(AudioManager.Instance)
+            AudioManager.Instance.PlayGlouSpawn();
 
         float xRandomForce = Random.Range(-m_xMaxSpawnForce, m_xMaxSpawnForce); // Calculte force in X
         newGlou.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(xRandomForce, -m_ySpawnForce)); // Add force on the new glou
@@ -64,15 +65,20 @@ public class GlousSpawner : MonoBehaviour
 
     public void SpawnGlou()
     {
-        SpawnGlou(null);
+        Glou.SkinGlou skin = Glou.RandomSkinRYBOGP();
+        float scale = Random.Range(m_scaleMin, m_scaleMax);
+
+        Glou glou = new Glou(skin, scale);
+
+        SpawnGlou(glou);
     }
 
     public void SpawnNewGlou()
     {
-        float hue = Random.Range(0f, 1f);
+        Glou.SkinGlou skin = Glou.RandomSkinRYB();
         float scale = Random.Range(m_scaleMin, m_scaleMax);
 
-        Glou glou = new Glou(hue, scale);
+        Glou glou = new Glou(skin, scale);
 
         SpawnGlou(glou);
     }
@@ -81,4 +87,5 @@ public class GlousSpawner : MonoBehaviour
     {
         return m_glousParentGO;
     }
+
 }

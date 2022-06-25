@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Glou
+  - DrumLimit
+  - SpawnerTrigger
+  - AttractorTrigger
   layers:
   - Default
   - TransparentFX
@@ -39,6 +42,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1030354361
+    locked: 0
+  - name: Plateformes
+    uniqueID: 183098265
+    locked: 0
+  - name: Gear
+    uniqueID: 3906249083
+    locked: 0
+  - name: Topground
+    uniqueID: 2572371253
+    locked: 0
+  - name: Glous
+    uniqueID: 371031225
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

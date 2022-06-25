@@ -71,6 +71,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EndGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""40d8f88d-b9c8-4709-a721-ba1c8a97ecc2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""ReverseRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7e161d3-102e-432d-b59e-3053d08eeb3b"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EndGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -169,6 +189,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_CheatCodes_SpawnGlou = m_CheatCodes.FindAction("SpawnGlou", throwIfNotFound: true);
         m_CheatCodes_SpawnGlouHue = m_CheatCodes.FindAction("SpawnGlouHue", throwIfNotFound: true);
         m_CheatCodes_ReverseRotation = m_CheatCodes.FindAction("ReverseRotation", throwIfNotFound: true);
+        m_CheatCodes_EndGame = m_CheatCodes.FindAction("EndGame", throwIfNotFound: true);
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
@@ -236,6 +257,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_CheatCodes_SpawnGlou;
     private readonly InputAction m_CheatCodes_SpawnGlouHue;
     private readonly InputAction m_CheatCodes_ReverseRotation;
+    private readonly InputAction m_CheatCodes_EndGame;
     public struct CheatCodesActions
     {
         private @InputActions m_Wrapper;
@@ -245,6 +267,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @SpawnGlou => m_Wrapper.m_CheatCodes_SpawnGlou;
         public InputAction @SpawnGlouHue => m_Wrapper.m_CheatCodes_SpawnGlouHue;
         public InputAction @ReverseRotation => m_Wrapper.m_CheatCodes_ReverseRotation;
+        public InputAction @EndGame => m_Wrapper.m_CheatCodes_EndGame;
         public InputActionMap Get() { return m_Wrapper.m_CheatCodes; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -269,6 +292,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @ReverseRotation.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnReverseRotation;
                 @ReverseRotation.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnReverseRotation;
                 @ReverseRotation.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnReverseRotation;
+                @EndGame.started -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnEndGame;
+                @EndGame.performed -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnEndGame;
+                @EndGame.canceled -= m_Wrapper.m_CheatCodesActionsCallbackInterface.OnEndGame;
             }
             m_Wrapper.m_CheatCodesActionsCallbackInterface = instance;
             if (instance != null)
@@ -288,6 +314,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @ReverseRotation.started += instance.OnReverseRotation;
                 @ReverseRotation.performed += instance.OnReverseRotation;
                 @ReverseRotation.canceled += instance.OnReverseRotation;
+                @EndGame.started += instance.OnEndGame;
+                @EndGame.performed += instance.OnEndGame;
+                @EndGame.canceled += instance.OnEndGame;
             }
         }
     }
@@ -332,6 +361,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnSpawnGlou(InputAction.CallbackContext context);
         void OnSpawnGlouHue(InputAction.CallbackContext context);
         void OnReverseRotation(InputAction.CallbackContext context);
+        void OnEndGame(InputAction.CallbackContext context);
     }
     public interface IGameActions
     {

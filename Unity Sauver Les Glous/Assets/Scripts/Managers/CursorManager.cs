@@ -7,11 +7,12 @@ public class CursorManager : AbstractSingleton<CursorManager>
     [SerializeField] Texture2D pointerTexture;
     [SerializeField] Texture2D handTexture;
     [SerializeField] Texture2D grabTexture;
+    [SerializeField] Texture2D forbiddenTexture;
 
     [SerializeField] CursorMode cursorMode = CursorMode.Auto;
     [SerializeField] Vector2 hotSpot = Vector2.zero;
 
-    public enum State { Pointer, Hand, Grab };
+    public enum State { Pointer, Hand, Grab, Forbidden };
     State state = State.Pointer;
 
     public void Start()
@@ -36,6 +37,11 @@ public class CursorManager : AbstractSingleton<CursorManager>
        state = State.Pointer;
        Cursor.SetCursor(pointerTexture, Vector2.zero, cursorMode);
     }
+    public void SetForbidden()
+    {
+        state = State.Forbidden;
+        Cursor.SetCursor(forbiddenTexture, Vector2.zero, cursorMode);
+    }
 
     public State GetState()
     {
@@ -53,5 +59,10 @@ public class CursorManager : AbstractSingleton<CursorManager>
     public bool IsPointer()
     {
         return state == State.Pointer;
+    }
+
+    public bool IsForbidden()
+    {
+        return state == State.Forbidden;
     }
 }

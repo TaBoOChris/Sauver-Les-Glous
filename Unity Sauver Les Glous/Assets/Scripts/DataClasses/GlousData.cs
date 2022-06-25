@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GlousData : AbstractSingleton<GlousData>
 {
-    private List<Glou> m_glousInVillage = new List<Glou>(); 
-    private List<Glou> m_glousInSelector = new List<Glou>();
+    [SerializeField] private List<Glou> m_glousInVillage = new List<Glou>();
+    [SerializeField] private List<Glou> m_glousInSelector = new List<Glou>();
     
     public List<Glou> GetGlousInVillage()
     {
@@ -40,5 +40,10 @@ public class GlousData : AbstractSingleton<GlousData>
     public void SetGlousInSelector(List<Glou> newList)
     {
         m_glousInSelector = newList;
+    }
+
+    public int GetGlousInSelectorCount()
+    {
+        return m_glousInSelector.Count;
     }
 }
